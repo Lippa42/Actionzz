@@ -1,0 +1,873 @@
+ticker,name,sector,index
+1COV.DE,Covestro,Chemicals,STOXX Europe 600
+8TRA.DE,Traton,Industrial Goods and Services,STOXX Europe 600
+A2A.MI,A2A,Utilities,FTSE MIB
+A5G.IR,AIB Group,,ISEQ 20
+AAF.L,Airtel Africa,Telecommunications services,FTSE 100 Index
+AAL.L,Anglo American plc,Mining,FTSE 100 Index
+AALB.AS,Aalberts,electronic equipment,AMX index
+ABB.ST,ABB Ltd,Industrials,OMX Stockholm 30
+ABBN.SW,ABB Ltd,Industrials,Swiss Market Index
+ABDN.L,Aberdeen Group,Financial Services,FTSE 100 Index
+ABF.L,Associated British Foods,Food & tobacco,FTSE 100 Index
+ABI.BR,AB InBev,Consumer Staples,BEL 20
+ABN.AS,ABN AMRO,Financials,AEX index
+AC.PA,Accor,Consumer Services,CAC 40
+ACA.PA,Crédit Agricole,Financial Services,CAC 40
+ACCEL.AS,Accell Group,recreational products,AScX index
+ACKB.BR,Ackermans & van Haaren,Industrials,BEL 20
+ACLN.SW,Accelleron,Industrials,SMI MID
+ACOMO.AS,Amsterdam Commodities,food products,AScX index
+ACS.MC,ACS,Construction,IBEX 35
+ACX.MC,Acerinox,Steel,IBEX 35
+AD.AS,Ahold Delhaize,Consumer Staples,AEX index
+ADDT-B.ST,Addtech B,Industrials,OMX Stockholm 30
+ADEN.SW,Adecco,Industrials,SMI MID
+ADH.OL,Adevinta,Consumer Products and Services,STOXX Europe 600
+ADM.L,Admiral Group,Insurance,FTSE 100 Index
+ADS.DE,Adidas,Apparel,DAX
+ADYEN.AS,Adyen,Industrials,AEX index
+AED.BR,Aedifica,Real Estate,BEL 20
+AENA.MC,AENA,Aviation,IBEX 35
+AEP.L,AEP Plantations,Food Producers,FTSE 250 Index
+AF.AS,Air France-KLM,airlines,AMX index
+AF.PA,Air France–KLM,consumer discretionary,CAC Next 20
+AFX.DE,Carl Zeiss Meditec,Health Care,STOXX Europe 600
+AGN.AS,Aegon,Financials,AEX index
+AGS.BR,Ageas,Financials,BEL 20
+AI.PA,Air Liquide,Basic Materials,CAC 40
+AIR.PA,Airbus,Aerospace & Defence,DAX
+AIRP.PA,Air Liquide,Chemicals,STOXX Europe 600
+AIXA.DE,AIXTRON,Technology,STOXX Europe 600
+AJB.L,AJ Bell,Financial Services,FTSE 250 Index
+AKE.PA,Arkema,specialty chemicals,CAC Next 20
+AKERBP.OL,Aker BP,Energy,STOXX Europe 600
+AKRBP.OL,Aker BP,oil: crude producers,OBX Index
+AKZA.AS,AkzoNobel,Basic Materials,AEX index
+ALC.SW,Alcon Inc,Health care,Swiss Market Index
+ALFA.L,Alfa Financial Software,Software and Computer Services,FTSE 250 Index
+ALFA.ST,Alfa Laval,Industrials,OMX Stockholm 30
+ALFEN.AS,Alfen,electronic equipment,AMX index
+ALLFG.MC,Allfunds Group,Financial Services,STOXX Europe 600
+ALO.PA,Alstom,Industrial Goods and Services,STOXX Europe 600
+ALSYDB.CO,AL Sydbank,Banks,OMX Copenhagen 25
+ALTR.LS,Altri,Basic Resources,PSI-20
+ALV.DE,Allianz,Financial Services,DAX
+AMBU-B.CO,Ambu,Health Care,OMX Copenhagen 25
+AMG.AS,Advanced Metallurgical Group,machinery: Industrial,AMX index
+AML.L,Aston Martin,Automobiles and Parts,STOXX Europe 600
+AMP.MI,Amplifon,Health Care,FTSE MIB
+AMRZ.SW,Amrize AG,Materials,Swiss Market Index
+AMS.MC,Amadeus IT Group,Tourism,IBEX 35
+AMS.VI,ams OSRAM,Technology,STOXX Europe 600
+ANA.MC,Acciona,Construction,IBEX 35
+ANE.MC,Acciona Energía,Energy,IBEX 35
+ANTO.L,Antofagasta plc,Mining,FTSE 100 Index
+AO.L,AO World,Retail,FTSE 250 Index
+APAM.AS,Aperam,iron and steel,AMX index
+APAM.BR,Aperam,Basic Materials,BEL 20
+APN.L,Applied Nutrition,Food Producers,FTSE 250 Index
+ARCAD.AS,Arcadis,engineering and contracting services,AMX index
+ARGX.AS,Argenx,Health Care,STOXX Europe 600
+ARGX.BR,arGEN-X,Health Care,BEL 20
+ARND.DE,Aroundtown,Real Estate,STOXX Europe 600
+ASHM.L,Ashmore Group,Financial Services,FTSE 250 Index
+ASM.AS,ASM International,Technology,AEX index
+ASMI.AS,ASM International,Technology,STOXX Europe 600
+ASML.AS,ASML Holding,Technology,AEX index
+ASRNL.AS,ASR Nederland,Financials,AEX index
+ASSA-B.ST,Assa Abloy B,Industrials,OMX Stockholm 30
+ATCO-A.ST,Atlas Copco A,Industrials,OMX Stockholm 30
+ATCOa.ST,Atlas Copco,Industrial Goods and Services,STOXX Europe 600
+ATG.L,Auction Technology Group,Software and Computer Services,FTSE 250 Index
+ATOS.PA,Atos,Technology,STOXX Europe 600
+ATYM.L,Atalaya Mining,Industrial Metals and Mining,FTSE 250 Index
+AUTO.L,Autotrader Group,Media,FTSE 100 Index
+AV.L,Aviva,Life insurance,FTSE 100 Index
+AVIO.MI,Avio,Aerospace,FTSE MIB
+AVOL.SW,Avolta,Retail discretionary,SMI MID
+AVON.L,Avon Technologies,Industrial Goods and Services,FTSE 250 Index
+AVTX.AS,Avantium,specialty chemicals,AScX index
+AZE.BR,Azelis Group,Industrials,BEL 20
+AZM.MI,Azimut,Financial Services,FTSE MIB
+AZN.L,AstraZeneca,Pharmaceuticals & biotechnology,FTSE 100 Index
+AZN.ST,AstraZeneca,Health Care,OMX Stockholm 30
+BA.L,BAE Systems,Aerospace & defence,FTSE 100 Index
+BAB.L,Babcock International,Aerospace & defence,FTSE 100 Index
+BAER.SW,Julius Bär,Financials,SMI MID
+BAG.L,A.G. Barr,Beverages,FTSE 250 Index
+BALD-B.ST,Balder,Real Estate,STOXX Europe 600
+BALN.SW,Baloise,Insurance,STOXX Europe 600
+BAMI.MI,Banco BPM,Banks,FTSE MIB
+BARC.L,Barclays,Banks,FTSE 100 Index
+BARN.SW,Barry Callebaut,Retail staples,SMI MID
+BAS.DE,BASF,Chemicals,DAX
+BATS.L,British American Tobacco,Tobacco,FTSE 100 Index
+BAYN.DE,Bayer,Pharmaceuticals,DAX
+BBED.AS,Beter Bed,home improvement retailers,AScX index
+BBVA.MC,BBVA,Financial Services,IBEX 35
+BBY.L,Balfour Beatty,Construction & Materials,FTSE 250 Index
+BC.MI,Brunello Cucinelli,Consumer Products and Services,FTSE MIB
+BCG.L,Baltic Classifieds,Consumer Digital Services,FTSE 250 Index
+BCP.LS,Banco Comercial Português,Banks,PSI-20
+BEAN.SW,Belimo,Industrials,SMI MID
+BEB.SW,Belimo,Construction and Materials,STOXX Europe 600
+BEI.DE,Beiersdorf,Consumer goods,DAX
+BESI.AS,BE Semiconductors,Technology,AEX index
+BEZ.L,Beazley,Insurance,FTSE 100 Index
+BFIT.AS,Basic-Fit,recreational services,AMX index
+BGEO.L,Lion Finance Group,Banking Services,FTSE 100 Index
+BIM.PA,BioMérieux,pharmaceuticals,CAC Next 20
+BINCK.AS,Binckbank,investment services,AScX index
+BIRG.IR,Bank of Ireland,,ISEQ 20
+BKG.L,Berkeley Group Holdings,Household goods & home construction,FTSE 250 Index
+BKT.MC,Bankinter,Financial Services,IBEX 35
+BLND.L,British Land,Real estate,FTSE 100 Index
+BME.L,B&M,Retailers,FTSE 250 Index
+BMED.MI,Banca Mediolanum,Financial Services,FTSE MIB
+BMPS.MI,Banca Monte dei Paschi di Siena,Banks,FTSE MIB
+BMW.DE,BMW,Automotive,DAX
+BMY.L,Bloomsbury Publishing,Media,FTSE 250 Index
+BN.PA,Danone,Consumer Defensive,CAC 40
+BNP.PA,BNP Paribas,Financial Services,CAC 40
+BNPP.PA,BNP Paribas,Banks,STOXX Europe 600
+BNR.DE,Brenntag,Distribution,DAX
+BNZL.L,Bunzl,Support services,FTSE 100 Index
+BOKA.AS,Boskalis,construction,AMX index
+BOL.PA,Bolloré,Industrial Goods and Services,STOXX Europe 600
+BOL.ST,Boliden,Materials,OMX Stockholm 30
+BOLS.AS,Lucas Bols,distillers and vintners,AScX index
+BOSS.DE,Hugo Boss,Consumer Products and Services,STOXX Europe 600
+BOWL.L,Hollywood Bowl Group,Travel and leisure,FTSE 250 Index
+BOY.L,Bodycote,Industrial Engineering,FTSE 250 Index
+BP.L,BP,Oil & gas producers,FTSE 100 Index
+BPE.MI,BPER Banca,Banks,FTSE MIB
+BPOST.BR,Bpost,Industrial Goods and Services,STOXX Europe 600
+BPT.L,Bridgepoint Group,Financial Services,FTSE 250 Index
+BRBY.L,Burberry Group,Personal goods,FTSE 100 Index
+BREE.L,Breedon Group,Construction & Materials,FTSE 250 Index
+BRNL.AS,Brunel International,support services,AScX index
+BRNW.MI,Brunello Cucinelli,Consumer Products and Services,STOXX Europe 600
+BT-A.L,BT Group,Telecommunications services,FTSE 100 Index
+BTRW.L,Barratt Redrow,Household goods & home construction,FTSE 100 Index
+BVI.PA,Bureau Veritas,Inspection and certification,CAC 40
+BWLPG.OL,BW LPG,marine transportation,OBX Index
+BWY.L,Bellway,Home Construction,FTSE 250 Index
+BYG.L,Big Yellow Group,Real Estate,STOXX Europe 600
+BYIT.L,Bytes Technology Group,Aerospace & Defence,FTSE 250 Index
+BZU.MI,Buzzi,Construction and Materials,FTSE MIB
+C5H.IR,Cairn Homes,,ISEQ 20
+CA.PA,Carrefour,Consumer Defensive,CAC 40
+CABK.MC,CaixaBank,Financial Services,IBEX 35
+CAGR.PA,Crédit Agricole,Banks,STOXX Europe 600
+CAP.PA,Capgemini,Technology,CAC 40
+CAPP.PA,Capgemini,Technology,STOXX Europe 600
+CARL-B.CO,Carlsberg Group,"Food, Beverage and Tobacco",OMX Copenhagen 25
+CARR.PA,Carrefour,Retail,STOXX Europe 600
+CASP.ST,Castellum,Real Estate,STOXX Europe 600
+CAST.ST,Castellum,Real Estate,STOXX Europe 600
+CBG.L,Close Brothers Group,Financial Services,FTSE 250 Index
+CBK.DE,Commerzbank,Financial Services,DAX
+CCC.L,Computacenter,Software & Computer Services,FTSE 100 Index
+CCEP.L,Coca-Cola Europacific Partners,Beverages,FTSE 100 Index
+CCH.L,Coca-Cola HBC,Beverages,FTSE 100 Index
+CCH.SW,Coca-Cola HBC,"Food, Beverage and Tobacco",STOXX Europe 600
+CDR.WA,CD Projekt,Consumer Products and Services,STOXX Europe 600
+CFR.SW,Compagnie Financière Richemont SA,Retail discretionary,Swiss Market Index
+CHG.L,Chemring Group,Aerospace & Defence,FTSE 250 Index
+CKN.L,Clarkson,Industrial Transportation,FTSE 250 Index
+CLN.SW,Clariant,Materials,SMI MID
+CLNX.MC,Cellnex Telecom,Telecommunications,IBEX 35
+CMCX.L,CMC Markets,Financial Services,FTSE 250 Index
+CNA.L,Centrica,Multiline utilities,FTSE 100 Index
+COA.L,Coats Group,Consumer Staples,FTSE 250 Index
+COL.MC,Inmobiliaria Colonial,Real Estate,IBEX 35
+COLO-B.CO,Coloplast,Health Care,OMX Copenhagen 25
+COLR.BR,Colruyt,"Personal Care, Drug and Grocery Stores",STOXX Europe 600
+CON.DE,Continental,Automotive,DAX
+COR.LS,Corticeira Amorim,Industrial Goods & Services,PSI-20
+COST.L,Costain Group,Engineering and Construction,FTSE 250 Index
+CPG.L,Compass Group,Support services,FTSE 100 Index
+CPR.MI,Campari,"Food, Beverage and Tobacco",FTSE MIB
+CRBN.AS,Corbion,food products,AMX index
+CRDA.L,Croda International,Chemicals,FTSE 100 Index
+CS.PA,Axa,Financial Services,CAC 40
+CSN.L,Chesnara,Life Insurance,FTSE 250 Index
+CTEC.L,Convatec,Health care equipment & supplies,FTSE 100 Index
+CTG.L,Computer Center,Technology,STOXX Europe 600
+CTS.DE,CTS Eventim,Media,STOXX Europe 600
+CTT.LS,CTT Correios de Portugal,Industrial Goods & Services,PSI-20
+CURY.L,Currys,Retailers,FTSE 250 Index
+CVSG.L,CVS Group,Health Care,FTSE 250 Index
+CWK.L,Cranswick,Food Producers,FTSE 250 Index
+CWR.L,Ceres Power,Alternative Energy,FTSE 250 Index
+DANO.PA,Danone,"Food, Beverage and Tobacco",STOXX Europe 600
+DANSKE.CO,Danske Bank,Banks,OMX Copenhagen 25
+DATA.L,GlobalData,Industrial Goods and Services,FTSE 250 Index
+DB1.DE,Deutsche Börse,Financial Services,DAX
+DBK.DE,Deutsche Bank,Financial Services,DAX
+DCC.L,DCC Energy,Support services,FTSE 100 Index
+DEMANT.CO,Demant,Health Care,OMX Copenhagen 25
+DG.PA,Vinci,Industrials,CAC 40
+DGE.L,Diageo,Beverages,FTSE 100 Index
+DHER.DE,Delivery Hero,Retail,STOXX Europe 600
+DHL.DE,Deutsche Post,Logistics,DAX
+DIA.MC,Dia,"Personal Care, Drug and Grocery Stores",STOXX Europe 600
+DIA.MI,Diasorin,Health Care,FTSE MIB
+DIE.BR,D'Ieteren,Consumer Discretionary,BEL 20
+DIM.PA,Sartorius Stedim Biooutsource,pharmaceuticals,CAC Next 20
+DLG.L,Direct Line,Insurance,STOXX Europe 600
+DLN.L,Derwent London,Real Estate,STOXX Europe 600
+DNB.OL,DNB Bank,banks,OBX Index
+DNLM.L,Dunelm Group,Retailers,FTSE 250 Index
+DOCM.SW,DocMorris,Health Care,STOXX Europe 600
+DOCS.L,Dr. Martens,Retailers,FTSE 250 Index
+DOM.L,Domino's Pizza,Travel & Leisure,FTSE 250 Index
+DPLM.L,Diploma,Industrial Support services,FTSE 100 Index
+DQ7A.IR,Donegal investment group,,ISEQ 20
+DRX.L,Drax Group,Electricity,FTSE 250 Index
+DSCV.L,discoverIE,Support Services,FTSE 250 Index
+DSFIR.AS,DSM Firmenich AG,Consumer Staples,AEX index
+DSM.SW,DSM-Firmenich,Chemicals,STOXX Europe 600
+DSV.CO,DSV,Industrial Goods and Services,OMX Copenhagen 25
+DSY.PA,Dassault Systèmes,Technology,CAC 40
+DTE.DE,Deutsche Telekom,Telecommunication,DAX
+DTG.DE,Daimler Truck,Automotive,DAX
+EBS.VI,Erste Group,Banks,STOXX Europe 600
+ECMPA.AS,Eurocommercial Properties,retail REITs,AMX index
+EDEN.PA,Edenred,Industrials,CAC 40
+EDP.LS,Energias de Portugal,Utilities,PSI-20
+EDPR.LS,EDP Renováveis,Utilities,PSI-20
+EDV.L,Endeavour Mining,Mining,FTSE 100 Index
+EFGI.PA,Eiffage,Construction and Materials,STOXX Europe 600
+EG7.IR,FBD Holdings,,ISEQ 20
+EGL.LS,Mota-Engil,Construction & Materials,PSI-20
+EL.PA,EssilorLuxottica,Healthcare,CAC 40
+ELE.MC,Endesa,Energy,IBEX 35
+ELI.BR,Elia Group,Utilities,BEL 20
+ELISA.HE,Elisa,Communication Services,OMX Helsinki 25
+ELM.L,Elementis,Chemicals,FTSE 250 Index
+ELUX-B.ST,Electrolux,Consumer Products and Services,STOXX Europe 600
+EMSN.SW,Ems-Chemie,Materials,SMI MID
+EN.PA,Bouygues,Industrials,CAC 40
+ENEL.MI,Enel,Utilities,FTSE MIB
+ENG.MC,Enagás,Energy,IBEX 35
+ENGI.PA,Engie,Utilities,CAC 40
+ENI.MI,Eni,Energy,FTSE MIB
+ENOG.L,Energean,Oil & Gas Producers,FTSE 250 Index
+ENR.DE,Siemens Energy,Energy technology,DAX
+ENT.L,Entain,Travel & leisure,FTSE 250 Index
+ENX.AS,Euronext,Financial Services,STOXX Europe 600
+ENX.PA,Euronext,stock exchange,CAC Next 20
+EO.PA,Faurecia,automotive parts,CAC Next 20
+EOAN.DE,E.ON,Utilities,DAX
+EPI-A.ST,Epiroc A,Industrials,OMX Stockholm 30
+EQNR.OL,Equinor,integrated oil and gas,OBX Index
+EQT.ST,EQT,Financials,OMX Stockholm 30
+ERF.PA,Eurofins Scientific,Healthcare,CAC 40
+ERIC-B.ST,Ericsson B,Information Technology,OMX Stockholm 30
+ERICb.ST,Ericsson,Telecommunications,STOXX Europe 600
+ESLX.PA,EssilorLuxottica,Health Care,STOXX Europe 600
+ESSITY-B.ST,Essity B,Consumer Staples,OMX Stockholm 30
+EVK.DE,Evonik Industries,Chemicals,STOXX Europe 600
+EVO.ST,Evolution,Consumer Discretionary,OMX Stockholm 30
+EVR.L,Evraz,Basic Resources,STOXX Europe 600
+EVT.DE,Evotec,Health Care,STOXX Europe 600
+EWG.L,Eurowag,Financial Services,FTSE 250 Index
+EXO.AS,Exor,Financials,AEX index
+EXPN.L,Experian,Support services,FTSE 100 Index
+EZJ.L,EasyJet,Travel and Leisure,FTSE 100 Index
+FAGR.AS,Fagron,medical equipment,AMX index
+FALK.CO,Falck,Health Care,STOXX Europe 600
+FAN.L,Volution Group,Construction & Materials,FTSE 250 Index
+FBK.MI,FinecoBank,Banks,FTSE MIB
+FCH.L,Funding Circle,Financial Services,FTSE 250 Index
+FCT.MI,Fincantieri,Shipbuilding,FTSE MIB
+FDR.MC,Fluidra,Manufacturing,IBEX 35
+FER.AS,Ferrovial,Construction and Materials,STOXX Europe 600
+FER.MC,Ferrovial,Infrastructure,IBEX 35
+FERR.MI,Ferrari,Automobiles and Parts,STOXX Europe 600
+FFARM.AS,ForFarmers,farming and fishing,AScX index
+FGP.L,FirstGroup,Travel & Leisure,FTSE 250 Index
+FGR.PA,Eiffage,construction,CAC Next 20
+FHZN.SW,Flughafen Zürich,Industrials,SMI MID
+FLOW.AS,Flow traders,investment services,AMX index
+FLS.CO,FLSmidth & Co.,Construction and Materials,OMX Copenhagen 25
+FLTR.IR,Flutter Entertainment,Travel and Leisure,STOXX Europe 600
+FME.DE,Fresenius Medical Care,Healthcare,DAX
+FNTN.DE,Freenet,Telecommunications,STOXX Europe 600
+FOR.MC,FCC,Construction and Materials,STOXX Europe 600
+FORTUM.HE,Fortum,Utilities,OMX Helsinki 25
+FOUR.L,4imprint,Media,FTSE 250 Index
+FR.PA,Valeo,automotive parts,CAC Next 20
+FRA.DE,Rational,Industrial Goods and Services,STOXX Europe 600
+FRAS.L,Frasers Group,Retailers,FTSE 250 Index
+FRE.DE,Fresenius,Healthcare,DAX
+FRES.L,Fresnillo plc,Mining,FTSE 100 Index
+FRO.OL,Frontline,marine transportation,OBX Index
+FRVIA.PA,Forvia,Automobiles and Parts,STOXX Europe 600
+FSG.L,Foresight Group,Investment Banking and Brokerage Services,FTSE 250 Index
+FTI.L,TechnipFMC,Energy,STOXX Europe 600
+FUR.AS,Fugro,engineering and contracting services,AMX index
+G.MI,Generali,Insurance,FTSE MIB
+G1A.DE,GEA Group,Mechanical Engineering,DAX
+G24.DE,Scout24,E-Commerce,DAX
+GALD.SW,Galderma,Health care,SMI MID
+GALE.SW,Galenica,Health care,SMI MID
+GALP.LS,Galp Energia,Energy,PSI-20
+GAMA.L,Gamma Communications,Telecommunications,FTSE 250 Index
+GAW.L,Games Workshop,Leisure Goods,FTSE 100 Index
+GBLB.BR,GBL,Financials,BEL 20
+GDWN.L,Goodwin,General Industrials,FTSE 250 Index
+GEBN.SW,Geberit AG,Industrials,Swiss Market Index
+GEN.L,Genuit Group,Construction & Materials,FTSE 250 Index
+GET.PA,Getlink,rail transport,CAC Next 20
+GF.SW,Georg Fischer,Industrials,SMI MID
+GFC.PA,Gecina,real estate,CAC Next 20
+GFRD.L,Galliford Try,Construction,FTSE 250 Index
+GFT.IR,Grafton Group,Industrial Goods and Services,STOXX Europe 600
+GFTU.L,Grafton Group,Support Services,FTSE 250 Index
+GIVN.SW,Givaudan SA,Materials,Swiss Market Index
+GJF.OL,Gjensidige Forsikring,full line insurance,OBX Index
+GL9.IR,Glanbia,,ISEQ 20
+GLB.IR,Glanbia,"Food, Beverage and Tobacco",STOXX Europe 600
+GLE.PA,Société Générale,Financial Services,CAC 40
+GLEN.L,Glencore,Mining,FTSE 100 Index
+GLPG.AS,Galapagos,biotechnology,AMX index
+GMAB.CO,Genmab,Health Care,OMX Copenhagen 25
+GN.CO,GN Store Nord,Health Care,OMX Copenhagen 25
+GNC.L,Greencore,"Food, Beverage and Tobacco",FTSE 250 Index
+GNS.L,Genus,Pharmaceuticals & Biotechnology,FTSE 250 Index
+GOGL.OL,Golden Ocean Group,marine transportation,OBX Index
+GREG.L,Greggs,Retail,STOXX Europe 600
+GRF.MC,Grifols,Pharmaceuticals,IBEX 35
+GRG.L,Greggs,Food & Drug Retailers,FTSE 250 Index
+GRI.L,Grainger,Real Estate Investment & Services,FTSE 250 Index
+GROW.L,Molten Ventures,Financial Services,FTSE 250 Index
+GSK.L,GSK plc,Pharmaceuticals & biotechnology,FTSE 100 Index
+GVNV.AS,GrandVision,medical supplies,AMX index
+GVR.IR,Glenveagh Properties,,ISEQ 20
+GWI.MI,Gruppo Campari,"Food, Beverage and Tobacco",STOXX Europe 600
+HAFNI.OL,Hafnia Limited,marine transportation,OBX Index
+HAS.L,Hays,Support Services,FTSE 250 Index
+HAUTO.OL,Höegh Autoliners ASA,marine transportation,OBX Index
+HBAN.SW,Helvetia Bâloise,Financials,SMI MID
+HBR.L,Harbour Energy,Oil & Gas Producers,FTSE 250 Index
+HDG.AS,Hunter Douglas,furnishings,AScX index
+HEI.DE,Heidelberg Materials,Construction Materials,DAX
+HEIA.AS,Heineken,Consumer Staples,AEX index
+HEIJM.AS,Heijmans,heavy construction,AScX index
+HELN.SW,Helvetia Insurance,Insurance,STOXX Europe 600
+HEN3.DE,Henkel,Consumer Goods,DAX
+HER.MI,Hera,Utilities,FTSE MIB
+HEXA-B.ST,Hexagon B,Information Technology,OMX Stockholm 30
+HFD.L,Halfords,Retailers,FTSE 250 Index
+HFG.L,Hilton Food Group,Food Producers,FTSE 250 Index
+HIAB.HE,Hiab,Industrials,OMX Helsinki 25
+HIK.L,Hikma Pharmaceuticals,Pharmaceuticals and Biotechnology,FTSE 250 Index
+HILS.L,Hill & Smith,Industrial Engineering,FTSE 250 Index
+HLI.L,Haleon,Consumer Products and Services,STOXX Europe 600
+HLMA.L,Halma plc,Electronic equipment & parts,FTSE 100 Index
+HLN.L,Haleon,Pharmaceuticals & biotechnology,FTSE 100 Index
+HM-B.ST,Hennes & Mauritz B,Consumer Discretionary,OMX Stockholm 30
+HMB.ST,H&M,Retail,STOXX Europe 600
+HMSO.IR,Hammerson plc,,ISEQ 20
+HNR.DE,Hannover Re,Insurance,STOXX Europe 600
+HNR1.DE,Hannover Re,Insurance,DAX
+HO.PA,Thales,Industrials,CAC 40
+HOC.L,Hochschild Mining,Basic Resources,FTSE 250 Index
+HOLN.SW,Holcim Limited,Materials,Swiss Market Index
+HSBA.L,HSBC,Banks,FTSE 100 Index
+HSX.L,Hiscox,Non-life Insurance,FTSE 100 Index
+HTG.L,Hunting,"Oil, Gas and Coal",FTSE 250 Index
+HTWS.L,Helios Towers,Telecomms,FTSE 250 Index
+HUH1V.HE,Huhtamäki,Industrials,OMX Helsinki 25
+HUSQ-B.ST,Husqvarna,Consumer Products and Services,STOXX Europe 600
+HWDN.L,Howdens Joinery,Homebuilding & construction supplies,FTSE 100 Index
+HWG.L,Harworth Group,Real Estate,FTSE 250 Index
+IAG.L,International Airlines Group,Travel & leisure,FTSE 100 Index
+IAG.MC,International Airlines Group,Aviation,IBEX 35
+IBE.MC,Iberdrola,Energy,IBEX 35
+IBS.LS,Ibersol,Travel & Leisure,PSI-20
+ICG.L,ICG,Financial services,FTSE 100 Index
+ICP.L,Intermediate Capital Group,Financial Services,STOXX Europe 600
+ICT.AS,ICT Group,software,AScX index
+IDP.MI,Interpump Group,Industrial Goods and Services,STOXX Europe 600
+IDR.MC,Indra,Information Technology,IBEX 35
+IFX.DE,Infineon Technologies,Technology,DAX
+IG.MI,Italgas,Utilities,FTSE MIB
+IGG.L,IG Group,Financial services,FTSE 100 Index
+IGGI.L,IG Group,Financial Services,STOXX Europe 600
+IHG.L,IHG Hotels & Resorts,Travel & leisure,FTSE 100 Index
+IHP.L,IntegraFin Holdings,Financial Services,FTSE 250 Index
+III.L,3i,Financial services,FTSE 100 Index
+IMB.L,Imperial Brands,Tobacco,FTSE 100 Index
+IMCD.AS,IMCD,Basic Materials,AEX index
+IMI.L,IMI,Industrial engineering,FTSE 100 Index
+INCH.L,Inchcape,Retailers,FTSE 250 Index
+INDT.ST,Indutrade,Industrial Goods and Services,STOXX Europe 600
+INDU-C.ST,Industrivärden C,Financials,OMX Stockholm 30
+INDV.L,Indivior,Health Care,STOXX Europe 600
+INF.L,Informa,Media,FTSE 100 Index
+INGA.AS,ING Group,Financials,AEX index
+INP.L,Investec,Financial Services,STOXX Europe 600
+INPST.AS,InPost,delivery services,AMX index
+INTER.AS,Intertrust,financial services,AMX index
+INVE-B.ST,Investor B,Financials,OMX Stockholm 30
+INVP.L,Investec,Financial Services,FTSE 100 Index
+INW.MI,INWIT,Telecommunications,FTSE MIB
+IPN.PA,Ipsen,Health Care,STOXX Europe 600
+IPO.L,IP Group,Financial Services,FTSE 250 Index
+IPX.PA,Ipsos,Media,STOXX Europe 600
+IR5B.IR,Irish Continental Group,,ISEQ 20
+IRES.IR,Irish Residential Properties REIT,,ISEQ 20
+ISP.MI,Intesa Sanpaolo,Banks,FTSE MIB
+ISS.CO,ISS,Industrial Goods and Services,OMX Copenhagen 25
+ITH.L,Ithaca Energy,Oil & Gas Producers,FTSE 100 Index
+ITRK.L,Intertek,Support services,FTSE 100 Index
+ITV.L,ITV,Media,FTSE 250 Index
+ITX.MC,Inditex,Textile,IBEX 35
+IVG.MI,Iveco,Industrial Goods and Services,FTSE MIB
+IWG.L,International Workplace Group,Support Services,FTSE 250 Index
+JD.L,JD Sports,General retailers,FTSE 100 Index
+JDEP.AS,JDE Peet's,soft drinks,AMX index
+JDW.L,Wetherspoons,Travel & Leisure,FTSE 250 Index
+JMAT.L,Johnson Matthey,Chemicals,FTSE 250 Index
+JMT.LS,Jerónimo Martins,"Personal Care, Drug & Grocery Stores",PSI-20
+JSG.L,Johnson Service Group,Industrial Support Services,FTSE 250 Index
+JUP.L,Jupiter Fund Management,Financial Services,FTSE 250 Index
+JUST.AS,Just Eat Takeaway,Retail,STOXX Europe 600
+JYSK.CO,Jyske Bank,Banks,OMX Copenhagen 25
+KA.AS,Kas Bank,investment services,AScX index
+KALMAR.HE,Kalmar B,Industrials,OMX Helsinki 25
+KBC.BR,KBC,Financials,BEL 20
+KCR.HE,Konecranes,Industrials,OMX Helsinki 25
+KDS.AS,Kiadis,biotechnology,AScX index
+KEMIRA.HE,Kemira,Materials,OMX Helsinki 25
+KENDR.AS,Kendrion,industrial machinery,AScX index
+KER.PA,Kering,Consumer Cyclical,CAC 40
+KESKOB.HE,Kesko B,Consumer Staples,OMX Helsinki 25
+KGF.L,Kingfisher plc,Retailers,FTSE 100 Index
+KIE.L,Kier Group,Construction & Materials,FTSE 250 Index
+KLR.L,Keller Group,Construction & Materials,FTSE 250 Index
+KMR.IR,Kenmare Resources,,ISEQ 20
+KNEBV.HE,KONE,Industrials,OMX Helsinki 25
+KNIN.SW,Kuehne + Nagel,Industrials,Swiss Market Index
+KNOS.L,Kainos,Software & Computer Services,FTSE 250 Index
+KOG.OL,Kongsberg Gruppen,diversified industrials,OBX Index
+KOJAMO.HE,Kojamo,Real Estate,OMX Helsinki 25
+KPN.AS,KPN,Telecommunications,AEX index
+KRX.IR,Kingspan Group,,ISEQ 20
+KRZ.IR,Kerry Group,,ISEQ 20
+KVW.AS,VolkerWessels,heavy construction,AScX index
+LAND.L,Land Securities,Real Estate,STOXX Europe 600
+LANV.PA,Lanvin Group,Consumer Products and Services,STOXX Europe 600
+LDO.MI,Leonardo,Industrial Goods and Services,FTSE MIB
+LEG.DE,LEG Immobilien,Real Estate,STOXX Europe 600
+LGEN.L,Legal & General,Life insurance,FTSE 100 Index
+LHA.DE,Lufthansa,Travel and Leisure,STOXX Europe 600
+LI.PA,Klépierre,real estate,CAC Next 20
+LIF.IR,LifeCo,Insurance,STOXX Europe 600
+LIFCO-B.ST,Lifco B,Industrials,OMX Stockholm 30
+LIGHT.AS,Signify,Construction and Materials,STOXX Europe 600
+LII.L,Liberty Global,Telecommunications,STOXX Europe 600
+LIN.L,Linde plc,Chemicals,STOXX Europe 600
+LISN-/-LISP.SW,Lindt & Sprüngli,Retail staples,SMI MID
+LISN.SW,Lindt & Sprüngli,"Food, Beverage and Tobacco",STOXX Europe 600
+LLOY.L,Lloyds Banking Group,Banks,FTSE 100 Index
+LOG.MC,Logista,Logistics,IBEX 35
+LOGN.SW,Logitech International SA,Information technology,Swiss Market Index
+LONN.SW,Lonza Group AG,Materials,Swiss Market Index
+LOTB.BR,Lotus Bakeries,Consumer Staples,BEL 20
+LPP.WA,LPP,Consumer Products and Services,STOXX Europe 600
+LR.PA,Legrand,Industrials,CAC 40
+LRE.L,Lancashire Holdings,Nonlife Insurance,FTSE 250 Index
+LSEG.L,London Stock Exchange Group,Financial services,FTSE 100 Index
+LSG.OL,Lerøy Seafood,"Food, Beverage and Tobacco",STOXX Europe 600
+LTMC.MI,Lottomatica Group,Gambling,FTSE MIB
+LUMI.PA,Lumibird,Technology,STOXX Europe 600
+LUN.ST,Lundin Energy,Energy,STOXX Europe 600
+LXS.DE,Lanxess,Chemicals,STOXX Europe 600
+MAB.L,Mitchells & Butlers,Travel & Leisure,FTSE 250 Index
+MAERSK-A.CO,A.P. Møller-Mærsk (class A),Industrial Goods and Services,OMX Copenhagen 25
+MAERSK-B.CO,A.P. Møller-Mærsk (class B),Industrial Goods and Services,OMX Copenhagen 25
+MAN.DE,MAN SE,Industrial Goods and Services,STOXX Europe 600
+MANTA.HE,Mandatum,Financials,OMX Helsinki 25
+MAP.MC,Mapfre,Insurance,IBEX 35
+MB.MI,Mediobanca,Banks,FTSE MIB
+MBG.DE,Mercedes-Benz Group,Automotive,DAX
+MC.PA,LVMH,Consumer Cyclical,CAC 40
+MCG.L,Mobico Group,Travel and Leisure,STOXX Europe 600
+MEGP.L,ME Group International,Leisure Goods,FTSE 250 Index
+MEL.MC,Meliá Hotels,Travel and Leisure,STOXX Europe 600
+MELE.BR,Melexis,Electronic Equipment,BEL 20
+METSO.HE,Metso,Industrials,OMX Helsinki 25
+MGAM.L,Morgan Advanced Materials,Electronic & Electrical Equipment,FTSE 250 Index
+MGNS.L,Morgan Sindall Group,Construction & Materials,FTSE 250 Index
+MICP.PA,Michelin,Automobiles and Parts,STOXX Europe 600
+MIO.IR,Mincon group,,ISEQ 20
+MKS.L,Marks & Spencer,Food & drug retailing,FTSE 100 Index
+ML.PA,Michelin,Industrials,CAC 40
+MLC.IR,Malin Corp.,,ISEQ 20
+MNDI.L,Mondi,Containers & packaging,FTSE 250 Index
+MNG.L,M&G,Financial services,FTSE 100 Index
+MONC.MI,Moncler,Consumer Products and Services,FTSE MIB
+MONT.BR,Montea,Real Estate,BEL 20
+MONY.L,MONY Group,Media,FTSE 250 Index
+MOON.L,Moonpig,Retailers,FTSE 250 Index
+MOR.DE,MorphoSys,Health Care,STOXX Europe 600
+MOWI.OL,Mowi,"farming, fishing, ranching and plantations",OBX Index
+MPCC.OL,MPC Container Ships,marine transportation,OBX Index
+MRK.DE,Merck,Pharmaceuticals,DAX
+MRL.MC,Merlin Properties,Real Estate,IBEX 35
+MRO.L,Melrose Industries,Aerospace & defence,FTSE 100 Index
+MRW.L,Morrisons,Retail,STOXX Europe 600
+MT.AS,ArcelorMittal,Basic Materials,CAC 40
+MTLN.L,Metlen Energy & Metals,Multiline utilities,FTSE 100 Index
+MTO.L,Mitie,Support Services,FTSE 250 Index
+MTRO.L,Metro Bank,Banks,FTSE 250 Index
+MTS.MC,ArcelorMittal,Steel,IBEX 35
+MTX.DE,MTU Aero Engines,Aerospace & Defence,DAX
+MUV2.DE,Munich Re,Financial Services,DAX
+N91.L,Ninety One,Financial Services,FTSE 250 Index
+NAS.OL,Norwegian Air Shuttle,airlines,OBX Index
+NBA.LS,Novabase,Technology,PSI-20
+NCC.L,NCC Group,Software and Computer Services,FTSE 250 Index
+NDA-FI.HE,Nordea,Financials,OMX Helsinki 25
+NDA-SE.ST,Nordea Bank Abp,Financials,OMX Stockholm 30
+NDA.CO,Nordea Bank Abp,Banks,OMX Copenhagen 25
+NEDAP.AS,Nedap,electronic equipment,AScX index
+NEM.DE,Nemetschek,Technology,STOXX Europe 600
+NEOEN.PA,Neoen,Utilities,STOXX Europe 600
+NESN.SW,Nestlé SA,Retail staples,Swiss Market Index
+NESTE.HE,Neste,Energy,OMX Helsinki 25
+NEX.PA,Nexans,Industrial Goods and Services,STOXX Europe 600
+NEXI.MI,Nexi,Industrial Goods and Services,FTSE MIB
+NG.L,National Grid plc,Multiline utilities,FTSE 100 Index
+NGG.L,National Grid,Utilities,STOXX Europe 600
+NHY.OL,Norsk Hydro,aluminum,OBX Index
+NIBE-B.ST,Nibe Industrier B,Industrials,OMX Stockholm 30
+NKT.CO,NKT,Industrial Goods and Services,OMX Copenhagen 25
+NN.AS,NN Group,Financials,AEX index
+NOD.OL,Nordic Semiconductor,semiconductors,OBX Index
+NOKIA.HE,Nokia,Information Technology,OMX Helsinki 25
+NOS.LS,NOS,Telecommunications,PSI-20
+NOV-N.SW,Novartis,Health Care,STOXX Europe 600
+NOVN.SW,Novartis International AG,Health care,Swiss Market Index
+NOVO-B.CO,Novo Nordisk,Health Care,OMX Copenhagen 25
+NSI.AS,NSI NV,diversified REITs,AScX index
+NSIS-B.CO,Novonesis,Health Care,OMX Copenhagen 25
+NSN.HE,Neste,Energy,STOXX Europe 600
+NTGY.MC,Naturgy,Energy,IBEX 35
+NVG.LS,The Navigator Company,Basic Resources,PSI-20
+NWG.L,NatWest Group,Banks,FTSE 100 Index
+NXT.L,Next plc,General retailers,FTSE 100 Index
+OCDO.L,Ocado Group,Food & drug retailers,FTSE 250 Index
+OCI.AS,OCI,Fertilizers,AMX index
+OERL.SW,Oerlikon,Industrial Goods and Services,STOXX Europe 600
+OIZ.IR,Origin Enterprises,,ISEQ 20
+OMV.VI,OMV,Energy,STOXX Europe 600
+ONT.BR,Ontex,"Personal Care, Drug and Grocery Stores",STOXX Europe 600
+ONT.L,Oxford Nanopore Technologies,Health Care,FTSE 250 Index
+OR.PA,L'Oréal,Consumer Defensive,CAC 40
+ORA.PA,Orange,Communication Services,CAC 40
+ORDI.AS,Ordina,computer services,AScX index
+ORK.OL,Orkla,food products,OBX Index
+ORNBV.HE,Orion,Health Care,OMX Helsinki 25
+ORSTED.CO,Ørsted,Utilities,OMX Copenhagen 25
+OSB.L,OSB Group,Banks,FTSE 250 Index
+OUT1V.HE,Outokumpu,Materials,OMX Helsinki 25
+OXB.L,Oxford Biomedica,Pharmaceuticals and Biotechnology,FTSE 250 Index
+OXIG.L,Oxford Instruments,Electronic & Electrical Equipment,FTSE 250 Index
+P911.DE,Porsche,Automobiles and Parts,STOXX Europe 600
+PAF.L,Pan African Resources,Precious Metals and Mining,FTSE 250 Index
+PAG.L,Paragon Banking Group,Financial Services,FTSE 250 Index
+PAGE.L,Michael Page,Support Services,FTSE 250 Index
+PAH3.DE,Porsche SE,Automotive,DAX
+PANDORA.CO,Pandora,Consumer Products and Services,STOXX Europe 600
+PBB.DE,Deutsche Pfandbriefbank,Banks,STOXX Europe 600
+PERP.PA,Pernod Ricard,"Food, Beverage and Tobacco",STOXX Europe 600
+PETS.L,Pets at Home,Retailers,FTSE 250 Index
+PFD.L,Premier Foods,Food & Drug Retailers,FTSE 250 Index
+PGHN.SW,Partners Group Holding AG,Financials,Swiss Market Index
+PHARM.AS,Pharming Group,biotechnology,AScX index
+PHIA.AS,Philips,Health Care,AEX index
+PHR.LS,Pharol,Telecommunications,PSI-20
+PINE.L,Pinewood Technologies,Software and Computer Services,FTSE 250 Index
+PIRC.MI,Pirelli,Automobiles and Parts,STOXX Europe 600
+PLPH.SW,PolyPeptide,Health Care,STOXX Europe 600
+PLUS.L,Plus500,Financial Services,FTSE 250 Index
+PNDORA.CO,Pandora,Consumer Products and Services,OMX Copenhagen 25
+PNL.AS,PostNL,delivery services,AMX index
+PNN.L,Pennon Group,"Gas, Water & Multiutilities",FTSE 250 Index
+POLN.L,Pollen Street Group,Financial Services,FTSE 250 Index
+PPH.L,PPHE Hotel Group,Travel and Leisure,FTSE 250 Index
+PRN.L,Princes Group,Food and drink,FTSE 250 Index
+PROX.BR,Proximus,Telecommunications,STOXX Europe 600
+PRU.L,Prudential plc,Life insurance,FTSE 100 Index
+PRX.AS,Prosus,Technology,AEX index
+PRY.MI,Prysmian,Industrial Goods and Services,FTSE MIB
+PSH.L,Pershing Square Holdings,Financial services,FTSE 100 Index
+PSN.L,Persimmon,Household goods & home construction,FTSE 250 Index
+PSN.PA,Publicis,Media,STOXX Europe 600
+PSON.L,Pearson plc,Media,FTSE 100 Index
+PSPN.SW,PSP Swiss Property,Real estate,SMI MID
+PST.MI,Poste italiane,Financial Services,FTSE MIB
+PTEC.L,Playtech,Software & Computer Services,FTSE 250 Index
+PTSB.IR,Permanent TSB,,ISEQ 20
+PUB.PA,Publicis,Communication Services,CAC 40
+PUIG.MC,Puig,Clothes and Cosmetics,IBEX 35
+PUM.DE,Puma,Consumer Products and Services,STOXX Europe 600
+QIA.AS,Qiagen,Health Care,STOXX Europe 600
+QIA.DE,Qiagen,Biotech,DAX
+QLT.L,Quilter,Financial Services,FTSE 250 Index
+QQ.L,Qinetiq,Aerospace & Defence,FTSE 250 Index
+QTCOM.HE,Qt Group,Information Technology,OMX Helsinki 25
+RACE.MI,Ferrari,Automobiles and Parts,FTSE MIB
+RAND.AS,Randstad,Industrials,AEX index
+RAT.L,Rathbones,Financial Services,FTSE 250 Index
+RBI.VI,Raiffeisen Bank International,Banks,STOXX Europe 600
+RBREW.CO,Royal Unibrew,"Food, Beverage and Tobacco",OMX Copenhagen 25
+RCO.PA,Rémy Cointreau,consumer staples,CAC Next 20
+REC.MI,Recordati,Health Care,FTSE MIB
+RED.MC,Redeia Corporación,Energy,IBEX 35
+REL.L,RELX,Media,FTSE 100 Index
+REN.AS,RELX,Consumer Discretionary,AEX index
+RENE.LS,Redes Energéticas Nacionais,Utilities,PSI-20
+REP.MC,Repsol,Oil and Gas,IBEX 35
+RHIM.L,RHI Magnesita,Support Services,FTSE 250 Index
+RHM.DE,Rheinmetall,Aerospace & Defence,DAX
+RI.PA,Pernod Ricard,Consumer Defensive,CAC 40
+RIGN.SW,Transocean,Energy,STOXX Europe 600
+RIO.L,Rio Tinto,Mining,FTSE 100 Index
+RKT.L,Reckitt,Household goods & home construction,FTSE 100 Index
+RMS.PA,Hermès,Consumer Cyclical,CAC 40
+RMV.L,Rightmove,Media,FTSE 250 Index
+RNK.L,Rank Group,Travel and Leisure,FTSE 250 Index
+RNO.PA,Renault,Consumer Cyclical,CAC 40
+RO.SW,Roche (bearer share),Health care,SMI MID
+ROCK-B.CO,Rockwool International,Construction and Materials,OMX Copenhagen 25
+ROG.SW,Roche Holding,Health Care,STOXX Europe 600
+ROL.L,Royal Mail,Industrial Goods and Services,STOXX Europe 600
+ROP.SW,Roche Holding AG,Health care,Swiss Market Index
+ROR.L,Rotork,Industrial Engineering,FTSE 250 Index
+ROSE.L,Rosebank Industries,Industrial Goods and Services,FTSE 250 Index
+ROVI.MC,Laboratorios Rovi,Pharmaceuticals,IBEX 35
+RPI.L,Raspberry Pi Holdings,Technology,FTSE 250 Index
+RR.L,Rolls-Royce Holdings,Aerospace & defence,FTSE 100 Index
+RS1.L,RS Group,Industrials,FTSE 250 Index
+RSW.L,Renishaw,Electronic & Electrical Equipment,FTSE 250 Index
+RTO.L,Rentokil Initial,Support services,FTSE 100 Index
+RWE.DE,RWE,Utilities,DAX
+RXL.PA,Rexel,industrials,CAC Next 20
+RY4C.IR,Ryanair Holdings,,ISEQ 20
+S4.L,S4 Capital,Media,STOXX Europe 600
+SAAB-B.ST,Saab B,Industrials,OMX Stockholm 30
+SAB.MC,Banco Sabadell,Financial Services,IBEX 35
+SAF.PA,Safran,Industrials,CAC 40
+SAGA.L,Saga,Travel and Leisure,FTSE 250 Index
+SALM.OL,SalMar,"farming, fishing, ranching and plantations",OBX Index
+SAMPO.HE,Sampo A,Financials,OMX Helsinki 25
+SAN.MC,Santander,Financial Services,IBEX 35
+SAN.PA,Sanofi,Healthcare,CAC 40
+SAND.ST,Sandvik,Industrials,OMX Stockholm 30
+SANO.HE,Sanoma,Media,STOXX Europe 600
+SAP.DE,SAP,Technology,DAX
+SBMO.AS,SBM Offshore,oil equipment and services,AMX index
+SBRY.L,Sainsbury's,Food & drug retailing,FTSE 100 Index
+SCA-B.ST,SCA B,Materials,OMX Stockholm 30
+SCHA.OL,Schibsted,Media,STOXX Europe 600
+SCHN-/-SCHP.SW,Schindler,Industrials,SMI MID
+SCHP.SW,Schindler Group,Industrial Goods and Services,STOXX Europe 600
+SCMN.SW,Swisscom AG,Communication services,Swiss Market Index
+SCR.PA,SCOR SE,Insurance,STOXX Europe 600
+SCT.L,Softcat,Software & Computer Services,FTSE 250 Index
+SCYR.MC,Sacyr,Construction,IBEX 35
+SDLF.L,Standard Life,Life insurance,FTSE 100 Index
+SDR.L,Schroders,Financial services,FTSE 100 Index
+SDZ.SW,Sandoz,Health care,SMI MID
+SEB-A.ST,SEB A,Financials,OMX Stockholm 30
+SEB.ST,Skandinaviska Enskilda Banken,Banks,STOXX Europe 600
+SECU-B.ST,Securitas AB,Industrial Goods and Services,STOXX Europe 600
+SEM.LS,Semapa,Basic Resources,PSI-20
+SGE.L,Sage Group,Software & computer services,FTSE 100 Index
+SGO.PA,Saint-Gobain,Industrials,CAC 40
+SGRO.L,Segro,Real Estate,STOXX Europe 600
+SGSN.SW,SGS,Industrials,SMI MID
+SHAW.L,Shawbrook Bank,Banking,FTSE 250 Index
+SHB-A.ST,Handelsbanken A,Financials,OMX Stockholm 30
+SHB-B.ST,Svenska Handelsbanken,Banks,STOXX Europe 600
+SHEL.L,Shell plc,Oil & gas producers,FTSE 100 Index
+SHELL.AS,Shell plc,Energy,AEX index
+SHL.DE,Siemens Healthineers,Medical Equipment,DAX
+SIE.DE,Siemens,Industrials,DAX
+SIFG.AS,SIF Holding,renewable energy equipment,AScX index
+SIG.SW,SIG Group,Industrial Goods and Services,STOXX Europe 600
+SIGN.SW,SIG,Materials,SMI MID
+SIKA.SW,Sika AG,Materials,Swiss Market Index
+SIX2.DE,Sixt,Consumer Products and Services,STOXX Europe 600
+SKA-B.ST,Skanska B,Industrials,OMX Stockholm 30
+SKF-B.ST,SKF B,Industrials,OMX Stockholm 30
+SKG.IR,Smurfit Kappa,Industrial Goods and Services,STOXX Europe 600
+SKY.L,Sky Group,Media,STOXX Europe 600
+SLHN.SW,Swiss Life Holding AG,Financials,Swiss Market Index
+SLR.MC,Solaria,Solar Energy,IBEX 35
+SMDS.L,DS Smith,Industrial Goods and Services,STOXX Europe 600
+SMIN.L,Smiths Group,General industrials,FTSE 100 Index
+SMWH.L,WHSmith,Retailers,FTSE 250 Index
+SN.L,Smith & Nephew,Health care equipment & supplies,FTSE 100 Index
+SNR.L,Senior,Aerospace & Defence,FTSE 250 Index
+SOF.BR,Sofina,Financials,BEL 20
+SOI.PA,Soitec,technology,CAC Next 20
+SOLB.BR,Solvay,Basic Materials,BEL 20
+SOLB.PA,Solvay,chemicals,CAC Next 20
+SON.LS,Sonae,"Personal Care, Drug & Grocery Stores",PSI-20
+SONC.LS,Sonae Capital,Financial Services,PSI-20
+SOON.SW,Sonova,Health care,SMI MID
+SOW.DE,Software,Technology,STOXX Europe 600
+SPI.L,Spire Healthcare,Health Care Equipment & Services,FTSE 250 Index
+SPM.MI,Saipem,Energy,FTSE MIB
+SPSN.SW,Swiss Prime Site,Real estate,SMI MID
+SPX.L,Spirax Group,Industrial engineering,FTSE 100 Index
+SQN.SW,Swissquote,Financials,SMI MID
+SRB.OL,Storebrand,Insurance,STOXX Europe 600
+SRE.L,Sirius Real Estate,Real Estate,FTSE 250 Index
+SREN.SW,Swiss Reinsurance Company Ltd,Financials,Swiss Market Index
+SRENH.SW,Swiss Re,Insurance,STOXX Europe 600
+SRG.MI,Snam,Energy,FTSE MIB
+SRP.L,Serco,Support Services,FTSE 250 Index
+SRT3.DE,Sartorius,Health Care,STOXX Europe 600
+SSE.L,SSE plc,Electrical utilities & independent power producers,FTSE 100 Index
+SSPG.L,SSP Group,Retailers,FTSE 250 Index
+STAN.L,Standard Chartered,Banks,FTSE 100 Index
+STB.OL,Storebrand,life insurance,OBX Index
+STER.HE,Stora Enso,Basic Resources,STOXX Europe 600
+STERV.HE,Stora Enso R,Materials,OMX Helsinki 25
+STJ.L,St. James's Place,Financial services,FTSE 100 Index
+STLAM.AS,Stellantis,Automobiles and Parts,STOXX Europe 600
+STLAM.MI,Stellantis,Automobiles and Parts,FTSE MIB
+STLAP.PA,Stellantis,Consumer Cyclical,CAC 40
+STMMI.MI,STMicroelectronics,Technology,FTSE MIB
+STMN.SW,Straumann,Health care,SMI MID
+STMPA.PA,STMicroelectronics,Technology,CAC 40
+STMPA.SW,STMicroelectronics,Technology,STOXX Europe 600
+SU.PA,Schneider Electric,Industrials,CAC 40
+SUBC.OL,Subsea 7,oil equipment and services,OBX Index
+SUNB.L,Sunbelt Rentals,Industrial Goods and Services,STOXX Europe 600
+SUNN.SW,Sunrise,Communication services,SMI MID
+SVS.L,Savills,Real Estate Investment & Services,FTSE 250 Index
+SVT.L,Severn Trent,Multiline utilities,FTSE 100 Index
+SW.PA,Sodexo,public facilities service,CAC Next 20
+SWECO-B.ST,Sweco,Construction and Materials,STOXX Europe 600
+SWED-A.ST,Swedbank A,Financials,OMX Stockholm 30
+SWMA.ST,Swedish Match,"Food, Beverage and Tobacco",STOXX Europe 600
+SXS.L,Spectris,Industrial Goods and Services,STOXX Europe 600
+SY1.DE,Symrise,Chemicals,DAX
+SYENS.BR,Syensqo,Basic Materials,BEL 20
+SYNC.L,Syncona,Pharmaceuticals & Biotechnology,FTSE 250 Index
+TATE.L,Tate & Lyle,Food Producers,FTSE 250 Index
+TBCG.L,TBC Bank,Banks,FTSE 250 Index
+TCAP.L,TP ICAP,Support Services,FTSE 250 Index
+TEF.MC,Telefónica,Telecommunications,IBEX 35
+TEL.OL,Telenor,telecommunications services,OBX Index
+TEL2-B.ST,Tele2 B,Communication Services,OMX Stockholm 30
+TELIA.ST,Telia Company,Communication Services,OMX Stockholm 30
+TEMN.SW,Temenos,Information technology,SMI MID
+TEN.MI,Tenaris,Energy,FTSE MIB
+TEP.L,Telecom Plus,Telecomms,FTSE 250 Index
+TEP.PA,Teleperformance,Communication Services,CAC 40
+TGS.OL,TGS ASA,oil equipment and services,OBX Index
+THG.L,THG,Personal Products,FTSE 250 Index
+THL.PA,Thales,Industrial Goods and Services,STOXX Europe 600
+TIETO.HE,TietoEVRY,Information Technology,OMX Helsinki 25
+TIGO.ST,Millicom,Telecommunications,STOXX Europe 600
+TIT.MI,Telecom Italia,Telecommunications,FTSE MIB
+TJW.L,Taylor Wimpey,Consumer Products and Services,STOXX Europe 600
+TKA.DE,ThyssenKrupp,Industrial Goods and Services,STOXX Europe 600
+TLX.DE,Talanx,Insurance,STOXX Europe 600
+TMV.DE,TeamViewer,Technology,STOXX Europe 600
+TOM.AS,TomTom,Technology,STOXX Europe 600
+TOM.OL,Tomra Systems,machinery: industrial,OBX Index
+TPG.L,Telecom Plus,Telecommunications,STOXX Europe 600
+TPK.L,Travis Perkins,Support Services,FTSE 250 Index
+TREL-B.ST,Trelleborg,Industrial Goods and Services,STOXX Europe 600
+TRN.L,Trainline,Industrial Transportation,FTSE 250 Index
+TRN.MI,Terna,Utilities,FTSE MIB
+TRST.L,Trustpilot,Technology,FTSE 250 Index
+TRYG.CO,Tryg,Insurance,OMX Copenhagen 25
+TSCO.L,Tesco,Food & drug retailing,FTSE 100 Index
+TTE.PA,TotalEnergies,Energy,CAC 40
+TUI.DE,TUI Group,Travel and Leisure,STOXX Europe 600
+TW.L,Taylor Wimpey,Household goods & home construction,FTSE 250 Index
+TWEKA.AS,TKH Group,electrical components,AMX index
+TYRES.HE,Nokian Tyres,Consumer Discretionary,OMX Helsinki 25
+UBI.PA,Ubisoft,video games,CAC Next 20
+UBSG.SW,UBS Group AG,Financials,Swiss Market Index
+UC.MI,UniCredit,Banks,STOXX Europe 600
+UCB.BR,UCB,Health Care,BEL 20
+UCG.MI,UniCredit,Banks,FTSE MIB
+UHR.SW,Swatch,Retail discretionary,SMI MID
+ULVR.L,Unilever,Personal goods,FTSE 100 Index
+UMG.AS,Universal Music Group,Consumer Discretionary,AEX index
+UMI.BR,Umicore,Basic Materials,BEL 20
+UN01.DE,Uniper,Utilities,STOXX Europe 600
+UNA.AS,Unilever,Consumer Staples,AEX index
+UNI.MC,Unicaja,Financial Services,IBEX 35
+UNI.MI,Unipol,Insurance,FTSE MIB
+UPM.HE,UPM-Kymmene,Materials,OMX Helsinki 25
+UPR.IR,Uniphar,,ISEQ 20
+UPW.L,United Utilities,Utilities,STOXX Europe 600
+URW.PA,Unibail-Rodamco-Westfield,Real Estate,CAC 40
+UTG.L,Unite Group,Real Estate,STOXX Europe 600
+UU.L,United Utilities,Multiline utilities,FTSE 100 Index
+VACN.SW,VAT,Industrials,SMI MID
+VALMT.HE,Valmet,Industrials,OMX Helsinki 25
+VAR.OL,Vår Energi ASA,offshore drilling and other services,OBX Index
+VAR1.DE,Varta,Industrial Goods and Services,STOXX Europe 600
+VASTN.AS,Vastned,retail REITs,AScX index
+VCT.L,Victrex,Chemicals,FTSE 250 Index
+VCT.PA,Vicat,Construction and Materials,STOXX Europe 600
+VER.VI,Verbund,Utilities,STOXX Europe 600
+VESTAS.CO,Vestas,Energy,STOXX Europe 600
+VIE.PA,Veolia,Industrials,CAC 40
+VIG.VI,Vienna Insurance Group,Insurance,STOXX Europe 600
+VITR.ST,Vitrolife,Health Care,STOXX Europe 600
+VIV.PA,Vivendi,consumer discretionary,CAC Next 20
+VK.PA,Vallourec,Basic Resources,STOXX Europe 600
+VLK.AS,Van Lanschot Kempen,banks,AScX index
+VLX.L,Volex,Industrial Goods and Services,FTSE 250 Index
+VNA.DE,Vonovia,Real Estate,DAX
+VOD.L,Vodafone Group,Mobile telecommunications,FTSE 100 Index
+VOE.VI,Voestalpine,Basic Resources,STOXX Europe 600
+VOLV-B.ST,Volvo B,Industrials,OMX Stockholm 30
+VOW.DE,Volkswagen Group,Consumer Discretionary,EURO STOXX 50
+VOW3.DE,Volkswagen Group,Automotive,DAX
+VPK.AS,Vopak,transportation services,AMX index
+VPLAY-B.ST,Viaplay,Media,STOXX Europe 600
+VSVS.L,Vesuvius,General Industrials,FTSE 250 Index
+VTY.L,Vistry Group,Home Construction,FTSE 250 Index
+VWS.CO,Vestas Wind Systems,Energy,OMX Copenhagen 25
+WAWI.OL,Wallenius Wilhelmsen,marine transportation,OBX Index
+WDP.AS,WDP,industrial REITs,AMX index
+WDP.BR,WDP,Real Estate,BEL 20
+WEIR.L,Weir,Industrial goods and services,FTSE 100 Index
+WEND.PA,Wendel,Financial Services,STOXX Europe 600
+WES.AS,Wessanen,food products,AScX index
+WIE.VI,Wienerberger,Construction and Materials,STOXX Europe 600
+WIHL.ST,Wihlborgs Fastigheter,Real Estate,STOXX Europe 600
+WISE.L,Wise,Financial Services,STOXX Europe 600
+WIX.L,Wickes,Retailers,FTSE 250 Index
+WIZZ.L,Wizz Air,Travel & Leisure,FTSE 250 Index
+WKL.AS,Wolters Kluwer,Consumer Discretionary,AEX index
+WLN.PA,Worldline,Industrial Goods and Services,STOXX Europe 600
+WOSG.L,Watches of Switzerland,Personal Goods,FTSE 250 Index
+WPP.L,WPP,Media,FTSE 250 Index
+WRT1V.HE,Wärtsilä,Industrials,OMX Helsinki 25
+WTB.L,Whitbread,Retail hospitality,FTSE 100 Index
+XPP.L,XP Power,Industrial Goods and Services,FTSE 250 Index
+XPS.L,XPS Pensions,Financial Services,FTSE 250 Index
+YAR.OL,Yara International,fertilizers,OBX Index
+ZAL.DE,Zalando,E-Commerce,DAX
+ZEAL.CO,Zealand Pharma,Health Care,OMX Copenhagen 25
+ZIG.L,Zigup,Support Services,FTSE 250 Index
+ZURN.SW,Zurich Insurance Group AG,Financials,Swiss Market Index

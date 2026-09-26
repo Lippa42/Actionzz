@@ -1,0 +1,197 @@
+# Actionzz 📉🤖
+
+Monitora **500 azioni europee tra le più stabili** degli ultimi 5 anni e ti avvisa **su Telegram** quando una di
+queste subisce un **calo improvviso** rispetto alla chiusura del giorno prima. Include una **dashboard web** (GitHub
+Pages) da cui vedere tutto e modificare le impostazioni.
+
+Tutto gratuito: dati da Yahoo Finance tramite [yfinance](https://github.com/ranaroussi/yfinance), esecuzione su
+GitHub Actions, dashboard su GitHub Pages.
+
+> ⚠️ Strumento informativo, non un consiglio d'investimento. I dati gratuiti di Yahoo hanno circa 15 minuti di ritardo
+> e ogni tanto contengono errori.
+
+---
+
+## Come funziona
+
+```
+            ogni 5 minuti (lun-ven, 9:00-18:00)                     1° del mese
+┌───────────────────────────────────────────────┐     ┌──────────────────────────────┐
+│ Workflow "Scanner"                            │     │ Workflow "Universo e backtest"│
+│ 1. legge i comandi Telegram (/soglia, ...)    │     │ 1. storico 5 anni di ~870    │
+│ 2. scarica i prezzi dei 500 titoli (yfinance) │     │    candidati europei         │
+│ 3. confronta con la chiusura di ieri          │     │ 2. tiene i 500 meno volatili │
+│ 4. invia avvisi e riepilogo su Telegram       │     │ 3. backtest delle soglie     │
+└──────────────┬────────────────────────────────┘     └──────────────┬───────────────┘
+               │ salva i JSON                                          │
+               ▼                                                       ▼
+         branch `data`  ◄───────── legge ───────── Dashboard (GitHub Pages)
+                                                   modifica ──► config/config.json
+```
+
+### Quali titoli
+- **Candidati** (`data/candidates.csv`, ~870 titoli): i componenti di FTSE 100/250, DAX, CAC 40, CAC Next 20,
+  FTSE MIB, IBEX 35, AEX, AMX, AScX, BEL 20, SMI, SMIM, OMX Stoccolma 30, OMX Copenaghen 25, OMX Helsinki 25, OBX,
+  PSI, ISEQ 20, EURO STOXX 50 e STOXX Europe 600, presi da Wikipedia. Sono esclusi fondi, investment trust e veicoli
+  di private equity quotati.
+- **Universo**: ogni mese si scaricano 5 anni di prezzi e si tengono i **500 titoli con la volatilità annua più
+  bassa**, scartando quelli quotati da meno di 4,5 anni o con dati anomali. Puoi forzare l'inclusione o l'esclusione
+  di qualsiasi ticker.
+
+### Quando arriva un avviso
+1. Il prezzo attuale è sceso di almeno **5%** rispetto alla chiusura di ieri (rettificata per l'eventuale dividendo
+   staccato oggi, così uno stacco non sembra un crollo).
+2. **Filtro mercato**: il titolo deve fare almeno **3 punti peggio** del mercato, cioè della variazione mediana di tutto
+   l'universo. Se scende tutto insieme ricevi **un solo messaggio** "calo generalizzato" (oltre −2,5%), non 500.
+3. **Niente spam**: un titolo già segnalato oggi viene risegnalato solo se **scende di altri 2 punti**.
+
+Ogni avviso contiene: prezzo e calo, minimo di giornata, confronto con il mercato, quanto il calo è anomalo rispetto
+all'oscillazione tipica del titolo, volume rispetto alla media, distanza da massimo e minimo a 52 settimane,
+rendimento a 1 anno, volatilità e massimo calo a 5 anni, P/E, dividendo, P/BV, capitalizzazione, beta, prezzo
+obiettivo degli analisti, ultime notizie, link a Yahoo Finance e grafico degli ultimi 6 mesi.
+
+Dopo la chiusura (18:00) arriva il **riepilogo giornaliero**: avvisi del giorno e chiusura dei titoli segnalati,
+i 10 peggiori, i 5 migliori e i titoli vicini alla soglia.
+
+Tutte le soglie si cambiano dalla dashboard o da Telegram.
+
+---
+
+## Installazione (circa 15 minuti)
+
+### 1. Repository pubblico (consigliato)
+Con un account GitHub gratuito **GitHub Pages funziona solo sui repository pubblici**, e i minuti di Actions sono
+illimitati solo per quelli pubblici. Su un repository privato uno scanner ogni 5 minuti consuma circa 4.000
+minuti al mese, oltre i 2.000 gratuiti.
+
+*Settings → General → Danger Zone → Change visibility → Public.*
+Token e chat id restano **segreti** (sono in *Secrets*). Diventano visibili a tutti solo il codice, le impostazioni
+e i dati di mercato su cui lavora il bot.
+
+### 2. Porta il codice su `main`
+I workflow pianificati girano solo dal branch predefinito: unisci questo branch in `main`.
+
+### 3. Crea il bot Telegram
+1. Su Telegram apri **@BotFather** → `/newbot` → scegli nome e username.
+2. Copia il **token** (tipo `123456:ABC-DEF...`).
+3. Apri la chat con il tuo nuovo bot e premi **Avvia** (`/start`).
+
+### 4. Salva i secret su GitHub
+*Settings → Secrets and variables → Actions → New repository secret*:
+
+| Nome | Valore |
+|---|---|
+| `TELEGRAM_TOKEN` | il token di BotFather |
+| `TELEGRAM_CHAT_ID` | il tuo chat id (vedi sotto) |
+
+**Come trovare il chat id**: salva prima solo `TELEGRAM_TOKEN`, scrivi `/start` al bot e avvia a mano il workflow
+**Scanner** (*Actions → Scanner → Run workflow*). Il bot ti risponderà con il tuo chat id. In alternativa apri
+`https://api.telegram.org/bot<TOKEN>/getUpdates` e cerca `"chat":{"id":...}`.
+
+Il bot risponde **solo** alla chat indicata in `TELEGRAM_CHAT_ID`.
+
+### 5. Primo calcolo dell'universo
+*Actions → Universo e backtest → Run workflow*. Ci mette 3-5 minuti e crea il branch `data`.
+(Se lo salti, lo Scanner lo calcola da solo alla prima esecuzione.)
+
+### 6. Attiva la dashboard
+1. *Settings → Pages → Build and deployment → Source: **GitHub Actions***.
+2. *Actions → Dashboard (GitHub Pages) → Run workflow*.
+3. Apri `https://<tuo-utente>.github.io/<repository>/` (per te: https://lippa42.github.io/Actionzz/).
+
+Per **modificare le impostazioni** dalla dashboard serve un token personale, salvato solo nel tuo browser:
+1. https://github.com/settings/personal-access-tokens/new → *Fine-grained token*.
+2. *Repository access: Only select repositories* → questo repository.
+3. *Permissions → Repository permissions → Contents: Read and write*.
+4. Incollalo nella dashboard in *Impostazioni → Collegamento a GitHub*.
+
+### 7. Prova
+Dalla cartella del progetto, sul tuo PC:
+```bash
+pip install -r requirements.txt
+export TELEGRAM_TOKEN=...  TELEGRAM_CHAT_ID=...
+python -m actionzz test-telegram   # messaggio di prova + menu dei comandi del bot
+```
+
+---
+
+## Comandi Telegram
+
+| Comando | Cosa fa |
+|---|---|
+| `/stato` | stato del monitor e impostazioni attuali |
+| `/oggi [n]` | i titoli peggiori di oggi |
+| `/avvisi` | avvisi inviati oggi |
+| `/titolo ENEL.MI` | scheda completa di un titolo qualsiasi |
+| `/cerca nestle` | cerca un ticker per nome |
+| `/riepilogo` | riepilogo della giornata adesso |
+| `/universo` | composizione dell'universo |
+| `/soglia 6` | calo minimo in % |
+| `/relativa 3` | punti peggio del mercato |
+| `/filtro on\|off` | filtro sui cali generalizzati |
+| `/passo 2` | ulteriore calo per un nuovo avviso |
+| `/aggiungi TICKER` · `/rimuovi TICKER` | forza inclusione/esclusione |
+| `/pausa` · `/riprendi` | sospende/riattiva gli avvisi |
+
+Su GitHub Actions i comandi vengono letti a ogni esecuzione: **entro 5-10 minuti durante la borsa**, ogni 2 ore
+fuori orario. Con l'esecuzione continua su PC (sotto) la risposta è immediata.
+
+---
+
+## Esecuzione continua su PC o Raspberry Pi (alternativa)
+
+```bash
+pip install -r requirements.txt
+export TELEGRAM_TOKEN=...  TELEGRAM_CHAT_ID=...
+python -m actionzz universe   # la prima volta, poi una volta al mese
+python -m actionzz loop       # scansione ogni 5 minuti in orario di borsa, comandi istantanei
+```
+
+Altri comandi: `python -m actionzz scan` (un solo ciclo), `backtest`, `summary`, `chat-id`.
+I file di stato finiscono in `./stato` (cambiabile con `--data-dir` o `ACTIONZZ_DATA_DIR`).
+
+---
+
+## Backtest: tarare la soglia
+
+La scheda **Backtest** della dashboard (o `python -m actionzz backtest`) simula gli ultimi 5 anni: quanti avvisi
+sarebbero arrivati con ogni soglia (−3% … −12%) e come si sono mossi quei titoli dopo 5, 20 e 60 sedute, anche
+rispetto al mercato. Approssimazioni: barre giornaliere (scatta se il minimo del giorno supera la soglia, si compra
+alla chiusura), universo di oggi (i titoli falliti mancano, quindi i risultati sono ottimistici), esclusi i salti
+di prezzo oltre ±40% (scorpori ed errori di Yahoo).
+
+---
+
+## Limiti da conoscere
+- **Ritardo dei dati**: Yahoo fornisce le quotazioni europee con circa 15 minuti di ritardo.
+- **Orari di GitHub**: i workflow pianificati possono partire con qualche minuto di ritardo nelle ore di punta.
+- **yfinance non è un'API ufficiale**: Yahoo può cambiare qualcosa o limitare le richieste. In quel caso l'esecuzione
+  fallisce e riprova 5 minuti dopo; aggiorna `yfinance` se il problema persiste.
+- **Festività**: non c'è un calendario; nei giorni di chiusura Yahoo non produce una barra con la data di oggi e il
+  titolo viene saltato.
+- **Uso di Actions come scheduler**: va bene per un progetto personale come questo, ma GitHub può disattivare i
+  workflow pianificati di un repository senza attività da 60 giorni (si riattivano da *Actions*).
+
+## Sviluppo
+```bash
+pip install -r requirements-dev.txt
+python -m pytest -q
+python scripts/build_candidates.py        # rigenera la lista dei candidati da Wikipedia
+```
+Per provare la dashboard in locale con dati di esempio: metti i JSON in `site/demo/` e apri
+`site/index.html?dati=demo/` con un server locale (`python -m http.server -d site`).
+
+Struttura:
+```
+actionzz/          codice Python
+  detector.py      logica dei cali (pura, testata)
+  monitor.py       ciclo: comandi → scansione → avvisi → riepilogo
+  universe.py      selezione dei titoli più stabili
+  backtest.py      simulazione storica
+  commands.py      comandi Telegram
+  messages.py      testi dei messaggi
+config/config.json impostazioni (modificate da dashboard e Telegram)
+data/candidates.csv candidati
+site/              dashboard statica (GitHub Pages)
+.github/workflows/ scanner, universo, test, pages
+```

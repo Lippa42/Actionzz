@@ -1,0 +1,54 @@
+name: Scanner
+
+on:
+  schedule:
+    # Ogni 5 minuti nei giorni feriali, 07-17 UTC: copre 09:00-18:00 in Italia sia con l'ora solare
+    # che con quella legale. Il programma controlla da sé gli orari esatti di borsa.
+    - cron: "*/5 7-17 * * 1-5"
+    # Fuori orario: legge comunque i comandi Telegram ogni 2 ore.
+    - cron: "37 */2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Un solo job alla volta scrive sul branch data.
+concurrency:
+  group: actionzz-data
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Installa le dipendenze
+        run: pip install -r requirements.txt
+
+      - name: Recupera lo stato
+        run: scripts/pull_state.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Scansione
+        run: python -m actionzz scan
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+      - name: Salva lo stato
+        if: always()
+        run: scripts/push_state.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Salva le impostazioni cambiate da Telegram
+        if: always()
+        run: scripts/push_config.sh

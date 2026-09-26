@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Actionzz</title>
+  <meta name="description" content="Monitor di azioni europee stabili con avvisi Telegram sui cali improvvisi">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232a78d6'/><path d='M6 10l7 7 5-5 8 10' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--accent)"/><path d="M6 10l7 7 5-5 8 10" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div>
+        <h1>Actionzz</h1>
+        <p class="muted small" id="subtitle">Azioni europee stabili · avvisi sui cali improvvisi</p>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <span class="pill" id="market-pill">—</span>
+      <button class="btn ghost" id="refresh" title="Aggiorna i dati">↻ Aggiorna</button>
+      <button class="btn ghost icon" id="theme" title="Tema chiaro/scuro" aria-label="Cambia tema">◐</button>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="overview" aria-selected="true">Panoramica</button>
+    <button role="tab" data-tab="today">Oggi</button>
+    <button role="tab" data-tab="alerts">Avvisi</button>
+    <button role="tab" data-tab="universe">Universo</button>
+    <button role="tab" data-tab="backtest">Backtest</button>
+    <button role="tab" data-tab="settings">Impostazioni</button>
+  </nav>
+
+  <div id="banner" class="banner" hidden></div>
+
+  <main>
+    <!-- PANORAMICA -->
+    <section id="tab-overview" class="tab">
+      <div class="kpis" id="kpis"></div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-head">
+            <h2>Andamento del mercato</h2>
+            <span class="muted small">Variazione mediana giornaliera dell'universo</span>
+          </div>
+          <div id="market-chart" class="chart"></div>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <h2>Avvisi di oggi</h2>
+            <span class="muted small" id="alerts-today-count"></span>
+          </div>
+          <div id="alerts-today"></div>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-head"><h2>I peggiori di oggi</h2></div>
+          <div id="worst"></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2>Ultimo riepilogo</h2><span class="muted small" id="summary-day"></span></div>
+          <div id="summary" class="summary"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OGGI -->
+    <section id="tab-today" class="tab" hidden>
+      <div class="card">
+        <div class="card-head">
+          <h2>Quotazioni di oggi</h2>
+          <span class="muted small" id="today-time"></span>
+        </div>
+        <div class="filters">
+          <input type="search" id="today-search" placeholder="Cerca ticker o nome…" aria-label="Cerca">
+          <select id="today-country" aria-label="Paese"><option value="">Tutti i paesi</option></select>
+          <label class="check"><input type="checkbox" id="today-below"> Solo sotto soglia</label>
+        </div>
+        <div class="table-wrap"><table id="today-table" class="data"></table></div>
+      </div>
+    </section>
+
+    <!-- AVVISI -->
+    <section id="tab-alerts" class="tab" hidden>
+      <div class="card">
+        <div class="card-head"><h2>Storico avvisi</h2><span class="muted small" id="alerts-count"></span></div>
+        <div class="filters">
+          <input type="search" id="alerts-search" placeholder="Cerca ticker o nome…" aria-label="Cerca">
+        </div>
+        <div class="table-wrap"><table id="alerts-table" class="data"></table></div>
+      </div>
+    </section>
+
+    <!-- UNIVERSO -->
+    <section id="tab-universe" class="tab" hidden>
+      <div class="kpis" id="universe-kpis"></div>
+      <div class="card">
+        <div class="card-head">
+          <h2>Titoli monitorati</h2>
+          <span class="muted small">Ordinati per stabilità (volatilità annua più bassa)</span>
+        </div>
+        <div class="filters">
+          <input type="search" id="universe-search" placeholder="Cerca ticker, nome o settore…" aria-label="Cerca">
+          <select id="universe-country" aria-label="Paese"><option value="">Tutti i paesi</option></select>
+          <form id="add-ticker" class="inline-form">
+            <input id="add-ticker-input" placeholder="Aggiungi ticker (es. ENEL.MI)" aria-label="Ticker da aggiungere">
+            <button class="btn" type="submit">Aggiungi</button>
+          </form>
+        </div>
+        <p class="muted small">Escludi o aggiungi titoli: le modifiche valgono dalla prossima scansione dopo il salvataggio. Per la lista completa dei candidati vedi <code>data/candidates.csv</code>.</p>
+        <div id="manual-lists" class="chips-row"></div>
+        <div class="table-wrap"><table id="universe-table" class="data"></table></div>
+      </div>
+    </section>
+
+    <!-- BACKTEST -->
+    <section id="tab-backtest" class="tab" hidden>
+      <div id="backtest-empty" class="card" hidden>
+        <p>Backtest non ancora disponibile: avvia il workflow <b>Universo e backtest</b> da GitHub → Actions.</p>
+      </div>
+      <div id="backtest-body">
+        <div class="card note">
+          <p id="backtest-intro"></p>
+          <p class="muted small">Approssimazioni: barre giornaliere (scatta se il minimo del giorno supera la soglia, si compra alla chiusura), prezzi rettificati per dividendi, universo di oggi (i titoli falliti mancano: risultati ottimistici). I rendimenti passati non garantiscono quelli futuri.</p>
+        </div>
+        <div class="kpis" id="backtest-kpis"></div>
+        <div class="grid2">
+          <div class="card">
+            <div class="card-head"><h2>Quale soglia?</h2><span class="muted small">Rendimento medio a 20 sedute dopo il segnale</span></div>
+            <div id="sweep-chart" class="chart"></div>
+            <div class="table-wrap"><table id="sweep-table" class="data compact"></table></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h2>Segnali per anno</h2><span class="muted small">Con la soglia attuale</span></div>
+            <div id="year-chart" class="chart"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2>Segnali storici</h2><span class="muted small">Gli ultimi 300</span></div>
+          <div class="table-wrap"><table id="events-table" class="data"></table></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPOSTAZIONI -->
+    <section id="tab-settings" class="tab" hidden>
+      <form id="settings-form" class="settings" autocomplete="off"></form>
+
+      <div class="card">
+        <div class="card-head"><h2>Collegamento a GitHub</h2></div>
+        <p class="small">La dashboard legge i dati dal branch <code>data</code> del repository e salva le impostazioni in <code>config/config.json</code>. Per salvare (o se il repository è privato) serve un <b>token personale</b> che resta solo in questo browser.</p>
+        <div class="form-grid">
+          <label>Repository <input id="gh-repo" placeholder="utente/repository"></label>
+          <label>Branch principale <input id="gh-branch" placeholder="main"></label>
+          <label class="span2">Token GitHub (fine-grained, permesso <i>Contents: read and write</i> solo su questo repository)
+            <input id="gh-token" type="password" placeholder="github_pat_…">
+          </label>
+        </div>
+        <div class="row">
+          <button class="btn" id="gh-save" type="button">Salva collegamento</button>
+          <button class="btn ghost" id="gh-forget" type="button">Dimentica token</button>
+          <a class="small" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Crea un token →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="savebar" id="savebar" hidden>
+    <span>Hai modifiche non salvate</span>
+    <div class="row">
+      <button class="btn ghost" id="discard">Annulla</button>
+      <button class="btn ghost" id="download-config">Scarica config.json</button>
+      <button class="btn primary" id="save-config">Salva su GitHub</button>
+    </div>
+  </div>
+
+  <div class="tooltip" id="tooltip" role="status" hidden></div>
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <footer class="muted small">Dati Yahoo Finance tramite yfinance, con ritardo di circa 15 minuti. Solo a scopo informativo, non è un consiglio d'investimento.</footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

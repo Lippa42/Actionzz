@@ -1,0 +1,23 @@
+{
+  "drop_threshold_pct": 5.0,
+  "market_filter": true,
+  "relative_threshold_pct": 3.0,
+  "market_crash_pct": 2.5,
+  "realert_step_pct": 2.0,
+  "max_alerts_per_scan": 8,
+  "universe_size": 500,
+  "lookback_years": 5,
+  "min_history_years": 4.5,
+  "include": [],
+  "exclude": [],
+  "timezone": "Europe/Rome",
+  "market_open": "09:00",
+  "market_close": "17:30",
+  "data_delay_minutes": 30,
+  "summary_time": "18:00",
+  "paused": false,
+  "daily_summary": true,
+  "send_news": true,
+  "send_chart": true,
+  "scan_interval_minutes": 5
+}

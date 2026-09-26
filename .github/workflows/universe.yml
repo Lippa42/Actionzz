@@ -1,0 +1,51 @@
+name: Universo e backtest
+
+on:
+  schedule:
+    # Il primo di ogni mese alle 05:23 UTC ricalcola i titoli più stabili e il backtest.
+    - cron: "23 5 1 * *"
+  workflow_dispatch:
+    inputs:
+      solo_backtest:
+        description: "Rifai solo il backtest (senza ricalcolare l'universo)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actionzz-data
+  cancel-in-progress: false
+
+jobs:
+  universe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Installa le dipendenze
+        run: pip install -r requirements.txt
+
+      - name: Recupera lo stato
+        run: scripts/pull_state.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Ricalcola l'universo
+        if: ${{ !inputs.solo_backtest }}
+        run: python -m actionzz universe
+
+      - name: Backtest
+        run: python -m actionzz backtest
+
+      - name: Salva lo stato
+        run: scripts/push_state.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
