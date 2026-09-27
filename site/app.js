@@ -241,13 +241,14 @@ function toast(msg) {
 }
 
 function selectTab(name) {
-  document.querySelectorAll(".tabs button").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.tab === name)));
+  document.querySelectorAll(".tabs button, .tabbar button[data-tab]").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.tab === name)));
   document.querySelectorAll(".tab").forEach((s) => (s.hidden = s.id !== `tab-${name}`));
   try {
     localStorage.setItem("actionzz.tab", name);
   } catch (_) { /* ignora */ }
   renderCharts();
   if (name === "simulator" && typeof renderSimulator === "function") renderSimulator();
+  if (typeof onTabChange === "function") onTabChange(name);
 }
 
 function applyTheme(theme) {
@@ -294,9 +295,10 @@ function table(el, id, columns, rows, opts = {}) {
   const body = rows
     .slice(0, limit)
     .map((r) => `<tr class="${opts.rowClass ? opts.rowClass(r) : ""}">${columns
-      .map((c) => `<td class="${c.num ? "num" : ""} ${c.cls || ""}">${c.fmt ? c.fmt(r) : esc(r[c.key])}</td>`)
+      .map((c) => `<td class="${c.num ? "num" : ""} ${c.cls || ""}" data-label="${esc(c.label)}">${c.fmt ? c.fmt(r) : esc(r[c.key])}</td>`)
       .join("")}</tr>`)
     .join("");
+  el.classList.add("cards"); // su telefono ogni riga diventa una scheda
   el.innerHTML = `<thead><tr>${head}</tr></thead><tbody>${body || `<tr><td colspan="${columns.length}" class="empty">Nessun dato</td></tr>`}</tbody>`;
   el.querySelectorAll("th[data-sort]").forEach((th) =>
     th.addEventListener("click", () => {

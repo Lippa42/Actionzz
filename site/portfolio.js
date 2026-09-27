@@ -465,7 +465,7 @@ function renderPortfolioDetail(r) {
       <div><h3>${esc(r.name)} <span class="tk muted">${esc(r.ticker)}</span></h3>
         <div class="muted small">${num(r.quantity, Number.isInteger(r.quantity) ? 0 : 3)} azioni · prezzo medio ${num(r.avg_price)} ${esc(r.currency)} · dal ${dateIt(r.first_date)}
         · <a href="${yahoo(r.ticker)}" target="_blank" rel="noopener">Yahoo Finance</a></div></div>
-      ${verdictChip(r.verdict)}
+      <div class="row">${verdictChip(r.verdict)}<button class="btn small sheet-close" type="button" data-close-sheet>Chiudi</button></div>
     </div>
     ${rep ? `<ul class="signals">${sig || `<li class="lvl-hold"><span class="lvl">OK</span>Nessuna regola di vendita scattata.</li>`}</ul>
     <div class="inds">

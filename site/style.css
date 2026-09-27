@@ -338,3 +338,188 @@ table.fees input { width: 100%; min-width: 60px; padding: 5px 8px; }
 #sim-setup[hidden], #sim-body[hidden], #sim-error[hidden] { display: none; }
 select { font: inherit; font-size: 14px; }
 .form-grid select { width: 100%; }
+
+/* =====================================================================
+   TELEFONO (body.mobile, impostato da mobile.js) — pensato per iPhone 15
+   ===================================================================== */
+.tabbar, .mobile-title, .sheet, .sheet-backdrop, .ptr, .sheet-close { display: none; }
+html { -webkit-text-size-adjust: 100%; }
+button, a, input, select, label { touch-action: manipulation; }
+
+body.mobile {
+  --tabbar-h: 58px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  -webkit-tap-highlight-color: transparent;
+  font-size: 16px;
+}
+body.mobile .desk-title, body.mobile nav.tabs, body.mobile #subtitle, body.mobile #refresh,
+body.mobile #theme, body.mobile #logout, body.mobile footer { display: none; }
+body.mobile .mobile-title { display: inline; }
+
+/* intestazione compatta, sotto la Dynamic Island */
+body.mobile .topbar {
+  position: sticky; top: 0; z-index: 20;
+  padding: calc(var(--safe-top) + 8px) calc(16px + var(--safe-right)) 10px calc(16px + var(--safe-left));
+  background: color-mix(in srgb, var(--page) 86%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(18px); backdrop-filter: saturate(180%) blur(18px);
+  border-bottom: 1px solid var(--border); flex-wrap: nowrap;
+}
+body.mobile .brand svg { width: 30px; height: 30px; }
+body.mobile .brand h1 { font-size: 22px; font-weight: 700; }
+body.mobile .pill { font-size: 12px; padding: 4px 9px; white-space: nowrap; }
+
+body.mobile main {
+  padding: 12px calc(12px + var(--safe-right)) calc(var(--tabbar-h) + var(--safe-bottom) + 28px) calc(12px + var(--safe-left));
+}
+body.mobile .banner { margin: 10px 12px 0; }
+body.mobile .tab { gap: 12px; }
+body.mobile .card { padding: 14px; border-radius: 16px; }
+body.mobile .card-head { margin-bottom: 8px; }
+body.mobile h2 { font-size: 17px; }
+
+/* numeri grandi e leggibili, due per riga */
+body.mobile .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+body.mobile .kpi { padding: 12px; border-radius: 16px; }
+body.mobile .kpi .value { font-size: 22px; }
+body.mobile .kpi .sub { font-size: 12px; }
+
+/* niente zoom automatico di Safari sui campi: servono almeno 16px */
+body.mobile input, body.mobile select, body.mobile textarea { font-size: 16px; min-height: 44px; border-radius: 12px; }
+body.mobile input[type="checkbox"] { min-height: 0; width: 22px; height: 22px; }
+body.mobile .btn { min-height: 44px; padding: 10px 16px; font-size: 16px; border-radius: 12px; }
+body.mobile .btn.small { min-height: 36px; padding: 6px 12px; font-size: 14px; }
+body.mobile .form-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+body.mobile .filters { gap: 8px; }
+body.mobile .filters input[type="search"] { flex: 1 1 100%; }
+body.mobile .inline-form { flex: 1 1 100%; }
+
+/* tabelle → una scheda per riga */
+body.mobile .table-wrap { max-height: none; overflow: visible; }
+body.mobile table.data.cards thead { display: none; }
+body.mobile table.data.cards, body.mobile table.data.cards tbody { display: block; }
+body.mobile table.data.cards tr {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 14px;
+  padding: 12px 2px; border-bottom: 1px solid var(--grid);
+}
+body.mobile table.data.cards tr:last-child { border-bottom: 0; }
+body.mobile table.data.cards tr:hover td { background: none; }
+body.mobile table.data.cards td {
+  display: flex; flex-direction: column; gap: 1px; padding: 0; border: 0; text-align: left; min-width: 0;
+  overflow-wrap: anywhere;
+}
+body.mobile table.data.cards td.num { text-align: left; }
+body.mobile table.data.cards td::before {
+  content: attr(data-label); font-size: 11.5px; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: .02em;
+}
+body.mobile table.data.cards td:first-child { grid-column: 1 / -1; font-size: 16px; }
+body.mobile table.data.cards td:first-child::before { display: none; }
+body.mobile table.data.cards td[data-label=""] { grid-column: 1 / -1; }
+body.mobile table.data.cards td[data-label=""]::before { display: none; }
+body.mobile table.data.cards td.hide-sm { display: none; }
+body.mobile table.data.cards td .btn { align-self: flex-start; }
+body.mobile table.data.cards .name { max-width: none; white-space: normal; }
+body.mobile table.data.cards td.empty { grid-column: 1 / -1; }
+body.mobile table.data.cards td.empty::before { display: none; }
+body.mobile tr.hit, body.mobile tr.selected { box-shadow: inset 3px 0 0 var(--neg); }
+body.mobile tr.hit td:first-child, body.mobile tr.selected td:first-child { box-shadow: none; padding-left: 8px; }
+body.mobile table.data.compact:not(.cards) td, body.mobile table.data.compact:not(.cards) th { padding: 6px 4px; font-size: 13px; }
+
+/* barra delle schede in basso, sopra la barra Home */
+body.mobile .tabbar {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+  padding: 6px calc(6px + var(--safe-right)) calc(var(--safe-bottom) + 4px) calc(6px + var(--safe-left));
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px);
+  border-top: 1px solid var(--border);
+}
+body.locked .tabbar { display: none !important; }
+.tabbar button {
+  display: flex; flex-direction: column; align-items: center; gap: 3px; min-height: 48px;
+  border: 0; background: none; color: var(--muted); font: inherit; font-size: 10.5px; font-weight: 600; cursor: pointer;
+}
+.tabbar svg { width: 25px; height: 25px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.tabbar [data-more] svg { fill: currentColor; stroke: none; }
+.tabbar button[aria-selected="true"] { color: var(--accent); }
+.tabbar button:active { transform: scale(.94); }
+
+/* fogli che salgono dal basso */
+body.mobile .sheet-backdrop { display: block; position: fixed; inset: 0; z-index: 40; background: rgba(0, 0, 0, .35); }
+body.mobile .sheet-backdrop[hidden] { display: none; }
+body.mobile .sheet, body.mobile .pf-detail.open {
+  display: flex; flex-direction: column; position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+  max-height: 88dvh; overflow-y: auto; overscroll-behavior: contain;
+  background: var(--surface); border-radius: 22px 22px 0 0; margin: 0;
+  padding: 10px calc(16px + var(--safe-right)) calc(var(--safe-bottom) + 18px) calc(16px + var(--safe-left));
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, .25); border-top: 0;
+  animation: sheet-in .28s cubic-bezier(.2, .9, .3, 1); transition: transform .2s ease;
+}
+body.mobile .sheet[hidden] { display: none; }
+body.mobile .pf-detail:not(.open) { display: none; }
+body.mobile .pf-detail.open { display: block; }
+body.mobile .pf-detail.open::before, .sheet-handle {
+  content: ""; display: block; width: 40px; height: 5px; border-radius: 3px; background: var(--axis); margin: 0 auto 12px;
+}
+body.mobile .sheet-close { display: inline-flex; }
+@keyframes sheet-in { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.sheet-item {
+  display: flex; align-items: center; gap: 14px; width: 100%; min-height: 52px; padding: 0 6px;
+  font: inherit; font-size: 17px; color: var(--ink); text-align: left;
+  background: none; border: 0; border-bottom: 1px solid var(--grid); cursor: pointer;
+}
+.sheet-item.danger { color: var(--bad-text); }
+.sheet-item:active { background: var(--surface-2); }
+.sheet-sep { height: 10px; }
+.install-hint { margin: 14px 4px 0; line-height: 1.5; }
+body.mobile.sheet-open { overflow: hidden; }
+
+/* salvataggio e messaggi sopra la barra delle schede */
+body.mobile .savebar {
+  bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 10px); width: calc(100vw - 20px); padding: 10px 12px; border-radius: 16px;
+}
+body.mobile .savebar .row { width: 100%; }
+body.mobile .savebar .row .btn { flex: 1 1 auto; }
+body.mobile #download-config { display: none; }
+body.mobile .toast { left: 12px; right: 12px; bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 12px); text-align: center; border-radius: 14px; }
+
+/* accesso */
+body.mobile .lock { padding: calc(var(--safe-top) + 16px) 16px calc(var(--safe-bottom) + 16px); align-items: start; padding-top: calc(var(--safe-top) + 12vh); }
+body.mobile .lock-card { border: 0; box-shadow: none; background: transparent; padding: 8px; }
+body.mobile .lock-card h1 { font-size: 30px; }
+
+/* dettagli del portafoglio e simulatore */
+body.mobile .inds { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+body.mobile .signals li { flex-direction: column; gap: 2px; }
+body.mobile .grid2.tight { grid-template-columns: minmax(0, 1fr); }
+body.mobile .attn { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name pnl" "chip chip" "why why"; padding: 12px 2px; }
+body.mobile .attn .verdict { justify-self: start; }
+body.mobile .attn > span:nth-child(3) { white-space: normal; }
+body.mobile .chart { min-height: 0; }
+body.mobile .pf-overview .btn { width: 100%; }
+
+/* trascina per aggiornare (app a schermo intero) */
+body.mobile .ptr {
+  display: flex; align-items: center; gap: 8px; position: fixed; top: calc(var(--safe-top) + 58px); left: 50%; z-index: 25;
+  transform: translate(-50%, -80px); padding: 8px 14px; border-radius: 999px; font-size: 13px; color: var(--ink-2);
+  background: var(--surface); box-shadow: 0 4px 18px rgba(0, 0, 0, .15); opacity: 0; transition: opacity .15s;
+  pointer-events: none;
+}
+body.mobile .ptr.visible, body.mobile .ptr.loading { opacity: 1; }
+body.mobile .ptr.loading { transform: translate(-50%, 20px) !important; }
+.ptr-spin { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--axis); border-top-color: var(--accent); }
+.ptr.loading .ptr-spin { animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* app aggiunta alla schermata Home: niente rimbalzo che scopre lo sfondo sotto l'intestazione */
+body.mobile.standalone { overscroll-behavior-y: none; }
+@media (prefers-reduced-motion: reduce) {
+  body.mobile .sheet, body.mobile .pf-detail.open { animation: none; }
+}
+body.mobile .brand { min-width: 0; }
+body.mobile .brand h1 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+body.mobile .clamp p { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin: 0; }
+body.mobile .clamp.expanded p { -webkit-line-clamp: unset; }
+body.mobile .clamp:not(.expanded)::after { content: "Altro…"; display: block; margin-top: 4px; font-size: 13px; color: var(--accent-ink); }

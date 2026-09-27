@@ -2,7 +2,17 @@
 <html lang="it">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- app a schermo intero quando è aggiunta alla schermata Home di iPhone -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Actionzz">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#f9f9f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0d0d0d" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <title>Actionzz</title>
   <meta name="description" content="Monitor di azioni europee stabili con avvisi Telegram sui cali improvvisi">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232a78d6'/><path d='M6 10l7 7 5-5 8 10' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
@@ -29,7 +39,7 @@
     <div class="brand">
       <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--accent)"/><path d="M6 10l7 7 5-5 8 10" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <div>
-        <h1>Actionzz</h1>
+        <h1><span class="desk-title">Actionzz</span><span class="mobile-title" id="mobile-title">Home</span></h1>
         <p class="muted small" id="subtitle">Azioni europee stabili · avvisi sui cali improvvisi</p>
       </div>
     </div>
@@ -40,6 +50,8 @@
       <button class="btn ghost icon" id="logout" title="Esci" aria-label="Esci">⎋</button>
     </div>
   </header>
+
+  <div id="ptr" class="ptr" aria-hidden="true"><span class="ptr-spin"></span><span id="ptr-text">Trascina per aggiornare</span></div>
 
   <nav class="tabs" role="tablist">
     <button role="tab" data-tab="overview" aria-selected="true">Panoramica</button>
@@ -134,7 +146,7 @@
     <!-- SIMULATORE -->
     <section id="tab-simulator" class="tab" hidden>
       <div id="sim-error" class="card note" hidden></div>
-      <div class="card note">
+      <div class="card note clamp" title="Tocca per leggere tutto">
         <p><b>Simulatore</b>: soldi finti, costi veri. Gli ordini vengono eseguiti dallo scanner a borsa aperta al prezzo del momento (ritardato di ~15 minuti), con commissioni del broker scelto, tasse sulle transazioni (Tobin tax 0,2%, Francia 0,4%, Spagna 0,2%, stamp duty UK 0,5% e Irlanda 1%), costo del cambio, imposta di bollo 0,2% annuo, tasse del 26% sulle plusvalenze con zainetto fiscale e dividendi al netto delle ritenute.</p>
       </div>
 
@@ -342,6 +354,30 @@
     </div>
   </div>
 
+  <!-- barra delle schede in basso (solo telefono) -->
+  <nav class="tabbar" aria-label="Sezioni">
+    <button data-tab="overview"><svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></button>
+    <button data-tab="portfolio"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></svg><span>Portafoglio</span></button>
+    <button data-tab="simulator"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6L4.5 18.5A1.7 1.7 0 0 0 6 21h12a1.7 1.7 0 0 0 1.5-2.5L14 9V3M7 14h10"/></svg><span>Simulatore</span></button>
+    <button data-tab="today"><svg viewBox="0 0 24 24"><path d="M3 17l5-5 4 4 8-9M15 7h5v5"/></svg><span>Mercato</span></button>
+    <button data-more><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg><span>Altro</span></button>
+  </nav>
+
+  <!-- foglio "Altro" e sfondo dei fogli -->
+  <div id="sheet-backdrop" class="sheet-backdrop" hidden></div>
+  <div id="more-sheet" class="sheet" role="dialog" aria-label="Altro" hidden>
+    <div class="sheet-handle"></div>
+    <button class="sheet-item" data-tab="alerts">🚨 <span>Avvisi</span></button>
+    <button class="sheet-item" data-tab="universe">🌍 <span>Universo dei titoli</span></button>
+    <button class="sheet-item" data-tab="backtest">🧪 <span>Backtest</span></button>
+    <button class="sheet-item" data-tab="settings">⚙️ <span>Impostazioni</span></button>
+    <div class="sheet-sep"></div>
+    <button class="sheet-item" data-action="refresh">↻ <span>Aggiorna i dati</span></button>
+    <button class="sheet-item" data-action="theme">◐ <span>Tema chiaro / scuro</span></button>
+    <button class="sheet-item danger" data-action="logout">⎋ <span>Esci</span></button>
+    <p id="install-hint" class="muted small install-hint" hidden>Per usarla come un'app a schermo intero: tocca <b>Condividi</b> <span aria-hidden="true">⎙</span> in Safari e poi <b>Aggiungi alla schermata Home</b>.</p>
+  </div>
+
   <div class="tooltip" id="tooltip" role="status" hidden></div>
   <div class="toast" id="toast" role="status" hidden></div>
 
@@ -350,5 +386,6 @@
   <script src="portfolio.js"></script>
   <script src="simulator.js"></script>
   <script src="app.js"></script>
+  <script src="mobile.js"></script>
 </body>
 </html>
