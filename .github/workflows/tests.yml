@@ -2,7 +2,7 @@ name: Test
 
 on:
   push:
-    paths-ignore: ["config/config.json", "config/portfolio.enc.json"]
+    paths-ignore: ["config/config.json", "config/portfolio.enc.json", "config/simulator.enc.json"]
   pull_request:
 
 jobs:

@@ -44,6 +44,7 @@
   <nav class="tabs" role="tablist">
     <button role="tab" data-tab="overview" aria-selected="true">Panoramica</button>
     <button role="tab" data-tab="portfolio">Portafoglio</button>
+    <button role="tab" data-tab="simulator">Simulatore</button>
     <button role="tab" data-tab="today">Oggi</button>
     <button role="tab" data-tab="alerts">Avvisi</button>
     <button role="tab" data-tab="universe">Universo</button>
@@ -128,6 +129,95 @@
         <div class="table-wrap"><table id="pf-sales" class="data"></table></div>
       </div>
       <p class="muted small">Il portafoglio è salvato <b>cifrato</b> nel repository (AES-256): senza la tua password nessuno può leggerlo. I segnali sono regole tecniche automatiche, non consigli d'investimento personalizzati.</p>
+    </section>
+
+    <!-- SIMULATORE -->
+    <section id="tab-simulator" class="tab" hidden>
+      <div id="sim-error" class="card note" hidden></div>
+      <div class="card note">
+        <p><b>Simulatore</b>: soldi finti, costi veri. Gli ordini vengono eseguiti dallo scanner a borsa aperta al prezzo del momento (ritardato di ~15 minuti), con commissioni del broker scelto, tasse sulle transazioni (Tobin tax 0,2%, Francia 0,4%, Spagna 0,2%, stamp duty UK 0,5% e Irlanda 1%), costo del cambio, imposta di bollo 0,2% annuo, tasse del 26% sulle plusvalenze con zainetto fiscale e dividendi al netto delle ritenute.</p>
+      </div>
+
+      <div id="sim-setup" class="card" hidden>
+        <div class="card-head"><h2>Crea la tua simulazione</h2></div>
+        <form id="sim-create" class="form-grid" autocomplete="off">
+          <label>Budget iniziale (€) <input id="sim-budget" inputmode="decimal" value="10000"></label>
+          <label>Broker da simulare <select id="sim-broker-new"></select></label>
+          <p class="span2 muted small">Potrai aggiungere denaro in qualsiasi momento e cambiare broker. Se esiste già una simulazione, verrà azzerata.</p>
+          <button class="btn primary span2" type="submit">Crea simulazione</button>
+        </form>
+      </div>
+
+      <div id="sim-body">
+        <div class="kpis" id="sim-kpis"></div>
+        <div class="card">
+          <div class="card-head"><h2>Andamento del conto</h2><span class="muted small">Valore di liquidità e titoli rispetto al denaro versato</span></div>
+          <div id="sim-chart" class="chart"></div>
+          <p class="muted small" id="sim-broker-current"></p>
+        </div>
+        <div class="grid2">
+          <form id="sim-order" class="card" autocomplete="off">
+            <div class="card-head"><h2>Nuovo ordine</h2></div>
+            <div class="form-grid">
+              <label>Ticker <input name="ticker" list="sim-tickers" placeholder="es. ENEL.MI" required></label>
+              <label>Operazione <select name="side"><option value="buy">Compra</option><option value="sell">Vendi</option></select></label>
+              <label>Quantità o importo <select name="mode"><option value="qty">Numero di azioni</option><option value="amount">Importo in €</option><option value="all" id="sim-mode-all" hidden>Tutte le azioni</option></select></label>
+              <label>Quanto <input name="size" inputmode="decimal" placeholder="100"></label>
+              <label>Tipo <select name="kind"><option value="market">Al mercato</option><option value="limit">Con prezzo limite</option></select></label>
+              <label>Prezzo limite <input name="limit" inputmode="decimal" placeholder="—" disabled></label>
+              <label class="span2">Validità <select name="validity"><option value="day">Solo per la seduta</option><option value="gtc">Fino a revoca (90 giorni)</option></select></label>
+            </div>
+            <div id="sim-preview" class="sim-preview"></div>
+            <button class="btn primary" type="submit" style="width:100%;margin-top:10px">Invia ordine</button>
+            <datalist id="sim-tickers"></datalist>
+          </form>
+          <div class="card">
+            <div class="card-head"><h2>Ordini</h2></div>
+            <h4 class="sub">In attesa</h4>
+            <div id="sim-pending" class="list"></div>
+            <h4 class="sub">Ultimi esiti</h4>
+            <div id="sim-recent" class="list"></div>
+            <form id="sim-deposit" class="inline-form deposit" autocomplete="off">
+              <input id="sim-deposit-amount" inputmode="decimal" placeholder="Aggiungi denaro (€)">
+              <button class="btn" type="submit">Versa</button>
+            </form>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2>Posizioni</h2><span class="muted small">"Netto se vendi": dopo commissioni, cambio e tasse</span></div>
+          <div class="table-wrap"><table id="sim-positions" class="data"></table></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2>Movimenti</h2></div>
+          <div class="table-wrap"><table id="sim-tx" class="data"></table></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h2>Confronto broker</h2><span class="muted small" id="sim-brokers-note"></span></div>
+        <div class="table-wrap"><table id="sim-brokers" class="data"></table></div>
+      </div>
+
+      <form id="sim-costs" class="card" autocomplete="off">
+        <div class="card-head"><h2>Costi personalizzati</h2><button class="btn small danger" type="button" id="sim-reset">Ricomincia da zero</button></div>
+        <p class="muted small">Commissione = quota fissa + percentuale, limitata da minimo e massimo (0 = nessuno). Si applica al controvalore in euro.</p>
+        <div class="table-wrap"><table class="data compact fees">
+          <thead><tr><th>Mercato</th><th class="num">Fisso €</th><th class="num">%</th><th class="num">Min €</th><th class="num">Max €</th></tr></thead>
+          <tbody>
+            <tr><td>Borsa Italiana</td><td><input name="it_fixed" inputmode="decimal"></td><td><input name="it_pct" inputmode="decimal"></td><td><input name="it_min" inputmode="decimal"></td><td><input name="it_max" inputmode="decimal"></td></tr>
+            <tr><td>Altre borse europee</td><td><input name="eu_fixed" inputmode="decimal"></td><td><input name="eu_pct" inputmode="decimal"></td><td><input name="eu_min" inputmode="decimal"></td><td><input name="eu_max" inputmode="decimal"></td></tr>
+            <tr><td>USA e resto del mondo</td><td><input name="us_fixed" inputmode="decimal"></td><td><input name="us_pct" inputmode="decimal"></td><td><input name="us_min" inputmode="decimal"></td><td><input name="us_max" inputmode="decimal"></td></tr>
+          </tbody>
+        </table></div>
+        <div class="form-grid">
+          <label>Costo del cambio (%) <input name="fx_spread_pct" inputmode="decimal"></label>
+          <label>Scostamento dal prezzo (%) <input name="slippage_pct" inputmode="decimal"></label>
+          <label>Costo annuo per borsa estera (€) <input name="connectivity_fee" inputmode="decimal"></label>
+          <label>Regime fiscale <select name="regime"><option value="amministrato">Amministrato (tasse trattenute subito)</option><option value="dichiarativo">Dichiarativo (tasse in dichiarazione)</option></select></label>
+          <label class="check span2"><input type="checkbox" name="transaction_taxes"> Applica le tasse sulle transazioni (Tobin tax, stamp duty…)</label>
+          <button class="btn span2" type="submit">Salva costi</button>
+        </div>
+      </form>
     </section>
 
     <!-- OGGI -->
@@ -258,6 +348,7 @@
   <footer class="muted small">Dati Yahoo Finance tramite yfinance, con ritardo di circa 15 minuti. Solo a scopo informativo, non è un consiglio d'investimento.</footer>
 
   <script src="portfolio.js"></script>
+  <script src="simulator.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

@@ -1,0 +1,141 @@
+{
+  "checked": "2026-09-27",
+  "note": "Tariffe per ordine su azioni, verificate sui siti dei broker e su comparatori a settembre 2026. I costi di cambio indicati come stima non sono pubblicati in modo esplicito: controlla sempre il foglio informativo del broker.",
+  "brokers": [
+    {
+      "id": "trade_republic",
+      "name": "Trade Republic",
+      "regime": "amministrato",
+      "summary": "1 € a ordine su tutti i mercati, titoli esteri negoziati in euro. Sostituto d'imposta con IBAN italiano.",
+      "fees": {
+        "it": {"fixed": 1.0, "pct": 0, "min": 0, "max": 0},
+        "eu": {"fixed": 1.0, "pct": 0, "min": 0, "max": 0},
+        "us": {"fixed": 1.0, "pct": 0, "min": 0, "max": 0}
+      },
+      "fx_spread_pct": 0,
+      "slippage_pct": 0.10,
+      "connectivity_fee": 0,
+      "sources": ["https://www.justetf.com/it/comparazione/perche-trade-republic.html", "https://www.qualebroker.com/recensioni/broker/trade-republic"]
+    },
+    {
+      "id": "scalable_free",
+      "name": "Scalable Capital (FREE)",
+      "regime": "amministrato",
+      "summary": "0,99 € a ordine (sede EIX), 1,99 € su gettex/Xetra. Regime amministrato con IBAN italiano per i nuovi clienti dal 1/9/2026.",
+      "fees": {
+        "it": {"fixed": 0.99, "pct": 0, "min": 0, "max": 0},
+        "eu": {"fixed": 0.99, "pct": 0, "min": 0, "max": 0},
+        "us": {"fixed": 0.99, "pct": 0, "min": 0, "max": 0}
+      },
+      "fx_spread_pct": 0,
+      "slippage_pct": 0.10,
+      "connectivity_fee": 0,
+      "sources": ["https://www.justetf.com/it/comparazione/perche-scalable-capital.html", "https://www.01net.it/scalable-capital-italia-iban-regime-amministrato/"]
+    },
+    {
+      "id": "degiro",
+      "name": "DEGIRO",
+      "regime": "dichiarativo",
+      "summary": "1 € commissione + 1 € costo di gestione su Milano, Europa e USA. 2,50 €/anno per ogni borsa estera usata. Cambio automatico 0,25%.",
+      "fees": {
+        "it": {"fixed": 2.0, "pct": 0, "min": 0, "max": 0},
+        "eu": {"fixed": 2.0, "pct": 0, "min": 0, "max": 0},
+        "us": {"fixed": 2.0, "pct": 0, "min": 0, "max": 0}
+      },
+      "fx_spread_pct": 0.25,
+      "slippage_pct": 0.05,
+      "connectivity_fee": 2.50,
+      "sources": ["https://www.degiro.it/prezzi"]
+    },
+    {
+      "id": "ibkr_tiered",
+      "name": "Interactive Brokers (Tiered)",
+      "regime": "dichiarativo",
+      "summary": "0,05% (min 1,25 €, max 29 €) più costi di borsa e compensazione (stimati +0,01%). Cambio quasi al prezzo interbancario.",
+      "fees": {
+        "it": {"fixed": 0, "pct": 0.06, "min": 1.25, "max": 29},
+        "eu": {"fixed": 0, "pct": 0.06, "min": 1.25, "max": 29},
+        "us": {"fixed": 0, "pct": 0.06, "min": 1.0, "max": 29}
+      },
+      "fx_spread_pct": 0.03,
+      "slippage_pct": 0.05,
+      "connectivity_fee": 0,
+      "sources": ["https://www.interactivebrokers.co.uk/it/pricing/commissions-stocks-europe.php"]
+    },
+    {
+      "id": "directa_variable",
+      "name": "Directa (variabile)",
+      "regime": "amministrato",
+      "summary": "Italia 0,19% (min 1,50 €, max 18 €); Europa da 9 € circa, USA da 9 $ a ordine.",
+      "fees": {
+        "it": {"fixed": 0, "pct": 0.19, "min": 1.5, "max": 18},
+        "eu": {"fixed": 9.0, "pct": 0, "min": 0, "max": 0},
+        "us": {"fixed": 8.3, "pct": 0, "min": 0, "max": 0}
+      },
+      "fx_spread_pct": 0.10,
+      "slippage_pct": 0.05,
+      "connectivity_fee": 0,
+      "sources": ["https://www.directa.it/commissioni", "https://www.qualebroker.com/recensioni/broker/directa"]
+    },
+    {
+      "id": "directa_fixed",
+      "name": "Directa (fisso)",
+      "regime": "amministrato",
+      "summary": "Italia 5 € a eseguito; Europa da 9 € circa, USA da 9 $ a ordine.",
+      "fees": {
+        "it": {"fixed": 5.0, "pct": 0, "min": 0, "max": 0},
+        "eu": {"fixed": 9.0, "pct": 0, "min": 0, "max": 0},
+        "us": {"fixed": 8.3, "pct": 0, "min": 0, "max": 0}
+      },
+      "fx_spread_pct": 0.10,
+      "slippage_pct": 0.05,
+      "connectivity_fee": 0,
+      "sources": ["https://www.directa.it/commissioni", "https://www.qualebroker.com/recensioni/broker/directa"]
+    },
+    {
+      "id": "fineco_trading",
+      "name": "Fineco (piano Trading)",
+      "regime": "amministrato",
+      "summary": "0,19% (min 2,95 €, max 19 €) su Italia, Germania e USA; altri mercati europei in genere più cari.",
+      "fees": {
+        "it": {"fixed": 0, "pct": 0.19, "min": 2.95, "max": 19},
+        "eu": {"fixed": 0, "pct": 0.19, "min": 2.95, "max": 19},
+        "us": {"fixed": 0, "pct": 0.19, "min": 2.95, "max": 19}
+      },
+      "fx_spread_pct": 0.10,
+      "slippage_pct": 0.05,
+      "connectivity_fee": 0,
+      "sources": ["https://it.finecobank.com/trading/commissioni/"]
+    },
+    {
+      "id": "fineco_under30",
+      "name": "Fineco (under 30)",
+      "regime": "amministrato",
+      "summary": "2,95 € a ordine su Italia ed Europa, 3,95 $ sugli USA, per i clienti con meno di 30 anni.",
+      "fees": {
+        "it": {"fixed": 2.95, "pct": 0, "min": 0, "max": 0},
+        "eu": {"fixed": 2.95, "pct": 0, "min": 0, "max": 0},
+        "us": {"fixed": 3.65, "pct": 0, "min": 0, "max": 0}
+      },
+      "fx_spread_pct": 0.10,
+      "slippage_pct": 0.05,
+      "connectivity_fee": 0,
+      "sources": ["https://it.finecobank.com/trading/commissioni/"]
+    },
+    {
+      "id": "fineco_one",
+      "name": "Fineco (piano standard, pochi ordini)",
+      "regime": "amministrato",
+      "summary": "Commissioni fisse a scaglioni sul volume mensile: con meno di 99 € di commissioni al mese si pagano 19 € a ordine.",
+      "fees": {
+        "it": {"fixed": 19.0, "pct": 0, "min": 0, "max": 0},
+        "eu": {"fixed": 19.0, "pct": 0, "min": 0, "max": 0},
+        "us": {"fixed": 11.8, "pct": 0, "min": 0, "max": 0}
+      },
+      "fx_spread_pct": 0.10,
+      "slippage_pct": 0.05,
+      "connectivity_fee": 0,
+      "sources": ["https://it.finecobank.com/trading/commissioni/"]
+    }
+  ]
+}

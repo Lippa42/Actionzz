@@ -15,7 +15,8 @@ import os
 
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
-ITERATIONS = 310_000
+# 310.000 come la dashboard; i test la abbassano con ACTIONZZ_KDF_ITERATIONS per andare veloci
+ITERATIONS = int(os.environ.get("ACTIONZZ_KDF_ITERATIONS", "310000"))
 
 
 class WrongPassword(Exception):
@@ -26,7 +27,8 @@ def _key(password: str, salt: bytes, iterations: int) -> bytes:
     return hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"), salt, iterations, dklen=32)
 
 
-def encrypt_json(obj, password: str, iterations: int = ITERATIONS) -> dict:
+def encrypt_json(obj, password: str, iterations: int | None = None) -> dict:
+    iterations = iterations or ITERATIONS
     salt, iv = os.urandom(16), os.urandom(12)
     data = AESGCM(_key(password, salt, iterations)).encrypt(iv, json.dumps(obj, ensure_ascii=False).encode("utf-8"), None)
     b64 = lambda b: base64.b64encode(b).decode("ascii")  # noqa: E731

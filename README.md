@@ -81,6 +81,28 @@ portafoglio cifrato (lo stesso della dashboard) e risponde con il **piano di ven
 incassare, quello sotto cui uscire, il livello di protezione dal massimo e quanto è realistico l'obiettivo rispetto
 alle oscillazioni tipiche del titolo. Poi ti scrive da solo quando uno di quei livelli viene toccato.
 
+### Simulatore: soldi finti, costi veri
+Nella scheda **Simulatore** (o con `/simcompra`, `/simvendi`, `/simversa` su Telegram) parti da un budget, puoi
+aggiungere denaro quando vuoi e compri/vendi "per finta" per vedere come sarebbe andata. Tutto è calcolato come per
+un investitore italiano:
+
+- **ordini** al mercato o con prezzo limite, validi per la seduta o fino a revoca, solo azioni intere; eseguiti
+  dallo scanner **a borsa aperta** al prezzo del momento (ritardato di ~15 minuti) più un piccolo scostamento;
+- **commissioni** del broker scelto (Italia, Europa e USA separate) e **costo del cambio** per i titoli non in euro;
+- **tasse sulle transazioni** all'acquisto: Tobin tax italiana **0,2%** (raddoppiata dal 1/1/2026), Francia 0,4%,
+  Spagna 0,2%, stamp duty UK 0,5% e Irlanda 1% (applicate in base alla borsa, senza le esenzioni per le società
+  più piccole);
+- **26% sulle plusvalenze** calcolate in euro sul costo medio ponderato; le **minusvalenze** finiscono nello
+  zainetto fiscale e compensano le plusvalenze dei 4 anni successivi;
+- **regime amministrato** (tasse trattenute subito) o **dichiarativo** (DEGIRO, Interactive Brokers: tasse pagate
+  con il saldo del 30 giugno dell'anno dopo);
+- **dividendi** accreditati allo stacco al netto della ritenuta estera (aliquote indicative) e del 26%;
+- **imposta di bollo** 0,2% annuo sul valore dei titoli, addebitata giorno per giorno.
+
+Il **confronto broker** (`site/brokers.json`, verificato a settembre 2026: Trade Republic, Scalable Capital,
+DEGIRO, Interactive Brokers, Directa, Fineco) mostra il costo di un ordine da 2.000 € su ogni mercato: un clic su
+*Usa* applica quelle tariffe alla simulazione. Si possono anche impostare costi personalizzati.
+
 ### Password e privacy
 La dashboard si apre solo con la **password** scelta al primo accesso. Il repository è pubblico, quindi la
 password non è un semplice cancello: **cifra** (AES-256-GCM, chiave PBKDF2 con 310.000 iterazioni) il portafoglio
@@ -175,6 +197,12 @@ python -m actionzz test-telegram   # messaggio di prova + menu dei comandi del b
 | `/vendi ENEL.MI 50 7,20 [comm.]` | registra una vendita (lotti più vecchi per primi) e calcola la plusvalenza |
 | `/piano ENEL.MI` | quando vendere un titolo che possiedi |
 | `/obiettivo 20` · `/stop 10` | obiettivo di guadagno e stop di perdita (%) |
+| `/sim` | stato del conto simulato |
+| `/simnuovo 10000` | nuova simulazione con questo budget |
+| `/simcompra ENEL.MI 100 [limite]` · `/simcompra ENEL.MI 1000€` | ordine di acquisto simulato |
+| `/simvendi ENEL.MI 50\|tutto [limite]` | ordine di vendita simulato |
+| `/simversa 1000` | aggiungi denaro al budget |
+| `/simbroker [ID]` | confronta i broker e scegli le tariffe da simulare |
 | `/soglia 6` | calo minimo in % |
 | `/relativa 3` | punti peggio del mercato |
 | `/filtro on\|off` | filtro sui cali generalizzati |
@@ -239,6 +267,7 @@ actionzz/          codice Python
   backtest.py      simulazione storica
   portfolio.py     portafoglio personale e segnali di vendita
   crypto.py        cifratura compatibile con la dashboard
+  simulator.py     simulatore di compravendita con costi e tasse reali
   commands.py      comandi Telegram
   messages.py      testi dei messaggi
 config/config.json impostazioni (modificate da dashboard e Telegram)

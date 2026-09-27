@@ -1,3 +1,7 @@
+import os
+
+os.environ.setdefault("ACTIONZZ_KDF_ITERATIONS", "1000")  # cifratura veloce nei test
+
 from datetime import date, datetime, timedelta
 from zoneinfo import ZoneInfo
 

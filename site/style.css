@@ -13,6 +13,8 @@
   --accent-ink: #1c5cab;
   --pos: #2a78d6;
   --neg: #d03b3b;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
   --good-text: #006300;
   --bad-text: #b3261e;
   --warn: #fab219;
@@ -37,6 +39,10 @@
     --accent-ink: #86b6ef;
     --pos: #3987e5;
     --neg: #e66767;
+  --series-1: #3987e5;
+  --series-2: #d95926;
+    --series-1: #3987e5;
+    --series-2: #d95926;
     --good-text: #0ca30c;
     --bad-text: #ff8a80;
     --shadow: none;
@@ -58,6 +64,8 @@
   --accent-ink: #86b6ef;
   --pos: #3987e5;
   --neg: #e66767;
+  --series-1: #3987e5;
+  --series-2: #d95926;
   --good-text: #0ca30c;
   --bad-text: #ff8a80;
   --shadow: none;
@@ -312,3 +320,21 @@ tr.selected td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
 .form-grid label { min-width: 0; }
 .form-grid input { width: 100%; }
 .savebar[hidden], .toast[hidden], .tooltip[hidden], .card[hidden] { display: none; }
+
+/* ---------------------------------------------------------- simulatore */
+.chart .s1 { stroke: var(--series-1); }
+.chart .s2 { stroke: var(--series-2); }
+.chart .s1-dot { fill: var(--series-1); stroke: var(--surface); stroke-width: 2; }
+.chart .s2-dot { fill: var(--series-2); stroke: var(--surface); stroke-width: 2; }
+.chart .dlabel { fill: var(--ink-2); font-size: 12px; }
+.sim-preview { margin-top: 12px; padding: 10px 12px; border-radius: 10px; background: var(--surface-2); min-height: 42px; }
+.est { display: flex; flex-direction: column; gap: 4px; font-size: 14px; }
+.est > div { display: flex; justify-content: space-between; gap: 12px; }
+.est > div b { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.est .tot { border-top: 1px solid var(--axis); padding-top: 6px; margin-top: 2px; }
+h4.sub { margin: 4px 0 6px; font-size: 13px; color: var(--ink-2); font-weight: 600; }
+.deposit { margin-top: 14px; }
+table.fees input { width: 100%; min-width: 60px; padding: 5px 8px; }
+#sim-setup[hidden], #sim-body[hidden], #sim-error[hidden] { display: none; }
+select { font: inherit; font-size: 14px; }
+.form-grid select { width: 100%; }

@@ -287,6 +287,154 @@ def _pf_setting(key: str, label: str):
     return run
 
 
+def _new_order(m, ticker: str, side: str) -> dict:
+    """Ordine valido per la seduta di oggi, o per la prossima se la borsa ha già chiuso."""
+    import os
+    from datetime import timedelta
+
+    from .markets import is_trading_window
+
+    now = now_local(m.cfg)
+    day = now.date()
+    if not is_trading_window(m.cfg, now) and now.hour >= 12:
+        day += timedelta(days=1)
+    while day.weekday() >= 5:
+        day += timedelta(days=1)
+    return {"id": os.urandom(6).hex(), "created": now.isoformat(timespec="seconds"), "ticker": ticker.upper(),
+            "side": side, "validity": "day", "valid_until": day.isoformat()}
+
+
+def _sim_or_help(m):
+    try:
+        sim = m.sim_for_edit()
+    except ValueError as exc:
+        m.tg.send(f"⚠️ {esc(exc)}.")
+        return None
+    if sim is None:
+        m.tg.send("Il simulatore non è ancora attivo: crealo con /simnuovo 10000 (budget in euro) o dalla dashboard.")
+    return sim
+
+
+def cmd_sim(m, args):
+    from .messages import sim_overview
+
+    sim = _sim_or_help(m)
+    if sim is None:
+        return
+    state = m.sim_state()
+    if not state or state.get("epoch") != sim["epoch"] or "totals" not in state:
+        m.tg.send("🧪 Simulatore creato: il conto si aggiorna al prossimo giro dello scanner.")
+        return
+    pending = sum(1 for o in sim["orders"] if o["id"] not in state["orders"] and not o.get("cancelled"))
+    m.tg.send(sim_overview(state, pending))
+
+
+def cmd_sim_new(m, args):
+    from .simulator import new_sim
+
+    budget = _amount(args[0]) if args else None
+    if not budget or budget < 100:
+        m.tg.send("Uso: /simnuovo BUDGET (almeno 100 €), es. /simnuovo 10000. Attenzione: azzera la simulazione attuale.")
+        return
+    try:
+        old = m.sim_for_edit()
+    except ValueError as exc:
+        m.tg.send(f"⚠️ {esc(exc)}.")
+        return
+    sim = new_sim(budget, now_local(m.cfg).date().isoformat())
+    if old:
+        sim["settings"] = old["settings"]  # tengo i costi che avevi impostato
+    m.save_sim(sim)
+    m.tg.send(f"🧪 Nuova simulazione con {fmt_num(budget, 0)} € di budget. Compra con /simcompra TICKER QUANTITÀ.")
+
+
+def cmd_sim_deposit(m, args):
+    import os
+
+    amount = _amount(args[0]) if args else None
+    if not amount:
+        m.tg.send("Uso: /simversa IMPORTO (es. /simversa 1000)")
+        return
+    sim = _sim_or_help(m)
+    if sim is None:
+        return
+    sim["deposits"].append({"id": os.urandom(6).hex(), "amount": amount, "date": now_local(m.cfg).date().isoformat(),
+                            "note": "versamento da Telegram"})
+    m.save_sim(sim)
+    m.tg.send(f"🧪 Versati {fmt_num(amount, 2)} € nel conto simulato.")
+
+
+def cmd_sim_broker(m, args):
+    from .simulator import broker_settings, commission, load_brokers, market_of
+
+    brokers = load_brokers()
+    if not args:
+        lines = ["🏦 <b>Broker disponibili</b> (costo di un ordine da 2.000 € su Borsa Italiana · Europa · USA)"]
+        for b in brokers:
+            st = broker_settings(b["id"])
+            costs = " · ".join(fmt_num(commission(2000, st, mk), 2) for mk in ("it", "eu", "us"))
+            lines.append(f"<code>{b['id']}</code> {esc(b['name'])}: {costs} € · {b['regime']}")
+        lines.append("\nScegli con /simbroker ID (es. /simbroker degiro)")
+        m.tg.send("\n".join(lines))
+        return
+    sim = _sim_or_help(m)
+    if sim is None:
+        return
+    try:
+        new = broker_settings(args[0].lower(), sim["settings"])
+    except KeyError:
+        m.tg.send("Broker sconosciuto: scrivi /simbroker per l'elenco.")
+        return
+    sim["settings"] = new
+    m.save_sim(sim)
+    b = next(b for b in brokers if b["id"] == new["broker"])
+    m.tg.send(f"🏦 Il simulatore ora usa le tariffe di <b>{esc(b['name'])}</b> ({b['regime']}).\n{esc(b['summary'])}")
+
+
+def _sim_trade(side: str):
+    def run(m, args):
+        usage = (f"Uso: /sim{'compra' if side == 'buy' else 'vendi'} TICKER QUANTITÀ [prezzo limite]\n"
+                 + ("es. /simcompra ENEL.MI 100 · /simcompra ENEL.MI 1000€ (importo) · /simcompra ENEL.MI 100 8,50 (limite)"
+                    if side == "buy" else "es. /simvendi ENEL.MI 50 · /simvendi ENEL.MI tutto · /simvendi ENEL.MI 50 9,20 (limite)"))
+        if len(args) < 2:
+            m.tg.send(usage)
+            return
+        sim = _sim_or_help(m)
+        if sim is None:
+            return
+        order = _new_order(m, args[0], side)
+        size = args[1].lower()
+        if side == "sell" and size in ("tutto", "tutte", "all"):
+            order["all"] = True
+        elif side == "buy" and size.endswith(("€", "eur")):
+            amount = _amount(size.rstrip("eur€"))
+            if not amount:
+                m.tg.send(usage)
+                return
+            order["amount"] = amount
+        else:
+            qty = _amount(size)
+            if not qty or not float(qty).is_integer():
+                m.tg.send("La quantità deve essere un numero intero di azioni.\n" + usage)
+                return
+            order["quantity"] = int(qty)
+        if len(args) > 2:
+            limit = _amount(args[2])
+            if not limit:
+                m.tg.send(usage)
+                return
+            order["limit"] = limit
+        sim["orders"].append(order)
+        m.save_sim(sim)
+        what = ("tutte le azioni" if order.get("all") else f"{fmt_num(order['amount'], 0)} €" if order.get("amount")
+                else f"{order['quantity']} azioni")
+        m.tg.send(f"🧪 Ordine di {'acquisto' if side == 'buy' else 'vendita'} inserito: {what} di <code>{esc(order['ticker'])}</code>"
+                  + (f" con limite {fmt_num(order['limit'])}" if order.get("limit") else " al mercato")
+                  + f", valido per la seduta del {'/'.join(reversed(order['valid_until'].split('-')))}. "
+                  "Lo eseguo al prossimo controllo a borsa aperta.")
+    return run
+
+
 def cmd_summary(m, args):
     m.send_summary(now_local(m.cfg))
 
@@ -388,6 +536,12 @@ COMMANDS = {
     "vendi": cmd_sell,
     "piano": cmd_plan,
     "obiettivo": _pf_setting("take_profit_pct", "Obiettivo di guadagno"),
+    "sim": cmd_sim,
+    "simnuovo": cmd_sim_new,
+    "simversa": cmd_sim_deposit,
+    "simcompra": _sim_trade("buy"),
+    "simvendi": _sim_trade("sell"),
+    "simbroker": cmd_sim_broker,
     "stop": _pf_setting("stop_loss_pct", "Stop di perdita"),
     "soglia": _setting("drop_threshold_pct", "Soglia di calo (%)", 0.5, 50),
     "relativa": _setting("relative_threshold_pct", "Punti peggio del mercato", 0, 50),

@@ -240,6 +240,14 @@ HELP = """🤖 <b>Actionzz — comandi</b>
 /piano TICKER — quando vendere un titolo che possiedi
 /obiettivo 20 · /stop 10 — cambia obiettivo di guadagno e stop di perdita (%)
 
+🧪 <b>Simulatore</b> (soldi finti, costi e tasse veri)
+/sim — stato del conto simulato
+/simcompra TICKER QUANTITÀ [limite] — es. /simcompra ENEL.MI 100 oppure /simcompra ENEL.MI 1000€
+/simvendi TICKER QUANTITÀ|tutto [limite]
+/simversa 1000 — aggiungi denaro al budget
+/simnuovo 10000 — ricomincia da zero con un nuovo budget
+/simbroker [ID] — confronta i broker e scegli le tariffe da simulare
+
 ⚙️ <b>Impostazioni</b>
 /soglia 5 — calo minimo in % rispetto a ieri
 /relativa 3 — quanti punti peggio del mercato
@@ -263,6 +271,11 @@ BOT_COMMANDS = [
     ("compra", "Registra un acquisto: TICKER QUANTITÀ PREZZO"),
     ("vendi", "Registra una vendita: TICKER QUANTITÀ PREZZO"),
     ("piano", "Quando vendere un titolo che possiedi"),
+    ("sim", "Simulatore: stato del conto"),
+    ("simcompra", "Simulatore: compra TICKER QUANTITÀ"),
+    ("simvendi", "Simulatore: vendi TICKER QUANTITÀ|tutto"),
+    ("simversa", "Simulatore: aggiungi budget"),
+    ("simbroker", "Simulatore: scegli il broker"),
     ("soglia", "Imposta il calo minimo in %"),
     ("relativa", "Punti peggio del mercato"),
     ("filtro", "Filtro mercato on/off"),
@@ -391,4 +404,70 @@ def sell_plan_text(plan: dict, title: str = "📌 <b>Piano di vendita</b>") -> s
         "🔔 Ti scrivo io quando scatta uno di questi livelli: controllo ogni 5 minuti in orario di borsa.",
         "<i>Regole automatiche, non un consiglio d'investimento: la decisione è tua.</i>",
     ]
+    return "\n".join(lines)
+
+
+# ------------------------------------------------------------------ simulatore
+
+
+def sim_event(e: dict) -> str:
+    t = e.get("type")
+    head = "🧪 <b>Simulatore</b> · "
+    if t == "buy":
+        costs = [f"commissione {fmt_eur(e['commission'], 2)}"]
+        if e.get("transaction_tax"):
+            costs.append(f"{esc(e['tax_name'])} {fmt_eur(e['transaction_tax'], 2)}")
+        if e.get("fx_cost"):
+            costs.append(f"cambio {fmt_eur(e['fx_cost'], 2)}")
+        return (f"{head}comprate {fmt_num(e['qty'], 0)} <code>{esc(e['ticker'])}</code> a {fmt_num(e['price'])} {esc(e['currency'])}\n"
+                f"Controvalore {fmt_eur(e['gross'], 2)} · {' · '.join(costs)}\n"
+                f"Totale addebitato <b>{fmt_eur(-e['total'], 2)}</b> · liquidità {fmt_eur(e['cash_after'], 2)}")
+    if t == "sell":
+        lines = [f"{head}vendute {fmt_num(e['qty'], 0)} <code>{esc(e['ticker'])}</code> a {fmt_num(e['price'])} {esc(e['currency'])}",
+                 f"Controvalore {fmt_eur(e['gross'], 2)} · commissione {fmt_eur(e['commission'], 2)}"
+                 + (f" · cambio {fmt_eur(e['fx_cost'], 2)}" if e.get("fx_cost") else ""),
+                 f"{'Plusvalenza' if e['gain'] >= 0 else 'Minusvalenza'}: <b>{fmt_eur_signed(e['gain'], 2)}</b>"]
+        if e.get("losses_used"):
+            lines.append(f"Compensata con lo zainetto fiscale: {fmt_eur(e['losses_used'], 2)}")
+        if e.get("capital_gains_tax"):
+            lines.append(f"Tasse sulla plusvalenza (26%): {fmt_eur(e['capital_gains_tax'], 2)}"
+                         + ("" if e.get("tax_withheld", True) else " · regime dichiarativo: da pagare con la dichiarazione dei redditi"))
+        elif e["gain"] < 0:
+            lines.append("La minusvalenza va nello zainetto fiscale: compenserà plusvalenze future (4 anni).")
+        lines.append(f"Accreditati <b>{fmt_eur(e['total'], 2)}</b> · liquidità {fmt_eur(e['cash_after'], 2)}")
+        return "\n".join(lines)
+    if t == "dividend":
+        return (f"{head}dividendo di <code>{esc(e['ticker'])}</code>: {fmt_num(e['per_share'], 4)} × {fmt_num(e['qty'], 0)} azioni\n"
+                f"Lordo {fmt_eur(e['gross'], 2)} · ritenuta estera {fmt_eur(e['withholding'], 2)} · tasse italiane {fmt_eur(e['italian_tax'], 2)}\n"
+                f"Netto accreditato <b>{fmt_eur(e['total'], 2)}</b>")
+    if t == "rejected":
+        return f"{head}⚠️ ordine su <code>{esc(e['ticker'])}</code> rifiutato: {esc(e['reason'])}."
+    if t == "expired":
+        return f"{head}⌛ ordine su <code>{esc(e['ticker'])}</code> scaduto senza essere eseguito (prezzo limite non raggiunto?)."
+    return head + esc(t)
+
+
+def sim_overview(state: dict, pending: int = 0) -> str:
+    t = state["totals"]
+    lines = [
+        "🧪 <b>Simulatore</b>",
+        f"Valore del conto: <b>{fmt_eur(t['equity'])}</b> · versati {fmt_eur(t['deposited'])}",
+        f"Risultato: <b>{fmt_eur_signed(t['pnl'])}</b> ({fmt_pct(t['pnl_pct'])})",
+        f"Se vendessi tutto oggi, al netto di costi e tasse: {fmt_eur(t['net_equity'])} ({fmt_pct(t['net_pnl_pct'])})",
+        f"Liquidità: {fmt_eur(t['cash'], 2)} · costi e tasse pagati: {fmt_eur(t['total_costs'], 2)}",
+    ]
+    if t.get("losses_available"):
+        lines.append(f"Zainetto fiscale: {fmt_eur(t['losses_available'], 2)} di minusvalenze da compensare")
+    if state["positions"]:
+        lines.append("")
+        for tk, pos in sorted(state["positions"].items()):
+            p = state["prices"].get(tk)
+            if not p:
+                continue
+            value = pos["qty"] * p["price"] * p["fx"]
+            lines.append(f"<code>{esc(tk)}</code> {fmt_num(pos['qty'], 0)} az. · {fmt_eur(value)} · "
+                         f"{fmt_pct((value / pos['cost_eur'] - 1) * 100 if pos['cost_eur'] else None)}")
+    if pending:
+        lines += ["", f"⏳ Ordini in attesa: {pending}"]
+    lines += ["", "Comandi: /simcompra, /simvendi, /simversa"]
     return "\n".join(lines)

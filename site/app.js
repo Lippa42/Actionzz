@@ -29,7 +29,7 @@ const S = {
 /* ----------------------------------------------------------- formattazione */
 
 const nf = (d) => new Intl.NumberFormat("it-IT", { minimumFractionDigits: d, maximumFractionDigits: d });
-const NF = [nf(0), nf(1), nf(2)];
+const NF = new Proxy({}, { get: (cache, d) => (cache[d] ||= nf(+d)) }); // formattatori per numero di decimali
 const num = (x, d = 2) => (x == null || Number.isNaN(x) ? "—" : NF[d].format(x));
 const pct = (x, d = 1) => (x == null ? "—" : (x < 0 ? "−" : "+") + NF[d].format(Math.abs(x)) + "%");
 const pts = (x) => (x == null ? "—" : (x < 0 ? "−" : "+") + NF[1].format(Math.abs(x)) + " pt");
@@ -194,7 +194,7 @@ async function loadAll() {
     return;
   }
   banner("Caricamento dati…");
-  if (S.password) await loadPortfolioReport();
+  if (S.password) await Promise.all([loadPortfolioReport(), loadSimulator()]);
   const results = await Promise.allSettled(DATA_FILES.map((f) => fetchFile(`${f}.json`, "data")));
   const errors = [];
   results.forEach((r, i) => {
@@ -247,6 +247,7 @@ function selectTab(name) {
     localStorage.setItem("actionzz.tab", name);
   } catch (_) { /* ignora */ }
   renderCharts();
+  if (name === "simulator" && typeof renderSimulator === "function") renderSimulator();
 }
 
 function applyTheme(theme) {
@@ -763,6 +764,7 @@ function renderAll() {
   renderBacktest();
   renderSettings();
   renderPortfolio();
+  renderSimulator();
   renderCharts();
   onDraftChange();
 }
@@ -862,7 +864,10 @@ function bind() {
   let rt;
   addEventListener("resize", () => {
     clearTimeout(rt);
-    rt = setTimeout(renderCharts, 150);
+    rt = setTimeout(() => {
+      renderCharts();
+      renderSimulator();
+    }, 150);
   });
   setInterval(renderMarketPill, 30000);
   setInterval(() => {
@@ -879,6 +884,7 @@ function bind() {
   loadSettings();
   bind();
   bindPortfolio();
+  bindSimulator();
   let tab = "overview";
   try {
     tab = localStorage.getItem("actionzz.tab") || tab;

@@ -10,7 +10,7 @@ from typing import Callable
 
 import pandas as pd
 
-from . import charts, data, messages, portfolio
+from . import charts, data, messages, portfolio, simulator
 from .commands import handle_command
 from .config import CONFIG_PATH, Config, save_config
 from .detector import Quote, Signal, compute_quote, find_signals, market_crash_due, market_move
@@ -36,6 +36,7 @@ class Monitor:
         config_path=CONFIG_PATH,
         portfolio_path=portfolio.PORTFOLIO_PATH,
         portfolio_password: str | None = None,
+        simulator_path=simulator.SIM_PATH,
     ):
         self.cfg = cfg
         self.store = store
@@ -48,6 +49,7 @@ class Monitor:
         self.config_changed = False
         self.portfolio_path = portfolio_path
         self.portfolio_changed = False
+        self.simulator_path = simulator_path
         self.just_planned: set[str] = set()  # titoli appena comprati: il piano di vendita è già stato inviato
         self.portfolio_password = (
             portfolio_password if portfolio_password is not None else os.environ.get("PORTFOLIO_PASSWORD", "")
@@ -252,6 +254,43 @@ class Monitor:
     def portfolio_report(self) -> dict | None:
         return portfolio.load_report(self.store, self.portfolio_password)
 
+    # --------------------------------------------------------------- simulatore
+
+    def sim_for_edit(self) -> dict | None:
+        if not self.portfolio_password:
+            raise ValueError("imposta il secret PORTFOLIO_PASSWORD (la stessa password della dashboard)")
+        sim = simulator.load_sim(self.portfolio_password, self.simulator_path)
+        if sim is None and self.simulator_path.exists():
+            raise ValueError("PORTFOLIO_PASSWORD non corrisponde alla password della dashboard")
+        return sim
+
+    def save_sim(self, sim: dict) -> None:
+        simulator.save_sim(sim, self.portfolio_password, self.simulator_path)
+        self.portfolio_changed = True
+
+    def sim_state(self) -> dict | None:
+        return simulator.load_state(self.store, self.portfolio_password)
+
+    def update_simulator(self, now: datetime) -> dict | None:
+        """Esegue ordini, versamenti, dividendi e bollo del conto simulato."""
+        sim = simulator.load_sim(self.portfolio_password, self.simulator_path)
+        if sim is None:
+            return None
+        state = self.sim_state()
+        if state and state.get("epoch") != sim["epoch"]:
+            state = None
+        done = set((state or {}).get("orders", {}))
+        tickers = set((state or {}).get("positions", {})) | {
+            o["ticker"] for o in sim["orders"] if o["id"] not in done and not o.get("cancelled")}
+        quotes = self.download(sorted(tickers), period="1mo") if tickers else {}
+        rates = portfolio.fx_to_eur({simulator.currency_for(t) for t in tickers}, self.download)
+        names = {t: m.get("name", t) for t, m in self.metas().items()}
+        state, events = simulator.process(sim, state, quotes, rates, names, self.cfg, now)
+        simulator.save_state(self.store, simulator.round_state(state), self.portfolio_password)
+        for e in events:
+            self.tg.send(messages.sim_event(e))
+        return state
+
     # ---------------------------------------------------------------- riepilogo
 
     def send_summary(self, now: datetime) -> bool:
@@ -312,6 +351,10 @@ class Monitor:
             self.update_portfolio(now)
         except Exception:
             log.exception("Errore nel calcolo del portafoglio")
+        try:
+            self.update_simulator(now)
+        except Exception:
+            log.exception("Errore nel simulatore")
         if (
             self.cfg.daily_summary
             and not self.state.summary_sent
