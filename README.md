@@ -55,6 +55,39 @@ i 10 peggiori, i 5 migliori e i titoli vicini alla soglia.
 
 Tutte le soglie si cambiano dalla dashboard o da Telegram.
 
+### Il tuo portafoglio e i segnali di vendita
+Nella scheda **Portafoglio** della dashboard registri acquisti (anche a più riprese) e vendite. Vedi valore,
+guadagno o perdita in euro (con le valute convertite), la stima al netto delle tasse (26%) e le plusvalenze già
+realizzate. Per ogni titolo lo scanner calcola dei **segnali di vendita** con regole trasparenti:
+
+| Segnale | Quando scatta |
+|---|---|
+| 🔴 Obiettivo di guadagno | guadagno oltre il **+25%** (modificabile) |
+| 🔴 Stop di perdita | perdita oltre il **−15%** (modificabile) |
+| 🔴/🟠 Calo dal massimo | **−12%** dal prezzo più alto toccato da quando possiedi il titolo |
+| 🔴/🟠 Ipercomprato | RSI a 14 giorni oltre 70 (oltre 80 è forte) |
+| 🟠 Corsa estesa | prezzo oltre il 25% sopra la media a 200 giorni |
+| 🟠 Tendenza negativa | sotto la media a 200 giorni, con la media a 50 più bassa |
+| 🟠 Obiettivo analisti | prezzo oltre il prezzo obiettivo medio degli analisti, o giudizio medio negativo |
+| 🟢 Motivi per aspettare | RSI sotto 30, potenziale residuo per gli analisti oltre il 15%, calo improvviso di oggi |
+
+La somma dei pesi dà una valutazione: **🔴 vendere almeno in parte**, **🟠 da tenere d'occhio** oppure
+**🟢 nessun segnale**. Quando un titolo ha un nuovo segnale arriva un messaggio su Telegram (una volta per segnale,
+solo in orario di borsa); `/portafoglio` mostra il riepilogo e `/portafoglio TICKER` la scheda di un titolo.
+Sono regole tecniche automatiche, non una previsione: la decisione resta tua.
+
+### Password e privacy
+La dashboard si apre solo con la **password** scelta al primo accesso. Il repository è pubblico, quindi la
+password non è un semplice cancello: **cifra** (AES-256-GCM, chiave PBKDF2 con 310.000 iterazioni) il portafoglio
+(`config/portfolio.enc.json`), i relativi consigli sul branch `data` e il token GitHub salvato nel browser. Senza
+password nessuno può leggerli. Restano pubblici solo i dati di mercato generici (i 500 titoli, le quotazioni, gli
+avvisi sui cali), che non dicono nulla di te.
+
+- Usa una password lunga (almeno 10 caratteri, meglio una frase): chi scarica il file cifrato può provare a
+  indovinarla quante volte vuole.
+- La password **non si può recuperare**: se la perdi, il portafoglio va reinserito.
+- Lo scanner ha bisogno della stessa password nel secret `PORTFOLIO_PASSWORD` per calcolare i consigli.
+
 ---
 
 ## Installazione (circa 15 minuti)
@@ -84,6 +117,7 @@ Se vuoi chiamarlo `main`: *Settings → General → Default branch* → rinomina
 |---|---|
 | `TELEGRAM_TOKEN` | il token di BotFather |
 | `TELEGRAM_CHAT_ID` | il tuo chat id (vedi sotto) |
+| `PORTFOLIO_PASSWORD` | la password della dashboard (serve per i consigli sul portafoglio) |
 
 **Come trovare il chat id**: salva prima solo `TELEGRAM_TOKEN`, scrivi `/start` al bot e avvia a mano il workflow
 **Scanner** (*Actions → Scanner → Run workflow*). Il bot ti risponderà con il tuo chat id. In alternativa apri
@@ -100,7 +134,11 @@ Il bot risponde **solo** alla chat indicata in `TELEGRAM_CHAT_ID`.
 2. *Actions → Dashboard (GitHub Pages) → Run workflow*.
 3. Apri `https://<tuo-utente>.github.io/<repository>/` (per te: https://lippa42.github.io/Actionzz/).
 
-Per **modificare le impostazioni** dalla dashboard serve un token personale, salvato solo nel tuo browser:
+Al primo accesso la dashboard ti chiede di **creare una password** (vedi *Password e privacy*); salvala anche nel
+secret `PORTFOLIO_PASSWORD`.
+
+Per **salvare impostazioni e portafoglio** dalla dashboard serve un token personale, salvato solo nel tuo browser
+(cifrato con la password):
 1. https://github.com/settings/personal-access-tokens/new → *Fine-grained token*.
 2. *Repository access: Only select repositories* → questo repository.
 3. *Permissions → Repository permissions → Contents: Read and write*.
@@ -127,6 +165,7 @@ python -m actionzz test-telegram   # messaggio di prova + menu dei comandi del b
 | `/cerca nestle` | cerca un ticker per nome |
 | `/riepilogo` | riepilogo della giornata adesso |
 | `/universo` | composizione dell'universo |
+| `/portafoglio [TICKER]` | il tuo portafoglio e i segnali di vendita |
 | `/soglia 6` | calo minimo in % |
 | `/relativa 3` | punti peggio del mercato |
 | `/filtro on\|off` | filtro sui cali generalizzati |
@@ -189,6 +228,8 @@ actionzz/          codice Python
   monitor.py       ciclo: comandi → scansione → avvisi → riepilogo
   universe.py      selezione dei titoli più stabili
   backtest.py      simulazione storica
+  portfolio.py     portafoglio personale e segnali di vendita
+  crypto.py        cifratura compatibile con la dashboard
   commands.py      comandi Telegram
   messages.py      testi dei messaggi
 config/config.json impostazioni (modificate da dashboard e Telegram)

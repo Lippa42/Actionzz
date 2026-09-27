@@ -232,6 +232,7 @@ HELP = """🤖 <b>Actionzz — comandi</b>
 /cerca testo — cerca un titolo per nome
 /riepilogo — riepilogo della giornata adesso
 /universo — informazioni sui titoli monitorati
+/portafoglio [TICKER] — il tuo portafoglio e i segnali di vendita
 
 ⚙️ <b>Impostazioni</b>
 /soglia 5 — calo minimo in % rispetto a ieri
@@ -252,6 +253,7 @@ BOT_COMMANDS = [
     ("cerca", "Cerca un titolo per nome"),
     ("riepilogo", "Riepilogo della giornata"),
     ("universo", "Titoli monitorati"),
+    ("portafoglio", "Il tuo portafoglio e i segnali di vendita"),
     ("soglia", "Imposta il calo minimo in %"),
     ("relativa", "Punti peggio del mercato"),
     ("filtro", "Filtro mercato on/off"),
@@ -262,3 +264,67 @@ BOT_COMMANDS = [
     ("riprendi", "Riattiva gli avvisi"),
     ("aiuto", "Elenco dei comandi"),
 ]
+
+
+# ------------------------------------------------------------------ portafoglio
+
+LEVEL_ICON = {"strong": "🔴", "warn": "🟠", "info": "🔵", "hold": "🟢"}
+
+
+def fmt_eur(x: float | None, decimals: int = 0) -> str:
+    if x is None:
+        return "n.d."
+    return ("−" if x < 0 else "") + fmt_num(abs(x), decimals) + " €"
+
+
+def fmt_eur_signed(x: float | None, decimals: int = 0) -> str:
+    if x is None:
+        return "n.d."
+    return ("−" if x < 0 else "+") + fmt_num(abs(x), decimals) + " €"
+
+
+def holding_card(r: dict, tax_rate_pct: float, title: str = "💼 <b>Portafoglio · segnali di vendita</b>") -> str:
+    cur = r.get("currency", "")
+    net = r["pnl_eur"] - max(r["pnl_eur"], 0) * tax_rate_pct / 100 if r.get("pnl_eur") is not None else None
+    lines = [
+        title,
+        f"<b>{esc(r['name'])}</b> (<code>{esc(r['ticker'])}</code>)",
+        f"Valutazione: <b>{r['verdict']['label']}</b>",
+        "",
+        f"Prezzo {fmt_num(r['price'])} {esc(cur)}"
+        + (f" ({fmt_pct(r['day_pct'])} oggi)" if r.get("day_pct") is not None else ""),
+        f"Tuo prezzo medio {fmt_num(r['avg_price'])} · {fmt_num(r['quantity'], 0 if float(r['quantity']).is_integer() else 3)} azioni",
+        f"Risultato: <b>{fmt_pct(r['pnl_pct'])}</b> ({fmt_eur_signed(r.get('pnl_eur'))}"
+        + (f", netto tasse ≈ {fmt_eur_signed(net)}" if net is not None else "") + ")",
+    ]
+    if r.get("signals"):
+        lines += ["", "<b>Segnali</b>"] + [f"{LEVEL_ICON[s['level']]} {esc(s['text'])}" for s in r["signals"]]
+    if r.get("holds"):
+        lines += ["", "<b>Motivi per aspettare</b>"] + [f"{LEVEL_ICON['hold']} {esc(h['text'])}" for h in r["holds"]]
+    lines += ["", f'🔗 <a href="{yahoo_url(r["ticker"])}">Yahoo Finance</a>',
+              "<i>Segnali tecnici automatici, non un consiglio d'investimento: la decisione è tua.</i>"]
+    return "\n".join(lines)
+
+
+def portfolio_overview(report: dict) -> str:
+    t = report["totals"]
+    lines = [
+        "💼 <b>Il tuo portafoglio</b>",
+        f"Valore: <b>{fmt_eur(t['value_eur'])}</b> · investito {fmt_eur(t['cost_eur'])}",
+        f"Risultato: <b>{fmt_eur_signed(t['pnl_eur'])}</b> ({fmt_pct(t['pnl_pct'])}) · netto tasse ≈ {fmt_eur_signed(t['net_pnl_eur'])}",
+    ]
+    if t.get("day_pnl_eur") is not None:
+        lines.append(f"Oggi: {fmt_eur_signed(t['day_pnl_eur'])}")
+    lines.append("")
+    order = {"vendi": 0, "valuta": 1, "mantieni": 2}
+    for r in sorted(report["holdings"], key=lambda r: (order[r["verdict"]["code"]], -(r["value_eur"] or 0))):
+        icon = r["verdict"]["label"].split()[0]
+        lines.append(
+            f"{icon} <code>{esc(r['ticker'])}</code> {esc(r['name'])[:24]}: {fmt_pct(r['pnl_pct'])}"
+            + (f" · {fmt_eur(r['value_eur'])}" if r.get("value_eur") is not None else "")
+        )
+    if report.get("missing"):
+        lines += ["", "Senza dati: " + esc(", ".join(report["missing"]))]
+    lines += ["", "🔴 vendere almeno in parte · 🟠 da tenere d'occhio · 🟢 nessun segnale",
+              "Dettagli: /portafoglio TICKER"]
+    return "\n".join(lines)

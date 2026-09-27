@@ -130,6 +130,26 @@ def cmd_search(m, args):
     ) + "\n\n✅ = monitorato")
 
 
+def cmd_portfolio(m, args):
+    from .messages import holding_card, portfolio_overview
+
+    if not m.portfolio_password:
+        m.tg.send("Portafoglio non configurato: imposta il secret PORTFOLIO_PASSWORD (la stessa password della dashboard).")
+        return
+    report = m.portfolio_report()
+    if not report or not report.get("holdings"):
+        m.tg.send("Il portafoglio è vuoto o non ancora calcolato. Aggiungi i tuoi acquisti dalla dashboard.")
+        return
+    if args:
+        row = next((r for r in report["holdings"] if r["ticker"] == args[0].upper()), None)
+        if row is None:
+            m.tg.send(f"<code>{esc(args[0].upper())}</code> non è nel tuo portafoglio.")
+            return
+        m.tg.send(holding_card(row, report["settings"]["tax_rate_pct"], title="💼 <b>Portafoglio</b>"))
+        return
+    m.tg.send(portfolio_overview(report))
+
+
 def cmd_summary(m, args):
     m.send_summary(now_local(m.cfg))
 
@@ -226,6 +246,7 @@ COMMANDS = {
     "cerca": cmd_search,
     "riepilogo": cmd_summary,
     "universo": cmd_universe,
+    "portafoglio": cmd_portfolio,
     "soglia": _setting("drop_threshold_pct", "Soglia di calo (%)", 0.5, 50),
     "relativa": _setting("relative_threshold_pct", "Punti peggio del mercato", 0, 50),
     "passo": _setting("realert_step_pct", "Ulteriore calo per un nuovo avviso (pt)", 0.1, 50),

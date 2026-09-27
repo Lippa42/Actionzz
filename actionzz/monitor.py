@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import logging
+import os
 import time
 from datetime import datetime
 from typing import Callable
 
 import pandas as pd
 
-from . import charts, data, messages
+from . import charts, data, messages, portfolio
 from .commands import handle_command
 from .config import CONFIG_PATH, Config, save_config
 from .detector import Quote, Signal, compute_quote, find_signals, market_crash_due, market_move
@@ -33,6 +34,8 @@ class Monitor:
         fundamentals: Callable[[str], dict] = data.fetch_fundamentals,
         news: Callable[[str], list[dict]] = data.fetch_news,
         config_path=CONFIG_PATH,
+        portfolio_path=portfolio.PORTFOLIO_PATH,
+        portfolio_password: str | None = None,
     ):
         self.cfg = cfg
         self.store = store
@@ -43,6 +46,10 @@ class Monitor:
         self.config_path = config_path
         self.state = State(store)
         self.config_changed = False
+        self.portfolio_path = portfolio_path
+        self.portfolio_password = (
+            portfolio_password if portfolio_password is not None else os.environ.get("PORTFOLIO_PASSWORD", "")
+        )
 
     # ------------------------------------------------------------------ utilità
 
@@ -201,6 +208,33 @@ class Monitor:
         text = text.replace("🚨 <b>Calo improvviso</b>", "🔎 <b>Scheda</b>", 1)
         return text, png
 
+    # -------------------------------------------------------------- portafoglio
+
+    def update_portfolio(self, now: datetime) -> dict | None:
+        """Ricalcola il resoconto cifrato del portafoglio e avvisa sui nuovi segnali di vendita."""
+        pf = portfolio.load_portfolio(self.portfolio_password, self.portfolio_path)
+        if pf is None:
+            return None
+        previous = portfolio.load_report(self.store, self.portfolio_password) or {}
+        tickers = sorted(portfolio.aggregate(pf["positions"]))
+        cached = previous.get("fundamentals", {})
+        cache = cached.get("data", {}) if cached.get("day") == now.date().isoformat() else {}
+        fundamentals = {t: cache[t] if t in cache else self.fundamentals(t) for t in tickers}
+        histories = self.download(tickers, period="2y") if tickers else {}
+        rates = portfolio.fx_to_eur({portfolio.currency_of(t, fundamentals[t]) for t in tickers}, self.download)
+        report = portfolio.build_report(pf, histories, fundamentals, rates, self.cfg, now.date(), previous)
+        # fuori orario i segnali restano in attesa: li mando alla prossima apertura
+        if is_trading_window(self.cfg, now):
+            fresh = portfolio.new_notifications(report)
+            if fresh and report["settings"]["sell_alerts"] and not self.cfg.paused:
+                for row in fresh:
+                    self.tg.send(messages.holding_card(row, report["settings"]["tax_rate_pct"]))
+        portfolio.save_report(self.store, report, self.portfolio_password)
+        return report
+
+    def portfolio_report(self) -> dict | None:
+        return portfolio.load_report(self.store, self.portfolio_password)
+
     # ---------------------------------------------------------------- riepilogo
 
     def send_summary(self, now: datetime) -> bool:
@@ -212,6 +246,10 @@ class Monitor:
         text = messages.daily_summary(snapshot, alerts_today, self.metas(), now, self.cfg)
         self.tg.send(text)
         self.store.write("summary.json", {"day": snapshot["day"], "time": now.isoformat(timespec="seconds"), "text": text})
+        report = self.portfolio_report()
+        if report and report.get("holdings"):
+            # messaggio a parte: summary.json è pubblico, il portafoglio no
+            self.tg.send(messages.portfolio_overview(report))
         return True
 
     # ----------------------------------------------------------------- comandi
@@ -253,6 +291,10 @@ class Monitor:
             self.scan(now)
         else:
             log.info("Borsa chiusa (%s): nessuna scansione", now.strftime("%a %H:%M"))
+        try:
+            self.update_portfolio(now)
+        except Exception:
+            log.exception("Errore nel calcolo del portafoglio")
         if (
             self.cfg.daily_summary
             and not self.state.summary_sent

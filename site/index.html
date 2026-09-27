@@ -8,7 +8,23 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232a78d6'/><path d='M6 10l7 7 5-5 8 10' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="locked">
+  <!-- ACCESSO -->
+  <div id="lock" class="lock">
+    <form id="lock-form" class="lock-card" autocomplete="on">
+      <svg viewBox="0 0 32 32" aria-hidden="true" class="lock-logo"><rect width="32" height="32" rx="8" fill="var(--accent)"/><path d="M6 10l7 7 5-5 8 10" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h1 id="lock-title">Accedi</h1>
+      <p id="lock-intro" class="muted small">Caricamento…</p>
+      <label id="lock-repo-row" hidden>Repository GitHub <input id="lock-repo" placeholder="utente/repository" autocomplete="off"></label>
+      <input type="text" name="username" value="actionzz" autocomplete="username" hidden>
+      <label>Password <input id="lock-password" type="password" autocomplete="current-password" required></label>
+      <label id="lock-confirm-row" hidden>Ripeti la password <input id="lock-confirm" type="password" autocomplete="new-password"></label>
+      <label class="check"><input type="checkbox" id="lock-remember" checked> Resta connesso finché non chiudi la scheda</label>
+      <p id="lock-error" class="lock-error" role="alert"></p>
+      <button class="btn primary" id="lock-submit" type="submit">Entra</button>
+    </form>
+  </div>
+
   <header class="topbar">
     <div class="brand">
       <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--accent)"/><path d="M6 10l7 7 5-5 8 10" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -21,11 +37,13 @@
       <span class="pill" id="market-pill">—</span>
       <button class="btn ghost" id="refresh" title="Aggiorna i dati">↻ Aggiorna</button>
       <button class="btn ghost icon" id="theme" title="Tema chiaro/scuro" aria-label="Cambia tema">◐</button>
+      <button class="btn ghost icon" id="logout" title="Esci" aria-label="Esci">⎋</button>
     </div>
   </header>
 
   <nav class="tabs" role="tablist">
     <button role="tab" data-tab="overview" aria-selected="true">Panoramica</button>
+    <button role="tab" data-tab="portfolio">Portafoglio</button>
     <button role="tab" data-tab="today">Oggi</button>
     <button role="tab" data-tab="alerts">Avvisi</button>
     <button role="tab" data-tab="universe">Universo</button>
@@ -38,6 +56,7 @@
   <main>
     <!-- PANORAMICA -->
     <section id="tab-overview" class="tab">
+      <div class="card note pf-overview" id="pf-overview" hidden></div>
       <div class="kpis" id="kpis"></div>
       <div class="grid2">
         <div class="card">
@@ -65,6 +84,50 @@
           <div id="summary" class="summary"></div>
         </div>
       </div>
+    </section>
+
+    <!-- PORTAFOGLIO -->
+    <section id="tab-portfolio" class="tab" hidden>
+      <div id="pf-status" class="card note" hidden></div>
+      <div class="kpis" id="pf-kpis"></div>
+      <div class="card" id="pf-attention" hidden></div>
+      <div class="card">
+        <div class="card-head"><h2>Le tue azioni</h2><span class="muted small">Tocca un titolo per i dettagli</span></div>
+        <div class="table-wrap"><table id="pf-table" class="data"></table></div>
+        <div id="pf-detail" class="pf-detail"></div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-head"><h2>Registra un acquisto</h2></div>
+          <form id="pf-buy" class="form-grid" autocomplete="off">
+            <label>Ticker Yahoo <input name="ticker" list="pf-tickers" placeholder="es. ENEL.MI" required></label>
+            <label>Quantità <input name="quantity" inputmode="decimal" placeholder="100" required></label>
+            <label>Prezzo di acquisto <input name="price" inputmode="decimal" placeholder="6,85" required></label>
+            <label>Data <input name="date" type="date"></label>
+            <label>Commissioni totali <input name="fees" inputmode="decimal" placeholder="0"></label>
+            <label>Note <input name="notes" placeholder="facoltative"></label>
+            <p class="help span2 muted small">Prezzo nella valuta in cui il titolo è quotato su Yahoo: per Londra (.L) è in <b>pence</b> (GBp), es. 1.250 = 12,50 £. Puoi aggiungere anche titoli fuori dall'elenco, americani compresi (es. AAPL).</p>
+            <button class="btn primary span2" type="submit">Aggiungi acquisto</button>
+          </form>
+          <datalist id="pf-tickers"></datalist>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2>Regole per i segnali di vendita</h2></div>
+          <form id="pf-settings" class="form-grid" autocomplete="off">
+            <label class="field">Obiettivo di guadagno (%) <input name="take_profit_pct" type="number" min="1" max="500" step="1"><span class="help">Segnale quando guadagni almeno questa percentuale.</span></label>
+            <label class="field">Stop di perdita (%) <input name="stop_loss_pct" type="number" min="1" max="90" step="1"><span class="help">Segnale quando perdi oltre questa percentuale.</span></label>
+            <label class="field">Calo dal massimo (%) <input name="trailing_stop_pct" type="number" min="1" max="90" step="1"><span class="help">Calo dal prezzo più alto toccato da quando possiedi il titolo.</span></label>
+            <label class="field">Tasse sulle plusvalenze (%) <input name="tax_rate_pct" type="number" min="0" max="60" step="0.5"><span class="help">In Italia 26% (12,5% sui titoli di Stato).</span></label>
+            <label class="field toggle span2"><input type="checkbox" name="sell_alerts"><span>Avvisi Telegram sui segnali di vendita<br><span class="help">Un messaggio quando un tuo titolo ha nuovi segnali; ogni segnale si ripete solo se sparisce e poi ritorna.</span></span></label>
+          </form>
+          <p class="muted small">Altri segnali automatici: RSI oltre 70 (ipercomprato), prezzo oltre il 25% sopra la media a 200 giorni, tendenza al ribasso (sotto la media a 200 con media a 50 più bassa), prezzo obiettivo degli analisti superato. Contano a favore del tenere: RSI sotto 30, potenziale residuo secondo gli analisti, calo improvviso di oggi.</p>
+        </div>
+      </div>
+      <div class="card" id="pf-sales-card" hidden>
+        <div class="card-head"><h2>Vendite registrate</h2></div>
+        <div class="table-wrap"><table id="pf-sales" class="data"></table></div>
+      </div>
+      <p class="muted small">Il portafoglio è salvato <b>cifrato</b> nel repository (AES-256): senza la tua password nessuno può leggerlo. I segnali sono regole tecniche automatiche, non consigli d'investimento personalizzati.</p>
     </section>
 
     <!-- OGGI -->
@@ -150,8 +213,20 @@
       <form id="settings-form" class="settings" autocomplete="off"></form>
 
       <div class="card">
+        <div class="card-head"><h2>Password</h2></div>
+        <p class="small">La password apre la dashboard e cifra il portafoglio. Lo scanner la usa tramite il secret <code>PORTFOLIO_PASSWORD</code>: se la cambi, aggiorna anche quel secret su GitHub.</p>
+        <form id="pw-form" class="form-grid" autocomplete="off">
+          <label>Password attuale <input id="pw-current" type="password" autocomplete="current-password"></label>
+          <span></span>
+          <label>Nuova password <input id="pw-new" type="password" autocomplete="new-password"></label>
+          <label>Ripeti la nuova password <input id="pw-confirm" type="password" autocomplete="new-password"></label>
+          <button class="btn span2" type="submit">Cambia password</button>
+        </form>
+      </div>
+
+      <div class="card">
         <div class="card-head"><h2>Collegamento a GitHub</h2></div>
-        <p class="small">La dashboard legge i dati dal branch <code>data</code> del repository e salva le impostazioni in <code>config/config.json</code>. Per salvare (o se il repository è privato) serve un <b>token personale</b> che resta solo in questo browser.</p>
+        <p class="small">La dashboard legge i dati dal branch <code>data</code> del repository e salva impostazioni e portafoglio. Per salvare serve un <b>token personale</b>: resta solo in questo browser, cifrato con la tua password.</p>
         <div class="form-grid">
           <label>Repository <input id="gh-repo" placeholder="utente/repository"></label>
           <label>Branch principale <input id="gh-branch" placeholder="vuoto = quello predefinito"></label>
@@ -169,7 +244,7 @@
   </main>
 
   <div class="savebar" id="savebar" hidden>
-    <span>Hai modifiche non salvate</span>
+    <span>Hai <span id="savebar-text">modifiche non salvate</span></span>
     <div class="row">
       <button class="btn ghost" id="discard">Annulla</button>
       <button class="btn ghost" id="download-config">Scarica config.json</button>
@@ -182,6 +257,7 @@
 
   <footer class="muted small">Dati Yahoo Finance tramite yfinance, con ritardo di circa 15 minuti. Solo a scopo informativo, non è un consiglio d'investimento.</footer>
 
+  <script src="portfolio.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

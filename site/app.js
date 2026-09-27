@@ -1,5 +1,6 @@
 /* Actionzz – dashboard statica (GitHub Pages).
- * Legge i JSON dal branch `data` e salva config/config.json tramite l'API di GitHub. */
+ * Legge i JSON dal branch `data` e salva config/config.json tramite l'API di GitHub.
+ * Accesso, cifratura e portafoglio sono in portfolio.js. */
 "use strict";
 
 const $ = (sel) => document.querySelector(sel);
@@ -9,7 +10,15 @@ const LOCAL = new URLSearchParams(location.search).get("dati");
 const DATA_FILES = ["snapshot", "universe", "alerts", "backtest", "market_history", "summary", "state"];
 
 const S = {
-  settings: { repo: "", branch: "", token: "" },
+  settings: { repo: "", branch: "" }, // tokenEnc: token GitHub cifrato con la password
+  token: "", // token in chiaro, solo in memoria dopo l'accesso
+  password: null,
+  pf: null, // portafoglio salvato
+  pfDraft: null, // portafoglio in modifica
+  pfSha: null,
+  pfExists: false,
+  pfSelected: null,
+  report: null, // consigli calcolati dallo scanner (decifrati)
   data: {},
   config: null, // salvata su GitHub
   draft: null, // in modifica
@@ -60,12 +69,13 @@ const b64dec = (b) => new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\
 
 function apiHeaders(extra = {}) {
   const h = { Accept: "application/vnd.github+json", ...extra };
-  if (S.settings.token) h.Authorization = `Bearer ${S.settings.token}`;
+  if (S.token) h.Authorization = `Bearer ${S.token}`;
   return h;
 }
 
 async function fetchFile(path, ref) {
-  const { repo, token } = S.settings;
+  const { repo } = S.settings;
+  const token = S.token;
   let res;
   if (LOCAL) {
     res = await fetch(LOCAL + (ref === "data" ? path : path.split("/").pop()), { cache: "no-store" });
@@ -83,7 +93,8 @@ async function fetchFile(path, ref) {
 }
 
 async function loadConfig() {
-  const { repo, branch, token } = S.settings;
+  const { repo, branch } = S.settings;
+  const token = S.token;
   if (token && !LOCAL) {
     const res = await fetch(`https://api.github.com/repos/${repo}/contents/config/config.json?ref=${branch}`, {
       headers: apiHeaders(),
@@ -98,16 +109,13 @@ async function loadConfig() {
 }
 
 async function saveConfig() {
-  const { repo, branch, token } = S.settings;
-  if (!token) {
+  const { repo, branch } = S.settings;
+  if (!S.token) {
     toast("Per salvare serve un token GitHub: aprilo in Impostazioni → Collegamento.");
     selectTab("settings");
     $("#gh-token").focus();
     return;
   }
-  const btn = $("#save-config");
-  btn.disabled = true;
-  btn.textContent = "Salvataggio…";
   try {
     if (!S.configSha) await loadConfig();
     const res = await fetch(`https://api.github.com/repos/${repo}/contents/config/config.json`, {
@@ -126,16 +134,41 @@ async function saveConfig() {
       S.config = remote;
       toast("Il file è cambiato su GitHub nel frattempo: ho ricaricato la versione attuale, riprova a salvare.");
       renderAll();
-      return;
+      return false;
     }
     if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.json()).message || ""}`);
     const body = await res.json();
     S.configSha = body.content.sha;
     S.config = structuredClone(S.draft);
-    toast("✅ Impostazioni salvate. Valgono dalla prossima scansione.");
-    renderAll();
+    return true;
   } catch (err) {
-    toast("Salvataggio non riuscito: " + err.message);
+    toast("Salvataggio impostazioni non riuscito: " + err.message);
+    return false;
+  }
+}
+
+async function saveAll() {
+  if (!S.token) {
+    toast("Per salvare serve un token GitHub: aprilo in Impostazioni → Collegamento.");
+    selectTab("settings");
+    $("#gh-token").focus();
+    return;
+  }
+  const btn = $("#save-config");
+  btn.disabled = true;
+  btn.textContent = "Salvataggio…";
+  const done = [];
+  try {
+    if (configDirty() && (await saveConfig())) done.push("impostazioni");
+    if (pfDirty()) {
+      try {
+        if (await savePortfolio()) done.push("portafoglio");
+      } catch (err) {
+        toast("Salvataggio portafoglio non riuscito: " + err.message);
+      }
+    }
+    if (done.length) toast(`✅ Salvato: ${done.join(" e ")}. Vale dalla prossima scansione.`);
+    renderAll();
   } finally {
     btn.disabled = false;
     btn.textContent = "Salva su GitHub";
@@ -161,6 +194,7 @@ async function loadAll() {
     return;
   }
   banner("Caricamento dati…");
+  if (S.password) await loadPortfolioReport();
   const results = await Promise.allSettled(DATA_FILES.map((f) => fetchFile(`${f}.json`, "data")));
   const errors = [];
   results.forEach((r, i) => {
@@ -170,7 +204,7 @@ async function loadAll() {
   try {
     const cfg = await loadConfig();
     if (cfg) {
-      const dirty = isDirty();
+      const dirty = configDirty();
       S.config = cfg;
       if (!dirty) S.draft = structuredClone(cfg);
     }
@@ -178,7 +212,7 @@ async function loadAll() {
     errors.push(err.message);
   }
   if (errors.length) {
-    const hint = S.settings.token ? "Controlla repository e permessi del token." : "Se il repository è privato serve un token (Impostazioni).";
+    const hint = S.token ? "Controlla repository e permessi del token." : "Se il repository è privato serve un token (Impostazioni).";
     banner(`Alcuni dati non sono stati caricati (${esc(errors[0])}). ${hint}`, true);
   } else if (!S.data.snapshot && !S.data.universe) {
     banner("Ancora nessun dato: il primo avvio del workflow <b>Scanner</b> o <b>Universo e backtest</b> li creerà.");
@@ -409,6 +443,16 @@ function renderMarketPill() {
 }
 
 function renderOverview() {
+  const pfBox = $("#pf-overview");
+  const t = S.report && S.report.totals;
+  pfBox.hidden = !t || !t.positions;
+  if (t && t.positions) {
+    const n = t.to_sell + t.to_watch;
+    pfBox.innerHTML = `<div><b>Il tuo portafoglio</b>: ${num(t.value_eur, 0)} € ·
+      <span class="${cls(t.pnl_eur)}">${pct(t.pnl_pct, 2)}</span>
+      ${n ? ` · <b>${t.to_sell}</b> da vendere in parte, <b>${t.to_watch}</b> da tenere d'occhio` : " · nessun segnale di vendita"}</div>
+      <button class="btn small" data-goto="portfolio">Apri portafoglio →</button>`;
+  }
   const snap = S.data.snapshot;
   const uni = S.data.universe;
   const cfg = S.draft || {};
@@ -696,13 +740,16 @@ function renderSettings() {
   }
   $("#gh-repo").value = S.settings.repo;
   $("#gh-branch").value = S.settings.branch;
-  $("#gh-token").value = S.settings.token ? "••••••••" : "";
+  $("#gh-token").value = S.token ? "••••••••" : "";
 }
 
-const isDirty = () => !!(S.config && S.draft && JSON.stringify(S.config) !== JSON.stringify(S.draft));
+const configDirty = () => !!(S.config && S.draft && JSON.stringify(S.config) !== JSON.stringify(S.draft));
+const isDirty = () => configDirty() || pfDirty();
 
 function onDraftChange() {
   $("#savebar").hidden = !isDirty();
+  const what = [configDirty() && "impostazioni", pfDirty() && "portafoglio"].filter(Boolean);
+  $("#savebar-text").textContent = what.length ? `${what.join(" e ")} non salvate` : "modifiche non salvate";
   renderSettings();
   renderMarketPill();
 }
@@ -715,8 +762,9 @@ function renderAll() {
   renderUniverse();
   renderBacktest();
   renderSettings();
+  renderPortfolio();
   renderCharts();
-  $("#savebar").hidden = !isDirty();
+  onDraftChange();
 }
 
 /* --------------------------------------------------------------- eventi */
@@ -729,6 +777,7 @@ function setList(ticker, list) {
 
 function bind() {
   document.querySelectorAll(".tabs button").forEach((b) => b.addEventListener("click", () => selectTab(b.dataset.tab)));
+  $("#pf-overview").addEventListener("click", (ev) => ev.target.dataset.goto && selectTab(ev.target.dataset.goto));
   $("#refresh").addEventListener("click", loadAll);
   $("#theme").addEventListener("click", () => {
     const dark = document.documentElement.dataset.theme
@@ -771,9 +820,10 @@ function bind() {
     if (tickers.length) toast(`Aggiunti: ${tickers.join(", ")}. Ricordati di salvare.`);
   });
 
-  $("#save-config").addEventListener("click", saveConfig);
+  $("#save-config").addEventListener("click", saveAll);
   $("#discard").addEventListener("click", () => {
     S.draft = structuredClone(S.config);
+    if (S.pfExists) S.pfDraft = structuredClone(S.pf);
     renderAll();
   });
   $("#download-config").addEventListener("click", () => {
@@ -785,18 +835,22 @@ function bind() {
     URL.revokeObjectURL(a.href);
   });
 
-  $("#gh-save").addEventListener("click", () => {
+  $("#gh-save").addEventListener("click", async () => {
     S.settings.repo = $("#gh-repo").value.trim().replace(/^https:\/\/github\.com\//, "").replace(/\/$/, "");
     S.settings.branch = $("#gh-branch").value.trim();
     const tok = $("#gh-token").value.trim();
-    if (tok && !tok.startsWith("•")) S.settings.token = tok;
+    if (tok && !tok.startsWith("•")) {
+      S.token = tok;
+      S.settings.tokenEnc = await encryptJSON(tok, S.password);
+    }
     storeSettings();
     toast("Collegamento salvato.");
     S.configSha = null;
     loadAll();
   });
   $("#gh-forget").addEventListener("click", () => {
-    S.settings.token = "";
+    S.token = "";
+    delete S.settings.tokenEnc;
     storeSettings();
     toast("Token rimosso da questo browser.");
     renderSettings();
@@ -812,7 +866,7 @@ function bind() {
   });
   setInterval(renderMarketPill, 30000);
   setInterval(() => {
-    if (!document.hidden && !isDirty()) loadAll();
+    if (S.password && !document.hidden && !isDirty()) loadAll();
   }, 5 * 60 * 1000);
 }
 
@@ -824,10 +878,11 @@ function bind() {
   } catch (_) { /* ignora */ }
   loadSettings();
   bind();
+  bindPortfolio();
   let tab = "overview";
   try {
     tab = localStorage.getItem("actionzz.tab") || tab;
   } catch (_) { /* ignora */ }
   selectTab(document.getElementById(`tab-${tab}`) ? tab : "overview");
-  loadAll();
+  startLock();
 })();
