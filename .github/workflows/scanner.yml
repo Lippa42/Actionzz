@@ -50,6 +50,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Salva le impostazioni cambiate da Telegram
+      - name: Salva impostazioni e portafoglio cambiati da Telegram
         if: always()
         run: scripts/push_config.sh

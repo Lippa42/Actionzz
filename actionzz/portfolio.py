@@ -67,6 +67,18 @@ def load_portfolio(password: str | None, path: Path = PORTFOLIO_PATH) -> dict | 
     return data
 
 
+def new_portfolio() -> dict:
+    return {"version": 1, "positions": [], "sales": [], "settings": dict(DEFAULT_SETTINGS)}
+
+
+def save_portfolio(pf: dict, password: str, path: Path = PORTFOLIO_PATH) -> None:
+    """Scrive il portafoglio cifrato (stesso formato della dashboard)."""
+    import json
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(encrypt_json(pf, password)) + "\n", encoding="utf-8")
+
+
 def load_report(store, password: str | None) -> dict | None:
     envelope = store.read(REPORT_FILE)
     if not envelope or not password:
@@ -114,6 +126,46 @@ def aggregate(positions: list[dict]) -> dict[str, Holding]:
             h.first_date = d
         h.lots.append(p)
     return out
+
+
+def _id() -> str:
+    return os.urandom(6).hex()
+
+
+def add_purchase(pf: dict, ticker: str, quantity: float, price: float, fees: float, day: str, name: str) -> dict:
+    lot = {"id": _id(), "ticker": ticker.upper(), "name": name, "quantity": quantity, "price": price,
+           "fees": fees, "date": day, "notes": "da Telegram"}
+    pf.setdefault("positions", []).append(lot)
+    return lot
+
+
+def record_sale(pf: dict, ticker: str, quantity: float, price: float, fees: float, day: str,
+                currency: str = "", fx: float | None = None) -> dict:
+    """Vendita: scala i lotti dal più vecchio (FIFO), come la dashboard. Restituisce la vendita registrata."""
+    ticker = ticker.upper()
+    lots = sorted((p for p in pf.get("positions", []) if p["ticker"].upper() == ticker), key=lambda p: p.get("date") or "")
+    owned = sum(float(p["quantity"]) for p in lots)
+    if quantity > owned + 1e-9:
+        raise ValueError(f"ne possiedi solo {owned:g}")
+    left, basis = quantity, 0.0
+    for lot in lots:
+        if left <= 1e-9:
+            break
+        take = min(float(lot["quantity"]), left)
+        share = take / float(lot["quantity"])
+        lot_fees = float(lot.get("fees") or 0) * share
+        basis += take * float(lot["price"]) + lot_fees
+        lot["quantity"] = float(lot["quantity"]) - take
+        lot["fees"] = float(lot.get("fees") or 0) - lot_fees
+        left -= take
+    pf["positions"] = [p for p in pf["positions"] if float(p["quantity"]) > 1e-9]
+    realized = quantity * price - fees - basis
+    sale = {"id": _id(), "ticker": ticker, "name": lots[0].get("name", ticker) if lots else ticker,
+            "quantity": quantity, "price": price, "fees": fees, "date": day, "cost_basis": round(basis, 4),
+            "realized": round(realized, 2), "currency": currency,
+            "realized_eur": round(realized * fx, 2) if fx else None}
+    pf.setdefault("sales", []).append(sale)
+    return sale
 
 
 # ------------------------------------------------------------------ indicatori
@@ -339,6 +391,40 @@ def build_report(portfolio: dict, histories: dict[str, pd.DataFrame], fundamenta
         "rates": rates,
         "notified": (previous or {}).get("notified", {}),
         "fundamentals": {"day": today.isoformat(), "data": fundamentals},
+    }
+
+
+def sell_plan(h: Holding, history: pd.DataFrame, fund: dict, settings: dict, cfg: Config) -> dict:
+    """Piano di vendita a prezzi concreti per una posizione, più la situazione tecnica di oggi."""
+    s = {**DEFAULT_SETTINGS, **settings}
+    close = history["Close"].dropna()
+    price = float(close.iloc[-1])
+    ind = indicators(history, h.first_date)
+    rets = close.pct_change().dropna().tail(252)
+    year_move = float(rets.std() * math.sqrt(252) * 100) if len(rets) > 20 else None
+    signals, holds = sell_signals(h, price, None, ind, fund, s, cfg)
+    peak = max(ind["max_since_buy"], price)
+    return {
+        "ticker": h.ticker,
+        "name": fund.get("name") or h.name,
+        "currency": currency_of(h.ticker, fund),
+        "quantity": h.quantity,
+        "avg_price": h.avg_price,
+        "price": price,
+        "pnl_pct": (price / h.avg_price - 1) * 100 if h.avg_price else None,
+        "take_profit_price": h.avg_price * (1 + s["take_profit_pct"] / 100),
+        "stop_loss_price": h.avg_price * (1 - s["stop_loss_pct"] / 100),
+        "trailing_price": peak * (1 - s["trailing_stop_pct"] / 100),
+        "trailing_active": peak > h.avg_price,
+        "peak": peak,
+        "year_move_pct": year_move,
+        "rsi": ind["rsi"],
+        "sma200": ind["sma200"],
+        "target_price": fund.get("target_price"),
+        "settings": s,
+        "signals": signals,
+        "holds": holds,
+        "verdict": verdict(signals, holds),
     }
 
 

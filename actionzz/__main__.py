@@ -80,6 +80,8 @@ def main(argv: list[str] | None = None) -> int:
             monitor.run_cycle()
             if monitor.config_changed:
                 print("::notice::Impostazioni modificate da Telegram")
+            if monitor.portfolio_changed:
+                print("::notice::Portafoglio modificato da Telegram")
         elif args.command == "loop":
             monitor.loop()
         elif args.command == "summary":

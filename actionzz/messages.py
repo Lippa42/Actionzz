@@ -234,6 +234,12 @@ HELP = """🤖 <b>Actionzz — comandi</b>
 /universo — informazioni sui titoli monitorati
 /portafoglio [TICKER] — il tuo portafoglio e i segnali di vendita
 
+💼 <b>Portafoglio</b>
+/compra TICKER QUANTITÀ PREZZO [commissioni] — registra un acquisto e ricevi il piano di vendita (es. /compra ENEL.MI 100 6,50)
+/vendi TICKER QUANTITÀ PREZZO [commissioni] — registra una vendita
+/piano TICKER — quando vendere un titolo che possiedi
+/obiettivo 20 · /stop 10 — cambia obiettivo di guadagno e stop di perdita (%)
+
 ⚙️ <b>Impostazioni</b>
 /soglia 5 — calo minimo in % rispetto a ieri
 /relativa 3 — quanti punti peggio del mercato
@@ -254,6 +260,9 @@ BOT_COMMANDS = [
     ("riepilogo", "Riepilogo della giornata"),
     ("universo", "Titoli monitorati"),
     ("portafoglio", "Il tuo portafoglio e i segnali di vendita"),
+    ("compra", "Registra un acquisto: TICKER QUANTITÀ PREZZO"),
+    ("vendi", "Registra una vendita: TICKER QUANTITÀ PREZZO"),
+    ("piano", "Quando vendere un titolo che possiedi"),
     ("soglia", "Imposta il calo minimo in %"),
     ("relativa", "Punti peggio del mercato"),
     ("filtro", "Filtro mercato on/off"),
@@ -327,4 +336,59 @@ def portfolio_overview(report: dict) -> str:
         lines += ["", "Senza dati: " + esc(", ".join(report["missing"]))]
     lines += ["", "🔴 vendere almeno in parte · 🟠 da tenere d'occhio · 🟢 nessun segnale",
               "Dettagli: /portafoglio TICKER"]
+    return "\n".join(lines)
+
+
+def sell_plan_text(plan: dict, title: str = "📌 <b>Piano di vendita</b>") -> str:
+    """Quando vendere: livelli di prezzo concreti per una posizione."""
+    cur = esc(plan["currency"])
+    s = plan["settings"]
+    q = plan["quantity"]
+    lines = [
+        f"{title} · <b>{esc(plan['name'])}</b> (<code>{esc(plan['ticker'])}</code>)",
+        f"Hai {fmt_num(q, 0 if float(q).is_integer() else 3)} azioni a {fmt_num(plan['avg_price'])} {cur} di media"
+        " (commissioni incluse).",
+        f"Prezzo attuale {fmt_num(plan['price'])} {cur} → {fmt_pct(plan['pnl_pct'])}",
+        "",
+        "<b>Quando vendere</b>",
+        f"🎯 <b>Sopra {fmt_num(plan['take_profit_price'])} {cur}</b> (+{fmt_num(s['take_profit_pct'], 0)}%): obiettivo di guadagno,"
+        " vendi almeno una parte e lascia correre il resto.",
+        f"🛑 <b>Sotto {fmt_num(plan['stop_loss_price'])} {cur}</b> (−{fmt_num(s['stop_loss_pct'], 0)}%): stop di perdita,"
+        " valuta di uscire invece di sperare nel recupero.",
+    ]
+    if plan["trailing_active"]:
+        lines.append(
+            f"📉 <b>Sotto {fmt_num(plan['trailing_price'])} {cur}</b>: −{fmt_num(s['trailing_stop_pct'], 0)}% dal massimo"
+            f" ({fmt_num(plan['peak'])}) toccato da quando lo possiedi, proteggi il guadagno."
+        )
+    else:
+        lines.append(
+            f"📉 Quando sarai in guadagno: se scende del {fmt_num(s['trailing_stop_pct'], 0)}% dal massimo raggiunto"
+            " ti avviso per proteggere il guadagno."
+        )
+    extra = ["RSI oltre 70 (ipercomprato)"]
+    if plan.get("sma200"):
+        extra.append(f"prezzo oltre {fmt_num(plan['sma200'] * 1.25)} (25% sopra la media a 200 giorni)")
+    if plan.get("target_price"):
+        extra.append(f"prezzo obiettivo degli analisti {fmt_num(plan['target_price'])} {cur}")
+    lines.append("➕ Ti segnalo anche: " + ", ".join(extra) + ".")
+
+    move = plan.get("year_move_pct")
+    if move:
+        tp = s["take_profit_pct"]
+        judgement = (
+            "raggiungibile in un anno normale" if tp <= move
+            else "ambizioso ma possibile" if tp <= 2 * move
+            else "molto ambizioso per questo titolo: valuta un obiettivo più basso con /obiettivo"
+        )
+        lines += ["", f"📏 Questo titolo in un anno oscilla tipicamente di ±{fmt_num(move, 0)}%: l'obiettivo del +{fmt_num(tp, 0)}% è {judgement}."]
+
+    v = plan["verdict"]
+    lines += ["", f"<b>Oggi</b>: {v['label']}"]
+    lines += [f"{LEVEL_ICON[x['level']]} {esc(x['text'])}" for x in plan["signals"] + plan["holds"]]
+    lines += [
+        "",
+        "🔔 Ti scrivo io quando scatta uno di questi livelli: controllo ogni 5 minuti in orario di borsa.",
+        "<i>Regole automatiche, non un consiglio d'investimento: la decisione è tua.</i>",
+    ]
     return "\n".join(lines)

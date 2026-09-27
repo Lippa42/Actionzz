@@ -76,6 +76,11 @@ La somma dei pesi dà una valutazione: **🔴 vendere almeno in parte**, **🟠 
 solo in orario di borsa); `/portafoglio` mostra il riepilogo e `/portafoglio TICKER` la scheda di un titolo.
 Sono regole tecniche automatiche, non una previsione: la decisione resta tua.
 
+**Dal telefono**: scrivi al bot `/compra TICKER QUANTITÀ PREZZO` appena compri. Il bot registra l'acquisto nel
+portafoglio cifrato (lo stesso della dashboard) e risponde con il **piano di vendita**: il prezzo sopra cui
+incassare, quello sotto cui uscire, il livello di protezione dal massimo e quanto è realistico l'obiettivo rispetto
+alle oscillazioni tipiche del titolo. Poi ti scrive da solo quando uno di quei livelli viene toccato.
+
 ### Password e privacy
 La dashboard si apre solo con la **password** scelta al primo accesso. Il repository è pubblico, quindi la
 password non è un semplice cancello: **cifra** (AES-256-GCM, chiave PBKDF2 con 310.000 iterazioni) il portafoglio
@@ -166,6 +171,10 @@ python -m actionzz test-telegram   # messaggio di prova + menu dei comandi del b
 | `/riepilogo` | riepilogo della giornata adesso |
 | `/universo` | composizione dell'universo |
 | `/portafoglio [TICKER]` | il tuo portafoglio e i segnali di vendita |
+| `/compra ENEL.MI 100 6,50 [comm.]` | registra un acquisto e risponde con il **piano di vendita** |
+| `/vendi ENEL.MI 50 7,20 [comm.]` | registra una vendita (lotti più vecchi per primi) e calcola la plusvalenza |
+| `/piano ENEL.MI` | quando vendere un titolo che possiedi |
+| `/obiettivo 20` · `/stop 10` | obiettivo di guadagno e stop di perdita (%) |
 | `/soglia 6` | calo minimo in % |
 | `/relativa 3` | punti peggio del mercato |
 | `/filtro on\|off` | filtro sui cali generalizzati |

@@ -150,6 +150,143 @@ def cmd_portfolio(m, args):
     m.tg.send(portfolio_overview(report))
 
 
+def _amount(text: str) -> float | None:
+    """Numero scritto all'italiana o all'inglese: 6,50 · 6.50 · 1.250,5."""
+    t = text.strip().replace("€", "")
+    if "," in t and "." in t:
+        t = t.replace(".", "").replace(",", ".")
+    else:
+        t = t.replace(",", ".")
+    try:
+        v = float(t)
+    except ValueError:
+        return None
+    return v if v >= 0 else None
+
+
+def _trade_args(args: list[str]):
+    if len(args) < 3:
+        return None
+    qty, price = _amount(args[1]), _amount(args[2])
+    fees = _amount(args[3]) if len(args) > 3 else 0.0
+    if not qty or not price or fees is None:
+        return None
+    return args[0].upper(), qty, price, fees
+
+
+def _plan_for(m, pf: dict, ticker: str, history=None):
+    from .portfolio import aggregate, sell_plan
+
+    h = aggregate(pf["positions"]).get(ticker)
+    if h is None:
+        return None
+    if history is None:
+        history = m.download([ticker], period="2y").get(ticker)
+    if history is None or history.empty:
+        return None
+    return sell_plan(h, history, m.fundamentals(ticker), pf["settings"], m.cfg)
+
+
+def cmd_buy(m, args):
+    from .messages import sell_plan_text
+    from .portfolio import add_purchase
+
+    parsed = _trade_args(args)
+    if not parsed:
+        m.tg.send("Uso: /compra TICKER QUANTITÀ PREZZO [commissioni]\nes. <code>/compra ENEL.MI 100 6,50 5</code>\n"
+                  "Il prezzo è nella valuta di quotazione su Yahoo (Londra in pence).")
+        return
+    ticker, qty, price, fees = parsed
+    try:
+        pf = m.portfolio_for_edit()
+    except ValueError as exc:
+        m.tg.send(f"⚠️ Non posso registrare l'acquisto: {esc(exc)}.")
+        return
+    history = m.download([ticker], period="2y").get(ticker)
+    if history is None or history.empty:
+        m.tg.send(f"Non trovo dati per <code>{esc(ticker)}</code>: controlla il ticker con /cerca.")
+        return
+    name = (m.metas().get(ticker) or {}).get("name") or ticker
+    add_purchase(pf, ticker, qty, price, fees, now_local(m.cfg).date().isoformat(), name)
+    m.save_portfolio(pf)
+    current = float(history["Close"].dropna().iloc[-1])
+    lines = [f"✅ Acquisto registrato: {fmt_num(qty, 0 if qty.is_integer() else 3)} <code>{esc(ticker)}</code> a {fmt_num(price)}."]
+    if abs(price / current - 1) > 0.3:
+        lines.append(f"⚠️ Il prezzo indicato è molto diverso da quello attuale ({fmt_num(current)}): controlla la valuta "
+                     "(per Londra i prezzi sono in pence). Puoi correggerlo dalla dashboard.")
+    m.tg.send("\n".join(lines))
+    plan = _plan_for(m, pf, ticker, history)
+    if plan:
+        m.tg.send(sell_plan_text(plan))
+        m.just_planned.add(ticker)
+
+
+def cmd_sell(m, args):
+    from .portfolio import currency_of, fx_to_eur, record_sale
+
+    parsed = _trade_args(args)
+    if not parsed:
+        m.tg.send("Uso: /vendi TICKER QUANTITÀ PREZZO [commissioni]\nes. <code>/vendi ENEL.MI 50 7,20</code>")
+        return
+    ticker, qty, price, fees = parsed
+    try:
+        pf = m.portfolio_for_edit()
+    except ValueError as exc:
+        m.tg.send(f"⚠️ Non posso registrare la vendita: {esc(exc)}.")
+        return
+    cur = currency_of(ticker, m.fundamentals(ticker))
+    fx = fx_to_eur({cur}, m.download).get(cur)
+    try:
+        sale = record_sale(pf, ticker, qty, price, fees, now_local(m.cfg).date().isoformat(), cur, fx)
+    except ValueError as exc:
+        m.tg.send(f"⚠️ {esc(exc)} di <code>{esc(ticker)}</code>.")
+        return
+    m.save_portfolio(pf)
+    gain = sale["realized"]
+    left = sum(float(p["quantity"]) for p in pf["positions"] if p["ticker"] == ticker)
+    m.tg.send(
+        f"✅ Vendita registrata: {fmt_num(qty, 0 if qty.is_integer() else 3)} <code>{esc(ticker)}</code> a {fmt_num(price)} {esc(cur)}.\n"
+        f"{'Plusvalenza' if gain >= 0 else 'Minusvalenza'}: <b>{fmt_num(gain)} {esc(cur)}</b>"
+        + (f" (≈ {fmt_num(sale['realized_eur'], 0)} €)" if sale.get("realized_eur") is not None and cur != "EUR" else "")
+        + (f"\nTe ne restano {fmt_num(left, 0 if float(left).is_integer() else 3)}: /piano {esc(ticker)}" if left else "\nPosizione chiusa.")
+    )
+
+
+def cmd_plan(m, args):
+    from .messages import sell_plan_text
+
+    if not args:
+        m.tg.send("Uso: /piano TICKER (es. /piano ENEL.MI)")
+        return
+    try:
+        pf = m.portfolio_for_edit()
+    except ValueError as exc:
+        m.tg.send(f"⚠️ {esc(exc)}.")
+        return
+    plan = _plan_for(m, pf, args[0].upper())
+    if plan is None:
+        m.tg.send(f"<code>{esc(args[0].upper())}</code> non è nel tuo portafoglio (o non ci sono dati). Registralo con /compra.")
+        return
+    m.tg.send(sell_plan_text(plan))
+
+
+def _pf_setting(key: str, label: str):
+    def run(m, args):
+        value = _amount(args[0]) if args else None
+        if value is None or not 1 <= value <= 500:
+            m.tg.send(f"Uso: /{'obiettivo' if key == 'take_profit_pct' else 'stop'} numero (es. 20)")
+            return
+        try:
+            pf = m.portfolio_for_edit()
+        except ValueError as exc:
+            m.tg.send(f"⚠️ {esc(exc)}.")
+            return
+        pf["settings"][key] = value
+        m.save_portfolio(pf)
+        m.tg.send(f"✅ {label}: <b>{fmt_num(value, 0 if value.is_integer() else 1)}%</b> per tutti i titoli del portafoglio.")
+    return run
+
+
 def cmd_summary(m, args):
     m.send_summary(now_local(m.cfg))
 
@@ -247,6 +384,11 @@ COMMANDS = {
     "riepilogo": cmd_summary,
     "universo": cmd_universe,
     "portafoglio": cmd_portfolio,
+    "compra": cmd_buy,
+    "vendi": cmd_sell,
+    "piano": cmd_plan,
+    "obiettivo": _pf_setting("take_profit_pct", "Obiettivo di guadagno"),
+    "stop": _pf_setting("stop_loss_pct", "Stop di perdita"),
     "soglia": _setting("drop_threshold_pct", "Soglia di calo (%)", 0.5, 50),
     "relativa": _setting("relative_threshold_pct", "Punti peggio del mercato", 0, 50),
     "passo": _setting("realert_step_pct", "Ulteriore calo per un nuovo avviso (pt)", 0.1, 50),

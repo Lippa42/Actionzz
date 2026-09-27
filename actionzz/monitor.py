@@ -47,6 +47,8 @@ class Monitor:
         self.state = State(store)
         self.config_changed = False
         self.portfolio_path = portfolio_path
+        self.portfolio_changed = False
+        self.just_planned: set[str] = set()  # titoli appena comprati: il piano di vendita è già stato inviato
         self.portfolio_password = (
             portfolio_password if portfolio_password is not None else os.environ.get("PORTFOLIO_PASSWORD", "")
         )
@@ -225,12 +227,27 @@ class Monitor:
         report = portfolio.build_report(pf, histories, fundamentals, rates, self.cfg, now.date(), previous)
         # fuori orario i segnali restano in attesa: li mando alla prossima apertura
         if is_trading_window(self.cfg, now):
-            fresh = portfolio.new_notifications(report)
+            fresh = [r for r in portfolio.new_notifications(report) if r["ticker"] not in self.just_planned]
             if fresh and report["settings"]["sell_alerts"] and not self.cfg.paused:
                 for row in fresh:
                     self.tg.send(messages.holding_card(row, report["settings"]["tax_rate_pct"]))
         portfolio.save_report(self.store, report, self.portfolio_password)
         return report
+
+    def portfolio_for_edit(self) -> dict:
+        """Portafoglio da modificare con un comando Telegram (nuovo se non esiste ancora)."""
+        if not self.portfolio_password:
+            raise ValueError("imposta il secret PORTFOLIO_PASSWORD (la stessa password della dashboard)")
+        pf = portfolio.load_portfolio(self.portfolio_password, self.portfolio_path)
+        if pf is None:
+            if self.portfolio_path.exists():
+                raise ValueError("PORTFOLIO_PASSWORD non corrisponde alla password della dashboard")
+            pf = portfolio.new_portfolio()
+        return pf
+
+    def save_portfolio(self, pf: dict) -> None:
+        portfolio.save_portfolio(pf, self.portfolio_password, self.portfolio_path)
+        self.portfolio_changed = True
 
     def portfolio_report(self) -> dict | None:
         return portfolio.load_report(self.store, self.portfolio_password)

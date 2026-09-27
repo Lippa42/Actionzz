@@ -153,3 +153,59 @@ def test_wrong_password_skips_portfolio(cfg, store, tmp_path):
     m = Monitor(cfg, store, FakeTelegram(), downloader=lambda *a, **k: {}, config_path=tmp_path / "c.json",
                 portfolio_path=pf_path, portfolio_password="altra")
     assert m.update_portfolio(datetime(2026, 9, 25, 11, 0, tzinfo=ROME)) is None
+
+
+def telegram_monitor(cfg, store, tmp_path, hist, updates, pwd=PWD):
+    tg = FakeTelegram(updates=updates)
+    m = Monitor(cfg, store, tg, downloader=lambda tickers, period="1mo", **kw: {t: hist[t] for t in tickers if t in hist},
+                fundamentals=lambda t: {"target_price": 9.0}, news=lambda t: [], config_path=tmp_path / "config.json",
+                portfolio_path=tmp_path / "portfolio.enc.json", portfolio_password=pwd)
+    return m, tg
+
+
+def msg(uid, text):
+    return {"update_id": uid, "message": {"text": text, "chat": {"id": 42}}}
+
+
+def test_buy_sends_sell_plan_and_saves_encrypted(cfg, store, tmp_path):
+    hist = {"ENEL.MI": trending(6.0, 6.6)}
+    m, tg = telegram_monitor(cfg, store, tmp_path, hist, [msg(1, "/compra enel.mi 100 6,50 5")])
+    m.process_commands()
+    assert "Acquisto registrato" in tg.sent[0]
+    plan = tg.sent[1]
+    assert "Piano di vendita" in plan
+    assert "Sopra 8,19" in plan  # (650 + 5) / 100 = 6,55 → +25%
+    assert "Sotto 5,57" in plan  # −15%
+    assert m.portfolio_changed
+    raw = (tmp_path / "portfolio.enc.json").read_text()
+    assert "ENEL" not in raw
+    assert decrypt_json(json.loads(raw), PWD)["positions"][0]["quantity"] == 100
+    # il ciclo successivo non rimanda la scheda dei segnali per lo stesso titolo
+    m.update_portfolio(datetime(2026, 9, 25, 11, 0, tzinfo=ROME))
+    assert not [t for t in tg.sent if "segnali di vendita" in t]
+
+
+def test_sell_fifo_and_plan_commands(cfg, store, tmp_path):
+    hist = {"ENEL.MI": trending(6.0, 8.0)}
+    m, tg = telegram_monitor(cfg, store, tmp_path, hist, [
+        msg(1, "/compra ENEL.MI 100 6"), msg(2, "/compra ENEL.MI 100 7"),
+        msg(3, "/vendi ENEL.MI 150 8"), msg(4, "/piano ENEL.MI"), msg(5, "/vendi ENEL.MI 999 8"),
+        msg(6, "/obiettivo 30"),
+    ])
+    m.process_commands()
+    sale_msg = next(t for t in tg.sent if "Vendita registrata" in t)
+    assert "Plusvalenza: <b>250,00 EUR</b>" in sale_msg  # 150×8 − (100×6 + 50×7)
+    assert "Te ne restano 50" in sale_msg
+    assert any("Piano di vendita" in t and "50 azioni a 7,00" in t for t in tg.sent)
+    assert any("ne possiedi solo 50" in t for t in tg.sent)
+    pf = decrypt_json(json.loads((tmp_path / "portfolio.enc.json").read_text()), PWD)
+    assert pf["settings"]["take_profit_pct"] == 30 and pf["sales"][0]["realized"] == 250
+
+
+def test_buy_without_password_or_bad_ticker(cfg, store, tmp_path):
+    m, tg = telegram_monitor(cfg, store, tmp_path, {}, [msg(1, "/compra ENEL.MI 10 6"), msg(2, "/compra")], pwd="")
+    m.process_commands()
+    assert "PORTFOLIO_PASSWORD" in tg.sent[0] and "Uso: /compra" in tg.sent[1]
+    m, tg = telegram_monitor(cfg, store, tmp_path, {}, [msg(10, "/compra XXX.MI 10 6")])
+    m.process_commands()
+    assert "Non trovo dati" in tg.sent[0]
