@@ -2,7 +2,6 @@ name: Dashboard (GitHub Pages)
 
 on:
   push:
-    branches: [main]
     paths: ["site/**", ".github/workflows/pages.yml"]
   workflow_dispatch:
 
@@ -17,6 +16,8 @@ concurrency:
 
 jobs:
   deploy:
+    # pubblica solo dal branch predefinito del repository (qualunque sia il suo nome)
+    if: github.ref_name == github.event.repository.default_branch
     runs-on: ubuntu-latest
     environment:
       name: github-pages

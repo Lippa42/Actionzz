@@ -68,8 +68,9 @@ minuti al mese, oltre i 2.000 gratuiti.
 Token e chat id restano **segreti** (sono in *Secrets*). Diventano visibili a tutti solo il codice, le impostazioni
 e i dati di mercato su cui lavora il bot.
 
-### 2. Porta il codice su `main`
-I workflow pianificati girano solo dal branch predefinito: unisci questo branch in `main`.
+### 2. Branch predefinito
+I workflow pianificati e la dashboard usano il **branch predefinito** del repository, qualunque sia il suo nome.
+Se vuoi chiamarlo `main`: *Settings → General → Default branch* → rinominalo (GitHub aggiorna tutto da solo).
 
 ### 3. Crea il bot Telegram
 1. Su Telegram apri **@BotFather** → `/newbot` → scegli nome e username.

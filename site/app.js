@@ -9,7 +9,7 @@ const LOCAL = new URLSearchParams(location.search).get("dati");
 const DATA_FILES = ["snapshot", "universe", "alerts", "backtest", "market_history", "summary", "state"];
 
 const S = {
-  settings: { repo: "", branch: "main", token: "" },
+  settings: { repo: "", branch: "", token: "" },
   data: {},
   config: null, // salvata su GitHub
   draft: null, // in modifica
@@ -142,7 +142,18 @@ async function saveConfig() {
   }
 }
 
+// Se l'utente non ha indicato il branch, uso quello predefinito del repository.
+async function resolveBranch() {
+  if (S.settings.branch || LOCAL) return;
+  try {
+    const res = await fetch(`https://api.github.com/repos/${S.settings.repo}`, { headers: apiHeaders() });
+    if (res.ok) S.settings.branch = (await res.json()).default_branch;
+  } catch (_) { /* rete assente: ripiego su main */ }
+  S.settings.branch ||= "main";
+}
+
 async function loadAll() {
+  if (S.settings.repo) await resolveBranch();
   if (!S.settings.repo && !LOCAL) {
     banner("Imposta il repository in <b>Impostazioni → Collegamento a GitHub</b> per vedere i dati.", true);
     selectTab("settings");
@@ -776,7 +787,7 @@ function bind() {
 
   $("#gh-save").addEventListener("click", () => {
     S.settings.repo = $("#gh-repo").value.trim().replace(/^https:\/\/github\.com\//, "").replace(/\/$/, "");
-    S.settings.branch = $("#gh-branch").value.trim() || "main";
+    S.settings.branch = $("#gh-branch").value.trim();
     const tok = $("#gh-token").value.trim();
     if (tok && !tok.startsWith("•")) S.settings.token = tok;
     storeSettings();
