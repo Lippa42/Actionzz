@@ -364,6 +364,19 @@ class Monitor:
             self.state.summary_sent = self.send_summary(now)
         self.state.save()
 
+    def listen(self, seconds: float) -> None:
+        """Risponde subito ai comandi Telegram per `seconds` secondi (long polling)."""
+        deadline = time.monotonic() + seconds
+        while (remaining := deadline - time.monotonic()) > 1:
+            if not self.tg.token:
+                time.sleep(remaining)
+                break
+            try:
+                self.process_commands(timeout=int(min(25, remaining)))
+            except Exception:
+                log.exception("Errore leggendo i comandi Telegram")
+                time.sleep(min(10, remaining))
+
     def loop(self) -> None:
         """Esecuzione continua (PC, Raspberry...): scansione ogni N minuti, comandi subito."""
         self.tg.set_commands(messages.BOT_COMMANDS)

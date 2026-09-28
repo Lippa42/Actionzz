@@ -1,24 +1,24 @@
-name: Scanner
+name: Sessione di borsa
 
 on:
   schedule:
-    # Fuori orario (sere e weekend) legge i comandi Telegram ogni 2 ore. In orario di borsa lavora
-    # il workflow "Sessione di borsa": questo resta in coda dietro di lui e non si sovrappone.
-    - cron: "37 */2 * * *"
+    # Un avvio all'ora nei giorni feriali, come rete di sicurezza: se una sessione è già attiva, il nuovo
+    # avvio aspetta in coda e prende il testimone quando la precedente chiude (limite di 6 ore di GitHub).
+    - cron: "50 5-16 * * 1-5"
   workflow_dispatch:
 
 permissions:
   contents: write
+  actions: write
 
-# Un solo job alla volta scrive sul branch data.
 concurrency:
   group: actionzz-data
   cancel-in-progress: false
 
 jobs:
-  scan:
+  session:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 358
     steps:
       - uses: actions/checkout@v4
 
@@ -35,19 +35,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Scansione
-        run: python -m actionzz scan
+      - name: Configura git
+        run: |
+          git config user.name "actionzz-bot"
+          git config user.email "actionzz-bot@users.noreply.github.com"
+
+      - name: Sessione (controllo ogni 5 minuti fino al riepilogo serale)
+        run: scripts/session.sh
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           PORTFOLIO_PASSWORD: ${{ secrets.PORTFOLIO_PASSWORD }}
-
-      - name: Salva lo stato
-        if: always()
-        run: scripts/push_state.sh
-        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Salva impostazioni e portafoglio cambiati da Telegram
-        if: always()
-        run: scripts/push_config.sh

@@ -120,3 +120,26 @@ def test_flat_series_rejected():
     s.iloc[-250:] = 50.0  # prezzo fermo per un anno
     items, rejected = select({"FLAT.AS": compute_metrics(s)}, {}, Config(), today="2026-09-26")
     assert items == [] and rejected["dati_anomali"] == 1
+
+
+def test_session_status():
+    from actionzz.markets import session_status
+
+    cfg = Config()
+    at = lambda d, h, m: datetime(2026, 9, d, h, m, tzinfo=ROME)  # noqa: E731
+    assert session_status(cfg, at(28, 7, 30)) == "before"  # lunedì mattina
+    assert session_status(cfg, at(28, 8, 55)) == "open"
+    assert session_status(cfg, at(28, 18, 5)) == "open"  # c'è ancora il riepilogo delle 18
+    assert session_status(cfg, at(28, 18, 20)) == "closed"
+    assert session_status(cfg, at(27, 12, 0)) == "closed"  # domenica
+
+
+def test_listen_processes_commands_until_deadline(cfg, store, tmp_path):
+    from actionzz.monitor import Monitor
+
+    from .conftest import FakeTelegram
+
+    tg = FakeTelegram(updates=[{"update_id": 1, "message": {"text": "/pausa", "chat": {"id": 42}}}])
+    m = Monitor(cfg, store, tg, config_path=tmp_path / "c.json")
+    m.listen(2)
+    assert m.cfg.paused and m.config_changed and "pausa" in tg.sent[0]

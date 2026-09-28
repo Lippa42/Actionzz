@@ -23,6 +23,9 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("summary", help="invia subito il riepilogo della giornata")
     sub.add_parser("test-telegram", help="invia un messaggio di prova e registra i comandi del bot")
     sub.add_parser("chat-id", help="mostra il chat id di chi ha scritto al bot")
+    sub.add_parser("session-status", help="stampa before/open/closed per la sessione di borsa")
+    listen = sub.add_parser("listen", help="risponde ai comandi Telegram fino al prossimo multiplo di N minuti")
+    listen.add_argument("--minutes", type=int, default=5)
     args = parser.parse_args(argv)
 
     logging.basicConfig(
@@ -35,6 +38,23 @@ def main(argv: list[str] | None = None) -> int:
     store = Store(args.data_dir)
     tg = Telegram()
 
+    if args.command == "session-status":
+        from .markets import now_local, session_status
+
+        print(session_status(cfg, now_local(cfg)))
+        return 0
+    if args.command == "listen":
+        import time as _time
+
+        from .monitor import Monitor
+
+        period = max(1, args.minutes) * 60
+        wait = period - (_time.time() % period)
+        monitor = Monitor(cfg, store, tg)
+        monitor.listen(wait)
+        if monitor.config_changed or monitor.portfolio_changed:
+            print("::notice::Modifiche da Telegram")
+        return 0
     if args.command == "universe":
         from .universe import build_universe
 

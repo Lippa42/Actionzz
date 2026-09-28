@@ -72,3 +72,20 @@ def is_trading_window(cfg: Config, now: datetime) -> bool:
 def is_summary_due(cfg: Config, now: datetime) -> bool:
     t = _hm(cfg.summary_time)
     return now.weekday() < 5 and (now.hour, now.minute) >= (t.hour, t.minute)
+
+
+def session_status(cfg: Config, now: datetime) -> str:
+    """Fase della giornata per la sessione di borsa su GitHub Actions.
+
+    "before": giorno feriale, prima dell'apertura (si ascoltano solo i comandi);
+    "open": dall'apertura fino a poco dopo il riepilogo serale;
+    "closed": weekend o giornata finita.
+    """
+    if now.weekday() >= 5:
+        return "closed"
+    op, summary = _hm(cfg.market_open), _hm(cfg.summary_time)
+    start = now.replace(hour=op.hour, minute=op.minute, second=0, microsecond=0) - timedelta(minutes=10)
+    end = now.replace(hour=summary.hour, minute=summary.minute, second=0, microsecond=0) + timedelta(minutes=10)
+    if now < start:
+        return "before"
+    return "open" if now <= end else "closed"
