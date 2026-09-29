@@ -15,6 +15,8 @@
   --neg: #d03b3b;
   --series-1: #2a78d6;
   --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
   --good-text: #006300;
   --bad-text: #b3261e;
   --warn: #fab219;
@@ -39,10 +41,10 @@
     --accent-ink: #86b6ef;
     --pos: #3987e5;
     --neg: #e66767;
-  --series-1: #3987e5;
-  --series-2: #d95926;
     --series-1: #3987e5;
     --series-2: #d95926;
+    --series-3: #199e70;
+    --series-4: #c98500;
     --good-text: #0ca30c;
     --bad-text: #ff8a80;
     --shadow: none;
@@ -66,6 +68,8 @@
   --neg: #e66767;
   --series-1: #3987e5;
   --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
   --good-text: #0ca30c;
   --bad-text: #ff8a80;
   --shadow: none;
@@ -338,6 +342,50 @@ table.fees input { width: 100%; min-width: 60px; padding: 5px 8px; }
 #sim-setup[hidden], #sim-body[hidden], #sim-error[hidden] { display: none; }
 select { font: inherit; font-size: 14px; }
 .form-grid select { width: 100%; }
+
+/* ----------------------------------------------------------- strategie */
+.chart .s3 { stroke: var(--series-3); }
+.chart .s4 { stroke: var(--series-4); }
+i.sw { display: inline-block; width: 12px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; background: var(--series-1); }
+i.sw.s2 { background: var(--series-2); } i.sw.s3 { background: var(--series-3); } i.sw.s4 { background: var(--series-4); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 6px 0 0; color: var(--ink-2); }
+.legend i:not(.sw) { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.st-controls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.st-controls label, .st-calc label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--ink-2); min-width: 0; }
+.st-calc { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+@media (max-width: 860px) { .st-calc { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.st-calc input, .st-calc select, .st-controls input, .st-controls select { width: 100%; }
+.bars3 { display: flex; height: 26px; border-radius: 8px; overflow: hidden; font-size: 12px; font-weight: 600; color: #fff; }
+.bars3 span { display: flex; align-items: center; justify-content: center; min-width: 0; }
+.b-win { background: var(--pos); } .b-time { background: var(--axis); } .b-stop { background: var(--neg); }
+.bars3 .b-time { color: var(--ink); }
+.facts { margin: 10px 0 0; padding-left: 18px; font-size: 14px; line-height: 1.5; }
+.facts li { margin-bottom: 4px; }
+.heat-wrap { overflow-x: auto; }
+table.heat { border-collapse: separate; border-spacing: 3px; width: 100%; font-size: 13px; font-variant-numeric: tabular-nums; }
+table.heat th { font-weight: 600; color: var(--ink-2); padding: 4px 6px; text-align: center; white-space: nowrap; }
+table.heat td { text-align: center; padding: 8px 4px; border-radius: 6px; border: 1px solid var(--border); color: var(--ink); }
+table.heat td.pick { cursor: pointer; }
+table.heat td.sel { outline: 2px solid var(--ink); outline-offset: -1px; font-weight: 700; }
+h3.fam { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 18px 0 6px; }
+h3.fam:first-child { margin-top: 0; }
+details.st-card { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
+details.st-card summary { cursor: pointer; display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+details.st-card p { margin: 8px 0 0; font-size: 14px; line-height: 1.5; }
+.tips { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 860px) { .tips { grid-template-columns: minmax(0, 1fr); } }
+.tip-card { border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+.tip-card h4 { margin: 0; font-size: 15px; }
+.tip-card p { margin: 0; font-size: 14px; line-height: 1.5; }
+.tip-card label { display: flex; flex-direction: column; gap: 2px; font-size: 13px; color: var(--ink-2); }
+.tip-card input[type=range] { width: 100%; }
+.tip-card .src { font-size: 12px; color: var(--muted); }
+#st-empty[hidden], #st-body[hidden] { display: none; }
+body.mobile table.heat { font-size: 12px; border-spacing: 2px; }
+body.mobile table.heat th { padding: 4px 2px; white-space: normal; }
+body.mobile table.heat td { padding: 7px 1px; }
+body.mobile .st-calc { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+#tab-strategies h4 { margin: 14px 0 8px; font-size: 14px; }
 
 /* =====================================================================
    TELEFONO (body.mobile, impostato da mobile.js) — pensato per iPhone 15

@@ -7,10 +7,10 @@ const PHONE_QUERY = matchMedia("(max-width: 760px), (pointer: coarse) and (max-h
 const IS_IOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 const IS_STANDALONE = navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
 const TAB_TITLES = {
-  overview: "Home", portfolio: "Portafoglio", simulator: "Simulatore", today: "Mercato",
+  overview: "Home", portfolio: "Portafoglio", simulator: "Simulatore", strategies: "Strategie", today: "Mercato",
   alerts: "Avvisi", universe: "Universo", backtest: "Backtest", settings: "Impostazioni",
 };
-const MORE_TABS = ["alerts", "universe", "backtest", "settings"];
+const MORE_TABS = ["strategies", "alerts", "universe", "backtest", "settings"];
 
 const isPhone = () => document.body.classList.contains("mobile");
 

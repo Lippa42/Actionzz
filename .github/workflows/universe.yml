@@ -1,9 +1,8 @@
 name: Universo e backtest
 
 on:
-  schedule:
-    # Il primo di ogni mese alle 05:23 UTC ricalcola i titoli più stabili e il backtest.
-    - cron: "23 5 1 * *"
+  # Il ricalcolo mensile lo fa la sessione continua (python -m actionzz maintenance, a borsa chiusa).
+  # Questo workflow resta per avviarlo a mano; alla fine riavvia la sessione.
   workflow_dispatch:
     inputs:
       solo_backtest:
@@ -45,6 +44,9 @@ jobs:
 
       - name: Backtest
         run: python -m actionzz backtest
+
+      - name: Laboratorio delle strategie
+        run: python -m actionzz strategies
 
       - name: Salva lo stato
         run: scripts/push_state.sh

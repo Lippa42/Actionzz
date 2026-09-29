@@ -57,6 +57,7 @@
     <button role="tab" data-tab="overview" aria-selected="true">Panoramica</button>
     <button role="tab" data-tab="portfolio">Portafoglio</button>
     <button role="tab" data-tab="simulator">Simulatore</button>
+    <button role="tab" data-tab="strategies">Strategie</button>
     <button role="tab" data-tab="today">Oggi</button>
     <button role="tab" data-tab="alerts">Avvisi</button>
     <button role="tab" data-tab="universe">Universo</button>
@@ -232,6 +233,103 @@
       </form>
     </section>
 
+    <!-- STRATEGIE -->
+    <section id="tab-strategies" class="tab" hidden>
+      <div id="st-empty" class="card note">Dati delle strategie non ancora disponibili: vengono calcolati di notte, una volta al mese.</div>
+      <div id="st-body" hidden>
+        <div class="card note"><p id="st-period"></p></div>
+        <form id="st-controls" class="card st-controls" autocomplete="off" onsubmit="return false">
+          <label>Capitale (€) <input id="st-capital" inputmode="decimal" value="10000"></label>
+          <label>Broker <select id="st-broker"></select></label>
+        </form>
+
+        <div class="card">
+          <div class="card-head"><h2>Compro a −X%, rivendo a +Y%: quanto guadagno?</h2></div>
+          <form id="st-calc" class="st-calc" autocomplete="off" onsubmit="return false">
+            <label>Compro dopo un calo di <select name="dip"></select></label>
+            <label>Rivendo con un guadagno di <select name="target"></select></label>
+            <label>Stop (vendo in perdita a) <select name="stop"></select></label>
+            <label>Tengo al massimo <select name="hold"></select></label>
+            <label>Importo per operazione (€) <input name="amount" inputmode="decimal" value="1000"></label>
+            <label>Numero di operazioni <input name="n" inputmode="numeric" value="20"></label>
+            <label>In quanti anni <input name="years" inputmode="decimal" value="1"></label>
+          </form>
+          <div id="st-calc-out"></div>
+          <h4>Quale obiettivo e quale stop hanno funzionato meglio?</h4>
+          <div class="heat-wrap" id="st-heat"></div>
+          <p class="muted small" id="st-heat-note"></p>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h2>Confronto tra strategie, al netto di costi e tasse</h2><span class="muted small">Seleziona fino a 4 strategie per il grafico</span></div>
+          <div id="st-chart" class="chart"></div>
+          <div id="st-legend" class="legend small"></div>
+          <div class="table-wrap"><table id="st-table" class="data"></table></div>
+          <p class="muted small">Costi: commissioni del broker scelto, tasse sulle transazioni, cambio, scostamento dal prezzo e bollo 0,2% annuo. Tasse: 26% sui guadagni di ogni anno con zainetto fiscale di 4 anni; per le strategie «compra e tieni» solo alla vendita finale. I guadagni degli ETF sono redditi di capitale e non si compensano con le minusvalenze. Il costo annuo degli ETF (TER) non è incluso.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h2>Le strategie spiegate</h2><span class="muted small">Tocca per aprire</span></div>
+          <div id="st-cards"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h2>Cosa dice la ricerca: prova tu</h2></div>
+          <form id="st-tips" class="tips" autocomplete="off" onsubmit="return false">
+            <div class="tip-card">
+              <h4>💸 Chi compravende di più guadagna di meno</h4>
+              <label>Operazioni al mese: <input type="range" name="trades" min="1" max="40" value="8"></label>
+              <label>Importo medio (€): <input type="range" name="size" min="250" max="10000" step="250" value="1000"></label>
+              <p id="tip-costs"></p>
+              <p class="src">Barber e Odean (2000), «Trading Is Hazardous to Your Wealth»: il 20% delle famiglie che scambiava di più ha reso 7 punti l'anno in meno del mercato.</p>
+            </div>
+            <div class="tip-card">
+              <h4>📉 Le perdite pesano più dei guadagni</h4>
+              <label>Perdita: <input type="range" name="loss" min="5" max="90" step="5" value="30"></label>
+              <p id="tip-loss"></p>
+              <p class="src">Pura aritmetica, ma è il motivo per cui la gestione del rischio (diversificazione, dimensione delle posizioni) conta più della scelta del titolo.</p>
+            </div>
+            <div class="tip-card">
+              <h4>📅 Uscire dal mercato costa caro</h4>
+              <label>Giorni migliori persi: <input type="range" name="best" min="0" max="30" value="10"></label>
+              <p id="tip-best"></p>
+              <p class="src">Calcolato sull'indice equiponderato dei titoli di Actionzz. Stesso risultato negli studi su S&amp;P 500 e MSCI World.</p>
+            </div>
+            <div class="tip-card">
+              <h4>🧺 PAC o tutto subito?</h4>
+              <label>Rate mensili: <input type="range" name="months" min="2" max="24" value="12"></label>
+              <p id="tip-pac"></p>
+              <p class="src">Vanguard (2012), «Dollar-cost averaging just means taking risk later»: investire subito ha vinto circa 2 volte su 3.</p>
+            </div>
+            <div class="tip-card">
+              <h4>🎲 Diversificare riduce il rischio (gratis)</h4>
+              <label>Numero di titoli: <input type="range" name="k" min="1" max="50" value="10"></label>
+              <div id="tip-div-chart" class="chart"></div>
+              <p id="tip-div"></p>
+              <p class="src">Statman (1987), «How Many Stocks Make a Diversified Portfolio?»; Bessembinder (2018), «Do Stocks Outperform Treasury Bills?»: pochi titoli generano quasi tutta la ricchezza del mercato.</p>
+            </div>
+            <div class="tip-card">
+              <h4>🧠 Vendere i vincenti, tenere i perdenti</h4>
+              <p id="tip-disp"></p>
+              <p class="src">Shefrin e Statman (1985); Odean (1998): gli investitori vendono troppo presto i titoli in guadagno e tengono troppo a lungo quelli in perdita, e i titoli venduti poi fanno meglio di quelli tenuti.</p>
+            </div>
+            <div class="tip-card">
+              <h4>🔬 Attenzione alle strategie «perfette»</h4>
+              <label>Strategie provate: <input type="range" name="tries" min="10" max="1000" step="10" value="630"></label>
+              <p id="tip-tries"></p>
+              <p class="src">Harvey, Liu e Zhu (2016), «…and the Cross-Section of Expected Returns»: con centinaia di fattori testati, molte scoperte sono falsi positivi. Bailey e López de Prado (2014) sul backtest «sovra-ottimizzato».</p>
+            </div>
+            <div class="tip-card">
+              <h4>🇮🇹 Le tasse italiane, in breve</h4>
+              <p>Le minusvalenze su azioni finiscono nello <b>zainetto fiscale</b> e compensano le plusvalenze dei <b>4 anni successivi</b>. I guadagni degli ETF invece sono <b>redditi di capitale</b>: non si compensano con le minusvalenze. Chi vende spesso in guadagno paga il 26% subito, chi tiene rimanda le tasse e fa lavorare anche quella parte (interesse composto).</p>
+              <p class="src">TUIR artt. 44, 67 e 68; imposta di bollo 0,2% annuo sul dossier (DPR 642/1972).</p>
+            </div>
+          </form>
+        </div>
+        <p class="muted small">I risultati passati non garantiscono quelli futuri. Questa sezione serve a capire costi, rischi e probabilità, non è un consiglio d'investimento.</p>
+      </div>
+    </section>
+
     <!-- OGGI -->
     <section id="tab-today" class="tab" hidden>
       <div class="card">
@@ -367,6 +465,7 @@
   <div id="sheet-backdrop" class="sheet-backdrop" hidden></div>
   <div id="more-sheet" class="sheet" role="dialog" aria-label="Altro" hidden>
     <div class="sheet-handle"></div>
+    <button class="sheet-item" data-tab="strategies">🎯 <span>Strategie</span></button>
     <button class="sheet-item" data-tab="alerts">🚨 <span>Avvisi</span></button>
     <button class="sheet-item" data-tab="universe">🌍 <span>Universo dei titoli</span></button>
     <button class="sheet-item" data-tab="backtest">🧪 <span>Backtest</span></button>
@@ -385,6 +484,7 @@
 
   <script src="portfolio.js"></script>
   <script src="simulator.js"></script>
+  <script src="strategies.js"></script>
   <script src="app.js"></script>
   <script src="mobile.js"></script>
 </body>

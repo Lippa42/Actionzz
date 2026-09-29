@@ -103,6 +103,23 @@ Il **confronto broker** (`site/brokers.json`, verificato a settembre 2026: Trade
 DEGIRO, Interactive Brokers, Directa, Fineco) mostra il costo di un ordine da 2.000 € su ogni mercato: un clic su
 *Usa* applica quelle tariffe alla simulazione. Si possono anche impostare costi personalizzati.
 
+### Strategie: quanto si guadagna davvero, costi e tasse compresi
+La scheda **Strategie** usa i prezzi reali degli ultimi 5 anni dei titoli dell'universo:
+
+- **Compro a −X%, rivendo a +Y%**: scegli il calo d'acquisto, l'obiettivo, lo stop, la durata massima, l'importo e
+  quante operazioni pensi di fare. Vedi il risultato "se tutto andasse bene", quello tipico e la forchetta realistica
+  (Monte Carlo sugli esiti storici), la probabilità di perdere, i costi di ogni operazione con il tuo broker e il
+  capitale che serve. Una tabella colorata mostra quale combinazione di obiettivo e stop ha reso di più.
+- **Confronto tra 14 strategie** tratte dalla letteratura: momentum, vicinanza al massimo annuale, trend following,
+  bassa volatilità, inversione di breve periodo, acquisto sui cali, RSI(2), Halloween, effetto fine mese, ETF da tenere.
+  Il rendimento è mostrato al netto di commissioni, tasse sulle transazioni, cambio, bollo e 26% sulle plusvalenze
+  con zainetto fiscale. Ogni strategia ha una scheda che spiega come funziona, cosa dicono gli studi e perché può fallire.
+- **Consigli interattivi dalla ricerca**: costo del trading frequente, recupero dalle perdite, i giorni migliori persi,
+  PAC o tutto subito, diversificazione, effetto disposizione, falsi positivi nei backtest, tasse italiane.
+
+I calcoli si rifanno da soli una volta al mese, di notte (`python -m actionzz strategies`). Attenzione: l'universo contiene
+i titoli stabili *di oggi*, quindi i risultati passati sono più belli di quanto sarà il futuro.
+
 ### Password e privacy
 La dashboard si apre solo con la **password** scelta al primo accesso. Il repository è pubblico, quindi la
 password non è un semplice cancello: **cifra** (AES-256-GCM, chiave PBKDF2 con 310.000 iterazioni) il portafoglio

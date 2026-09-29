@@ -248,6 +248,7 @@ function selectTab(name) {
   } catch (_) { /* ignora */ }
   renderCharts();
   if (name === "simulator" && typeof renderSimulator === "function") renderSimulator();
+  if (name === "strategies" && typeof renderStrategies === "function") loadStrategies().then(renderStrategies);
   if (typeof onTabChange === "function") onTabChange(name);
 }
 
@@ -767,6 +768,7 @@ function renderAll() {
   renderSettings();
   renderPortfolio();
   renderSimulator();
+  renderStrategies();
   renderCharts();
   onDraftChange();
 }
@@ -887,6 +889,7 @@ function bind() {
   bind();
   bindPortfolio();
   bindSimulator();
+  bindStrategies();
   let tab = "overview";
   try {
     tab = localStorage.getItem("actionzz.tab") || tab;

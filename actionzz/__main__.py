@@ -24,6 +24,8 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("test-telegram", help="invia un messaggio di prova e registra i comandi del bot")
     sub.add_parser("chat-id", help="mostra il chat id di chi ha scritto al bot")
     sub.add_parser("session-status", help="stampa before/open/closed per la sessione di borsa")
+    sub.add_parser("strategies", help="calcola il laboratorio delle strategie (strategies.json)")
+    sub.add_parser("maintenance", help="a borsa chiusa: ricalcola universo, backtest e strategie se sono vecchi")
     listen = sub.add_parser("listen", help="risponde ai comandi Telegram fino al prossimo multiplo di N minuti")
     listen.add_argument("--minutes", type=int, default=5)
     args = parser.parse_args(argv)
@@ -54,6 +56,17 @@ def main(argv: list[str] | None = None) -> int:
         monitor.listen(wait)
         if monitor.config_changed or monitor.portfolio_changed:
             print("::notice::Modifiche da Telegram")
+        return 0
+    if args.command == "strategies":
+        from .strategies import run_strategies
+
+        r = run_strategies(cfg, store)
+        print(f"Strategie calcolate: {len(r['strategies'])} strategie, {len(r['dip']['combos'])} combinazioni")
+        return 0
+    if args.command == "maintenance":
+        from .maintenance import run_maintenance
+
+        run_maintenance(cfg, store)
         return 0
     if args.command == "universe":
         from .universe import build_universe

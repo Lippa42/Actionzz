@@ -50,6 +50,8 @@ while (( $(elapsed) < BUDGET )); do
     echo "$(date -u +%H:%M:%S) fase: $status → controllo completo"
     sync_repo
     python -m actionzz scan || echo "::warning::scansione fallita, riprovo al prossimo giro"
+    # a borsa chiusa: ricalcolo mensile di universo, backtest e strategie (se servono)
+    [ "$status" = "open" ] || python -m actionzz maintenance || echo "::warning::manutenzione fallita"
     LAST_FULL=$(date +%s)
   fi
   save_state_if_changed
