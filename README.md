@@ -113,7 +113,8 @@ La scheda **Strategie** usa i prezzi reali degli ultimi 5 anni dei titoli dell'u
 - **Confronto tra 14 strategie** tratte dalla letteratura: momentum, vicinanza al massimo annuale, trend following,
   bassa volatilità, inversione di breve periodo, acquisto sui cali, RSI(2), Halloween, effetto fine mese, ETF da tenere.
   Il rendimento è mostrato al netto di commissioni, tasse sulle transazioni, cambio, bollo e 26% sulle plusvalenze
-  con zainetto fiscale. Ogni strategia ha una scheda che spiega come funziona, cosa dicono gli studi e perché può fallire.
+  con zainetto fiscale. Come farebbe un privato, le strategie sui singoli titoli ne tengono 10 (il paniere di riferimento 20)
+  e scambiano solo i titoli che entrano o escono. Ogni strategia ha una scheda che spiega come funziona, cosa dicono gli studi e perché può fallire.
 - **Consigli interattivi dalla ricerca**: costo del trading frequente, recupero dalle perdite, i giorni migliori persi,
   PAC o tutto subito, diversificazione, effetto disposizione, falsi positivi nei backtest, tasse italiane.
 

@@ -21,31 +21,31 @@ const ST_INFO = {
   },
   buy_hold: {
     fam: "Riferimento",
-    how: "Compri tutti i ~500 titoli in parti uguali e li tieni, senza ribilanciare.",
-    lit: "Stessa idea dell'ETF, ma fatta a mano: mostra quanto costano centinaia di ordini con un capitale piccolo.",
-    risk: "Con poco capitale le commissioni minime pesano moltissimo: per questo esistono gli ETF.",
+    how: "Compri 20 titoli dell'universo in parti uguali e li tieni, senza più toccarli.",
+    lit: "È quello che fa la maggior parte dei risparmiatori: pochi titoli, nessuna operazione. Il paniere è quello «tipico» fra 41 estratti a caso (rendimento mediano), per non dipendere dalla fortuna.",
+    risk: "Con 20 titoli sei meno diversificato di un ETF: un paniere sfortunato può restare molto indietro (vedi il consiglio sulla diversificazione).",
   },
   rebalance: {
     fam: "Riferimento",
-    how: "Pesi uguali su tutti i titoli, riportati in equilibrio ogni trimestre (vendi un po' di chi è salito, compri chi è sceso).",
+    how: "Gli stessi 20 titoli, riportati a pesi uguali ogni trimestre (vendi un po' di chi è salito, compri chi è sceso).",
     lit: "Il ribilanciamento tiene sotto controllo il rischio; il vantaggio di rendimento è discusso e dipende dai costi.",
-    risk: "Tanti piccoli ordini: costi e tasse sulle plusvalenze realizzate.",
+    risk: "Circa 80 piccoli ordini l'anno: con poco capitale le commissioni minime pesano, e si pagano tasse sulle plusvalenze realizzate.",
   },
   momentum: {
     fam: "Tendenza",
-    how: "Ogni mese compri il 10% dei titoli saliti di più negli ultimi 12 mesi (escluso l'ultimo mese) e vendi gli altri.",
+    how: "Ogni mese tieni i 10 titoli saliti di più negli ultimi 12 mesi (escluso l'ultimo mese): vendi solo chi esce dalla classifica e compri chi entra.",
     lit: "Uno dei risultati più solidi della finanza: i titoli migliori degli ultimi 3–12 mesi continuano a fare meglio per alcuni mesi (Jegadeesh e Titman, 1993; Asness, Moskowitz e Pedersen, 2013 su molti mercati).",
     risk: "Crolli improvvisi quando il mercato inverte (Daniel e Moskowitz, «Momentum crashes», 2016) e molti ordini.",
   },
   high52: {
     fam: "Tendenza",
-    how: "Ogni mese tieni il 10% dei titoli più vicini al loro massimo delle ultime 52 settimane.",
+    how: "Ogni mese tieni i 10 titoli più vicini al loro massimo delle ultime 52 settimane, cambiando solo chi esce dalla classifica.",
     lit: "George e Hwang (2004): la vicinanza al massimo annuale spiega buona parte del momentum; gli investitori «ancorati» al massimo reagiscono in ritardo alle buone notizie.",
     risk: "Come il momentum: soffre nelle inversioni brusche.",
   },
   trend: {
     fam: "Tendenza",
-    how: "Ogni mese tieni solo i titoli sopra la loro media dei prezzi degli ultimi 200 giorni; il resto è liquidità.",
+    how: "Sui 20 titoli del paniere, ogni mese tieni solo quelli sopra la loro media dei prezzi degli ultimi 200 giorni; il resto è liquidità.",
     lit: "Le regole di trend following riducono le perdite nei mercati ribassisti lunghi (Faber, «A Quantitative Approach to Tactical Asset Allocation», 2007).",
     risk: "Nei mercati che salgono resti spesso fuori: rendi meno e paghi più ordini. Brilla solo nei grandi ribassi, assenti nel periodo analizzato.",
   },
@@ -57,13 +57,13 @@ const ST_INFO = {
   },
   low_vol: {
     fam: "Stabilità",
-    how: "Ogni trimestre tieni il 20% dei titoli meno volatili dell'ultimo anno.",
+    how: "Ogni trimestre tieni i 10 titoli meno volatili dell'ultimo anno, cambiando solo chi esce dalla classifica.",
     lit: "L'«anomalia della bassa volatilità»: i titoli meno rischiosi hanno reso quanto o più di quelli rischiosi, con meno oscillazioni (Blitz e van Vliet, 2007; Baker, Bradley e Wurgler, 2011; Frazzini e Pedersen, «Betting Against Beta», 2014).",
     risk: "Resta indietro quando il mercato corre; è concentrata in settori difensivi (utility, telecomunicazioni).",
   },
   reversal: {
     fam: "Ritorno alla media",
-    how: "Ogni settimana compri il 10% dei titoli scesi di più negli ultimi 5 giorni e li tieni una settimana.",
+    how: "Ogni settimana tieni i 10 titoli scesi di più negli ultimi 5 giorni, cambiando quelli che non sono più tra i peggiori.",
     lit: "Inversione di breve periodo: chi perde di più in una settimana o un mese tende a recuperare un po' (Jegadeesh, 1990; Lehmann, 1990).",
     risk: "Il guadagno lordo esiste, ma con migliaia di ordini l'anno i costi se lo mangiano quasi sempre: è il caso di scuola.",
   },
@@ -355,6 +355,8 @@ function netStrategy(id, st, capital, br) {
     yearEnds[yearEnds.length - 1].net = eq / capital;
   }
   const years = st.yearly.reduce((a, y) => a + y.days, 0) / 252;
+  const nOrders = st.yearly.reduce((a, y) => a + y.orders, 0);
+  const order = nOrders ? st.yearly.reduce((a, y) => a + y.buy + y.sell, 0) * capital / nOrders : null; // importo medio di un ordine
   const cagr = eq > 0 ? (Math.pow(eq / capital, 1 / years) - 1) * 100 : -100;
   // curva netta: la curva lorda riscalata in modo da coincidere con il netto a ogni fine anno
   const ratio = {};
@@ -366,7 +368,7 @@ function netStrategy(id, st, capital, br) {
     const frac = (new Date(d) - new Date(`${y}-01-01`)) / (365 * 864e5);
     return { day: d, v: st.curve.v[i] * (rr.from + (rr.to - rr.from) * Math.min(1, frac)) * capital };
   });
-  return { final: eq, cagr, costs, taxes, curve, grossCagr: st.cagr };
+  return { final: eq, cagr, costs, taxes, curve, grossCagr: st.cagr, order, wiped: eq <= 0 };
 }
 
 function renderComparison() {
@@ -375,18 +377,18 @@ function renderComparison() {
   const cap = ST.capital;
   const rows = Object.entries(ST.data.strategies).map(([id, st]) => {
     const n = netStrategy(id, st, cap, br);
-    return { id, name: st.name, fam: (ST_INFO[id] || {}).fam || "", gross: st.cagr, net: n.cagr, final: n.final, costs: n.costs, taxes: n.taxes, dd: st.max_dd, vol: st.vol, orders: st.orders_per_year, net_obj: n };
+    return { id, name: st.name, fam: (ST_INFO[id] || {}).fam || "", gross: st.cagr, net: n.cagr, order: n.order, wiped: n.wiped, final: n.final, costs: n.costs, taxes: n.taxes, dd: st.max_dd, vol: st.vol, orders: st.orders_per_year, net_obj: n };
   });
   const ref = rows.find((r) => r.id === "etf_hold");
   table($("#st-table"), "strategie", [
     { key: "sel", label: "", nosort: true, fmt: (r) => `<input type="checkbox" data-st="${r.id}" ${ST.sel.includes(r.id) ? "checked" : ""} aria-label="Mostra nel grafico">` },
     { key: "name", label: "Strategia", fmt: (r) => `<b>${esc(r.name)}</b><br><span class="muted small">${esc(r.fam)}</span>` },
-    { key: "net", label: "Rendimento netto/anno", num: true, fmt: (r) => `<b class="${cls(r.net)}">${pct(r.net, 1)}</b><br><span class="muted small">lordo ${pct(r.gross, 1)}</span>` },
+    { key: "net", label: "Rendimento netto/anno", num: true, fmt: (r) => `${r.wiped ? `<b class="neg">capitale azzerato dai costi</b>` : `<b class="${cls(r.net)}">${pct(r.net, 1)}</b>`}<br><span class="muted small">lordo ${pct(r.gross, 1)}</span>` },
     { key: "final", label: `Valore di ${eur0(cap)}`, num: true, fmt: (r) => `${eur0(r.final)}<br><span class="small ${cls(r.final - ref.final)}">${eurS0(r.final - ref.final)} vs ETF</span>` },
     { key: "costs", label: "Costi", num: true, fmt: (r) => eur0(r.costs) },
     { key: "taxes", label: "Tasse", num: true, cls: "hide-sm", fmt: (r) => eur0(r.taxes) },
     { key: "dd", label: "Calo massimo", num: true, fmt: (r) => `<span class="neg">${pct(r.dd, 1)}</span>` },
-    { key: "orders", label: "Ordini/anno", num: true, cls: "hide-sm", fmt: (r) => num(r.orders, 0) },
+    { key: "orders", label: "Ordini/anno", num: true, fmt: (r) => `${num(r.orders, 0)}${r.order ? `<br><span class="muted small">da ~${eur0(r.order)}</span>` : ""}` },
   ], rows, { sortKey: "net", sortDir: -1 });
   const selected = rows.filter((r) => ST.sel.includes(r.id)).slice(0, 4);
   stLineChart($("#st-chart"), selected.map((r, i) => ({ name: r.name, cls: ST_COLORS[i], pts: r.net_obj.curve })), cap);

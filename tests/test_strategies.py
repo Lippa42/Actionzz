@@ -85,3 +85,25 @@ def test_maintenance_skips_during_market_and_refreshes_old_data(store, monkeypat
     store.write("backtest.json", {"generated": datetime.now().astimezone().isoformat()})
     done = maintenance.run_maintenance(cfg, store, datetime(2026, 9, 29, 21, 0, tzinfo=ROME))
     assert done == ["strategie"] and calls == ["s"]
+
+
+def test_selection_trades_only_names_that_change():
+    rng = np.random.default_rng(3)
+    frames = {f"T{i:02d}.DE": frame(100 * np.exp(np.cumsum(rng.normal(0.0003, 0.01, DAYS)))) for i in range(6)}
+    m = strategies.matrices(frames)
+    # stessi 3 titoli ogni mese: 3 acquisti iniziali e poi nessun ordine (niente micro-ribilanciamenti)
+    same = strategies.weights_strategy(m, lambda i: np.arange(3), "M", "fissi")
+    assert sum(y["orders"] for y in same["yearly"]) == 3
+    # ribilanciamento: si corregge solo il titolo che si è allontanato oltre la banda di tolleranza
+    c = np.full(DAYS, 100.0)
+    w0 = strategies.WARMUP
+    c[w0:w0 + 40] = np.linspace(100, 160, 40)  # sale del 60% in due mesi: pesa troppo, va ridotto
+    c[w0 + 40:] = 160.0
+    frames["BIG.DE"] = frame(c)
+    m = strategies.matrices(frames)
+    big = list(m["Close"].columns).index("BIG.DE")
+    reb = strategies.weights_strategy(m, lambda i: np.array([0, 1, big]), "Q", "reb", rebalance=True)
+    assert sum(y["orders"] for y in reb["yearly"]) > 3
+    # un titolo cambia: 1 vendita + 1 acquisto, gli altri restano fermi
+    swap = strategies.weights_strategy(m, lambda i: np.arange(3) if i < strategies.WARMUP + 30 else np.array([0, 1, 4]), "M", "swap")
+    assert sum(y["orders"] for y in swap["yearly"]) == 5

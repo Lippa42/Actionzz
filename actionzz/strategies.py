@@ -35,6 +35,9 @@ COOLDOWN = 5
 TRADING_DAYS = 252
 WARMUP = 252  # tutte le strategie partono dopo un anno di storico, così il confronto è alla pari
 KEEP = object()  # "non ribilanciare": tieni i pesi attuali
+PICKS = 10  # titoli in portafoglio nelle strategie di selezione: quanti ne gestisce davvero un privato
+REBALANCE_BAND = 0.25
+BASKET = 20  # paniere di riferimento per compra e tieni, ribilanciamento e trend
 
 
 # ---------------------------------------------------------------- dati
@@ -224,8 +227,13 @@ class Book:
         st["noneur"] += float(((buys + sells) * self.costs["noneur"]).sum())
 
 
-def weights_strategy(m, select, every: str, name: str) -> dict:
-    """Strategia a pesi uguali sui titoli scelti da `select(i)` ai giorni di ribilanciamento."""
+def weights_strategy(m, select, every: str, name: str, rebalance: bool = False) -> dict:
+    """Strategia sui titoli scelti da `select(i)` ai giorni di ribilanciamento, come la farebbe un privato.
+
+    Si vendono solo i titoli che escono e si comprano solo quelli che entrano (ognuno con 1/k del capitale,
+    nei limiti della liquidità): chi resta non viene toccato. Con `rebalance=True` invece a ogni data tutti
+    i titoli tornano a pesi uguali (ribilanciamento vero, con un ordine per ogni titolo che si è spostato).
+    """
     close = m["Close"]
     rets = close.pct_change().fillna(0.0).to_numpy()
     rets = np.nan_to_num(rets)
@@ -242,19 +250,38 @@ def weights_strategy(m, select, every: str, name: str) -> dict:
             w = growth / port if port > 0 else w
         if i in reb or i == book.start:
             chosen = select(i)
-            if chosen is KEEP:
-                book.equity[i] = eq
-                book.invested[i] = w.sum()
-                continue
-            target = np.zeros(len(tickers))
-            if chosen is not None and len(chosen):
-                target[chosen] = 1.0 / len(chosen)
-            if np.abs(target - w).sum() > 1e-9:
-                book.trade(i, target - w, eq)
-            w = target
+            if chosen is not KEEP:
+                target = _target_weights(w, chosen, len(tickers), rebalance)
+                if np.abs(target - w).sum() > 1e-9:
+                    book.trade(i, target - w, eq)
+                w = target
         book.equity[i] = eq
         book.invested[i] = w.sum()
     return finalize(book, name)
+
+
+def _target_weights(w, chosen, n: int, rebalance: bool) -> np.ndarray:
+    chosen = np.asarray([] if chosen is None else chosen, dtype=int)
+    target = np.zeros(n)
+    if not len(chosen):
+        return target
+    if rebalance:
+        # banda di tolleranza: si corregge solo chi si è allontanato più del 25% dal suo peso (niente ordini minuscoli)
+        eq_w = 1.0 / len(chosen)
+        target[chosen] = w[chosen]
+        off = np.abs(w[chosen] / eq_w - 1) > REBALANCE_BAND
+        target[chosen[off]] = eq_w
+        if target.sum() > 1.0 + 1e-9:  # non si può investire più del capitale
+            target *= 1.0 / target.sum()
+        return target
+    keep = np.zeros(n, dtype=bool)
+    keep[chosen] = True
+    target[keep] = w[keep]  # chi resta non si tocca
+    new = chosen[w[chosen] <= 1e-12]
+    if len(new):
+        cash = 1.0 - target.sum()  # liquidità dopo aver venduto chi esce
+        target[new] = min(1.0 / len(chosen), cash / len(new))
+    return target
 
 
 def slot_strategy(m, entries, exit_rule, slots: int, name: str, max_hold: int = 60) -> dict:
@@ -374,6 +401,21 @@ def rsi(close: np.ndarray, n: int) -> np.ndarray:
         return 100 - 100 / (1 + up / dn)
 
 
+def typical_basket(m, k: int, draws: int = 41) -> np.ndarray:
+    """Un paniere "tipico" di k titoli: fra tanti panieri a caso, quello con il rendimento mediano.
+
+    Evita che il riferimento dipenda dalla fortuna di un'unica estrazione.
+    """
+    close = m["Close"].to_numpy()
+    ok = np.flatnonzero(np.isfinite(close[WARMUP]) & np.isfinite(close[-1]))
+    k = min(k, len(ok))
+    rng = np.random.default_rng(7)
+    growth = close[-1] / close[WARMUP]
+    baskets = [np.sort(rng.choice(ok, size=k, replace=False)) for _ in range(draws)]
+    total = [float(np.mean(growth[b])) for b in baskets]
+    return baskets[int(np.argsort(total)[len(total) // 2])]
+
+
 def portfolio_strategies(m) -> list[dict]:
     close_df = m["Close"]
     close = close_df.to_numpy()
@@ -389,7 +431,7 @@ def portfolio_strategies(m) -> list[dict]:
     rsi2 = rsi(close, 2)
     idx_level = (1 + ret.mean(axis=1).fillna(0)).cumprod().to_numpy()
     idx_sma200 = pd.Series(idx_level).rolling(200, min_periods=200).mean().to_numpy()
-    top = max(10, n_tk // 10)
+    top = min(PICKS, n_tk)
 
     def best(values, i, k, largest=True):
         v = values[i]
@@ -401,18 +443,21 @@ def portfolio_strategies(m) -> list[dict]:
         pick = order[-k:] if largest else order[:k]
         return cand[pick]
 
-    all_ok = lambda i: np.flatnonzero(np.isfinite(close[i]))  # noqa: E731
     start = WARMUP
+    basket = typical_basket(m, BASKET)
+
+    def basket_trend(i):
+        ok = np.isfinite(sma200[i, basket]) & (close[i, basket] > sma200[i, basket])
+        return basket[ok]
 
     out = []
-    out.append(("buy_hold", weights_strategy(m, lambda i: all_ok(i) if i == start else KEEP, "M", "Compra e tieni")))
-    out.append(("rebalance", weights_strategy(m, all_ok, "Q", "Pesi uguali, ribilanciato")))
+    out.append(("buy_hold", weights_strategy(m, lambda i: basket if i == start else KEEP, "M", f"Compra e tieni {BASKET} titoli")))
+    out.append(("rebalance", weights_strategy(m, lambda i: basket, "Q", f"{BASKET} titoli ribilanciati ogni trimestre", rebalance=True)))
     out.append(("momentum", weights_strategy(m, lambda i: best(mom, i, top), "M", "Momentum 12-1")))
-    out.append(("low_vol", weights_strategy(m, lambda i: best(-vol252, i, n_tk // 5), "Q", "Bassa volatilità")))
+    out.append(("low_vol", weights_strategy(m, lambda i: best(-vol252, i, top), "Q", "Bassa volatilità")))
     out.append(("high52", weights_strategy(m, lambda i: best(hi52, i, top), "M", "Vicini al massimo a 52 settimane")))
     out.append(("reversal", weights_strategy(m, lambda i: best(-rev5, i, top), "W", "Inversione settimanale")))
-    out.append(("trend", weights_strategy(
-        m, lambda i: np.flatnonzero(np.isfinite(sma200[i]) & (close[i] > sma200[i])), "M", "Trend: sopra la media a 200 giorni")))
+    out.append(("trend", weights_strategy(m, basket_trend, "M", "Trend: sopra la media a 200 giorni")))
 
     # strategie "a posizioni" (10 posizioni da 1/10 del capitale)
     def dip_entries(dip):
