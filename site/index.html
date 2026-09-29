@@ -269,6 +269,18 @@
           <p class="muted small">Costi: commissioni del broker scelto, tasse sulle transazioni, cambio, scostamento dal prezzo e bollo 0,2% annuo. Tasse: 26% sui guadagni di ogni anno con zainetto fiscale di 4 anni; per le strategie «compra e tieni» solo alla vendita finale. I guadagni degli ETF sono redditi di capitale e non si compensano con le minusvalenze. Il costo annuo degli ETF (TER) non è incluso.</p>
         </div>
 
+        <div class="card" id="st-plans">
+          <div class="card-head"><h2>Scalable Capital: FREE o PRIME+?</h2><span class="muted small">PRIME+ costa 4,99 €/mese ma azzera le commissioni degli ordini da 250 €</span></div>
+          <form id="st-plans-form" class="st-controls" autocomplete="off" onsubmit="return false">
+            <label>Ordini al mese: <b id="st-plans-orders"></b><input type="range" name="orders" min="0" max="40" value="6"></label>
+            <label>Importo medio di un ordine: <b id="st-plans-amount"></b><input type="range" name="amount" min="50" max="5000" step="50" value="1000"></label>
+          </form>
+          <div id="st-plans-out"></div>
+          <h4>Con le strategie di questa pagina</h4>
+          <div class="table-wrap"><table id="st-plans-table" class="data"></table></div>
+          <p class="muted small" id="st-plans-note"></p>
+        </div>
+
         <div class="card">
           <div class="card-head"><h2>Le strategie spiegate</h2><span class="muted small">Tocca per aprire</span></div>
           <div id="st-cards"></div>

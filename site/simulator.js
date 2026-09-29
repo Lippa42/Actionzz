@@ -16,6 +16,7 @@ const currencyOf = (t) => NON_EUR[sfx(t)] || (EU_SUFFIX.includes(sfx(t)) ? "EUR"
 
 function simCommission(amount, s, market) {
   const f = s.fees[market] || s.fees.it;
+  if (f.free_from && amount >= f.free_from) return 0; // gratis sopra una soglia (es. Scalable PRIME+ da 250 €)
   let fee = f.fixed + (amount * f.pct) / 100;
   if (f.min > 0) fee = Math.max(fee, f.min);
   if (f.max > 0) fee = Math.min(fee, f.max);
@@ -24,7 +25,7 @@ function simCommission(amount, s, market) {
 
 function brokerSettings(b, base) {
   return { ...base, broker: b.id, fees: structuredClone(b.fees), fx_spread_pct: b.fx_spread_pct, slippage_pct: b.slippage_pct,
-    connectivity_fee: b.connectivity_fee || 0, regime: b.regime };
+    connectivity_fee: b.connectivity_fee || 0, monthly_fee: b.monthly_fee || 0, regime: b.regime };
 }
 
 const SIM_BASE = { transaction_taxes: true, capital_gains_tax_pct: 26, dividend_tax_pct: 26, stamp_duty_pct: 0.2 };
@@ -190,7 +191,7 @@ async function saveSimCosts(ev) {
   const s = S.sim.settings;
   const n = (x) => parseFloat(String(x).replace(",", ".")) || 0;
   ["it", "eu", "us"].forEach((m) => {
-    s.fees[m] = { fixed: n(f[`${m}_fixed`].value), pct: n(f[`${m}_pct`].value), min: n(f[`${m}_min`].value), max: n(f[`${m}_max`].value) };
+    s.fees[m] = { ...s.fees[m], fixed: n(f[`${m}_fixed`].value), pct: n(f[`${m}_pct`].value), min: n(f[`${m}_min`].value), max: n(f[`${m}_max`].value) };
   });
   s.fx_spread_pct = n(f.fx_spread_pct.value);
   s.slippage_pct = n(f.slippage_pct.value);
@@ -359,6 +360,7 @@ function renderBrokerTable() {
     { key: "it", label: "Italia", num: true, fmt: (b) => `${num(b.it)} €` },
     { key: "eu", label: "Europa", num: true, fmt: (b) => `${num(b.eu)} €` },
     { key: "us", label: "USA (con cambio)", num: true, fmt: (b) => `${num(b.us)} €` },
+    { key: "monthly_fee", label: "Canone", num: true, fmt: (b) => (b.monthly_fee ? `${num(b.monthly_fee)} €/mese` : "—") },
     { key: "regime", label: "Fisco", fmt: (b) => `<span class="tag">${b.regime}</span>` },
     { key: "use", label: "", nosort: true, fmt: (b) => (S.sim ? `<button class="btn small" data-broker="${esc(b.id)}"${b.id === current ? " disabled" : ""}>Usa</button>` : "") },
   ], rows, { sortKey: "avg" });

@@ -1,5 +1,5 @@
 {
-  "checked": "2026-09-27",
+  "checked": "2026-09-29",
   "note": "Tariffe per ordine su azioni, verificate sui siti dei broker e su comparatori a settembre 2026. I costi di cambio indicati come stima non sono pubblicati in modo esplicito: controlla sempre il foglio informativo del broker.",
   "brokers": [
     {
@@ -31,6 +31,22 @@
       "slippage_pct": 0.10,
       "connectivity_fee": 0,
       "sources": ["https://www.justetf.com/it/comparazione/perche-scalable-capital.html", "https://www.01net.it/scalable-capital-italia-iban-regime-amministrato/"]
+    },
+    {
+      "id": "scalable_prime",
+      "name": "Scalable Capital (PRIME+)",
+      "regime": "amministrato",
+      "summary": "Abbonamento 4,99 €/mese: ordini gratis da 250 € (sede EIX), 0,99 € sotto i 250 €, 1,99 € su gettex/Xetra.",
+      "fees": {
+        "it": {"fixed": 0.99, "pct": 0, "min": 0, "max": 0, "free_from": 250},
+        "eu": {"fixed": 0.99, "pct": 0, "min": 0, "max": 0, "free_from": 250},
+        "us": {"fixed": 0.99, "pct": 0, "min": 0, "max": 0, "free_from": 250}
+      },
+      "monthly_fee": 4.99,
+      "fx_spread_pct": 0,
+      "slippage_pct": 0.10,
+      "connectivity_fee": 0,
+      "sources": ["https://it.scalable.capital/costi-broker"]
     },
     {
       "id": "degiro",

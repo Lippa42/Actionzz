@@ -99,7 +99,7 @@ un investitore italiano:
 - **dividendi** accreditati allo stacco al netto della ritenuta estera (aliquote indicative) e del 26%;
 - **imposta di bollo** 0,2% annuo sul valore dei titoli, addebitata giorno per giorno.
 
-Il **confronto broker** (`site/brokers.json`, verificato a settembre 2026: Trade Republic, Scalable Capital,
+Il **confronto broker** (`site/brokers.json`, verificato a settembre 2026: Trade Republic, Scalable Capital FREE e PRIME+,
 DEGIRO, Interactive Brokers, Directa, Fineco) mostra il costo di un ordine da 2.000 € su ogni mercato: un clic su
 *Usa* applica quelle tariffe alla simulazione. Si possono anche impostare costi personalizzati.
 
@@ -115,6 +115,8 @@ La scheda **Strategie** usa i prezzi reali degli ultimi 5 anni dei titoli dell'u
   Il rendimento è mostrato al netto di commissioni, tasse sulle transazioni, cambio, bollo e 26% sulle plusvalenze
   con zainetto fiscale. Come farebbe un privato, le strategie sui singoli titoli ne tengono 10 (il paniere di riferimento 20)
   e scambiano solo i titoli che entrano o escono. Ogni strategia ha una scheda che spiega come funziona, cosa dicono gli studi e perché può fallire.
+- **Scalable Capital: FREE o PRIME+?** Con quanti ordini al mese, e di che importo, il canone di 4,99 €/mese si ripaga
+  (gli ordini da 250 € diventano gratis), e per quali strategie conviene.
 - **Consigli interattivi dalla ricerca**: costo del trading frequente, recupero dalle perdite, i giorni migliori persi,
   PAC o tutto subito, diversificazione, effetto disposizione, falsi positivi nei backtest, tasse italiane.
 

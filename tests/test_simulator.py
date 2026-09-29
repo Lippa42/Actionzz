@@ -40,6 +40,20 @@ def test_broker_catalog_and_markets():
     assert default_settings()["broker"] == "fineco_trading"
 
 
+def test_scalable_prime_free_orders_and_monthly_fee():
+    prime = broker_settings("scalable_prime")
+    assert commission(249, prime, "eu") == 0.99 and commission(250, prime, "eu") == 0 and commission(5_000, prime, "it") == 0
+    assert commission(1_000, broker_settings("scalable_free"), "eu") == 0.99
+    sim = sim_with([], broker="scalable_prime")
+    state, _ = run(sim, {})
+    assert state["cash"] == pytest.approx(10_000 - 4.99)
+    state, _ = run(sim, {}, state=state, now=NOW.replace(day=29))  # stesso mese: niente secondo addebito
+    assert state["cash"] == pytest.approx(10_000 - 4.99)
+    state, _ = run(sim, {}, state=state, now=datetime(2026, 10, 1, 11, 0, tzinfo=ROME))
+    assert state["cash"] == pytest.approx(10_000 - 2 * 4.99)
+    assert state["costs"]["commissions"] == pytest.approx(2 * 4.99)
+
+
 def test_buy_costs_italy_with_tobin_tax():
     q = buy_quote("ENEL.MI", 100, 10.0, 1.0, broker_settings("fineco_trading"))
     assert q["gross"] == pytest.approx(1000.5)  # +0,05% di scostamento

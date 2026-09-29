@@ -39,6 +39,7 @@ BASE_SETTINGS = {
     "fx_spread_pct": 0.10,  # costo del cambio per i titoli non in euro
     "slippage_pct": 0.05,  # scostamento dal prezzo visualizzato
     "connectivity_fee": 0.0,  # costo annuo per ogni borsa estera usata (es. DEGIRO)
+    "monthly_fee": 0.0,  # canone mensile dell'abbonamento (es. Scalable PRIME+)
     "regime": "amministrato",  # oppure "dichiarativo": tasse pagate l'anno dopo
     "transaction_taxes": True,  # Tobin tax, stamp duty & co.
     "capital_gains_tax_pct": 26.0,
@@ -61,7 +62,7 @@ def broker_settings(broker_id: str, base: dict | None = None) -> dict:
     if b is None:
         raise KeyError(broker_id)
     s.update(broker=b["id"], fees=b["fees"], fx_spread_pct=b["fx_spread_pct"], slippage_pct=b["slippage_pct"],
-             connectivity_fee=b.get("connectivity_fee", 0), regime=b["regime"])
+             connectivity_fee=b.get("connectivity_fee", 0), monthly_fee=b.get("monthly_fee", 0), regime=b["regime"])
     return s
 
 
@@ -195,6 +196,8 @@ def empty_state(epoch: str) -> dict:
 
 def commission(amount_eur: float, s: dict, market: str = "it") -> float:
     f = s["fees"].get(market) or s["fees"]["it"]
+    if f.get("free_from") and amount_eur >= f["free_from"]:
+        return 0.0  # ordini gratuiti sopra una soglia (es. Scalable PRIME+ da 250 €)
     fee = f["fixed"] + amount_eur * f["pct"] / 100
     if f["min"] > 0:
         fee = max(fee, f["min"])
@@ -252,6 +255,21 @@ def charge_connectivity(state: dict, ticker: str, s: dict, now: datetime) -> flo
     state["costs"]["commissions"] += fee
     _tx(state, type="fee", time=now.isoformat(timespec="seconds"), ticker=ticker,
         note=f"costo annuo di connessione alla borsa {suffix(ticker) or 'USA'}", total=-fee, cash_after=state["cash"])
+    return fee
+
+
+def charge_subscription(state: dict, s: dict, now: datetime) -> float:
+    """Canone mensile del piano, addebitato una volta al mese (es. Scalable PRIME+ 4,99 €)."""
+    fee = s.get("monthly_fee") or 0.0
+    month = now.strftime("%Y-%m")
+    paid = state.setdefault("subscription", [])
+    if fee <= 0 or month in paid or not state["deposited"]:
+        return 0.0
+    paid.append(month)
+    state["cash"] -= fee
+    state["costs"]["commissions"] += fee
+    _tx(state, type="fee", time=now.isoformat(timespec="seconds"), note=f"canone mensile {month}", total=-fee,
+        cash_after=state["cash"])
     return fee
 
 
@@ -371,6 +389,8 @@ def process(sim: dict, state: dict | None, quotes: dict[str, pd.DataFrame], rate
         state["deposited"] += float(d["amount"])
         _tx(state, type="deposit", time=now.isoformat(timespec="seconds"), total=float(d["amount"]),
             note=d.get("note", ""), cash_after=state["cash"])
+
+    charge_subscription(state, s, now)
 
     def bar_today(t):
         df = quotes.get(t)

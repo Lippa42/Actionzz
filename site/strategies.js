@@ -153,11 +153,11 @@ function sampleQuantile(q, u) {
   return i >= q.length - 1 ? q[q.length - 1] : q[i] + (q[i + 1] - q[i]) * (pos - i);
 }
 
-function monteCarlo(combo, amount, n, costs, sims = 3000) {
+function monteCarlo(combo, amount, n, costs, plan = 0, sims = 3000) {
   const totals = new Float64Array(sims);
   let losses = 0;
   for (let k = 0; k < sims; k++) {
-    let sum = 0;
+    let sum = -plan;
     for (let j = 0; j < n; j++) sum += amount * sampleQuantile(combo.q, Math.random()) / 100 - costs.total;
     const tax = sum > 0 ? sum * ST_TAX : 0;
     totals[k] = sum - tax;
@@ -191,9 +191,10 @@ function renderCalculator() {
   const c = perTradeCosts(amount, info, br.s);
   const costPct = c.total / amount * 100;
   // scenario "ideale": ogni operazione chiude all'obiettivo
-  const idealGross = n * (amount * target / 100 - c.total);
+  const plan = (br.s.monthly_fee || 0) * 12 * years; // canone per tutto il periodo
+  const idealGross = n * (amount * target / 100 - c.total) - plan;
   const ideal = idealGross - Math.max(0, idealGross) * ST_TAX;
-  const mc = monteCarlo(combo, amount, n, c);
+  const mc = monteCarlo(combo, amount, n, c, plan);
   const expectedTrade = amount * combo.mean / 100 - c.total;
   const concurrent = n * combo.days / (252 * years);
   const capital = Math.max(1, Math.ceil(concurrent)) * amount;
@@ -232,6 +233,7 @@ function renderCalculator() {
           <div><span>Scostamento dal prezzo</span><b>${num(c.slip)} €</b></div>
           <div class="tot"><span>Totale: ${num(costPct, 2)}% dell'importo</span><b>${num(c.total)} €</b></div>
         </div>
+        ${plan ? `<div class="est"><div><span>Canone ${esc(br.b.name)} per ${num(years, 1)} ${years === 1 ? "anno" : "anni"}</span><b>${num(plan)} €</b></div></div>` : ""}
         <ul class="facts">
           <li>Il titolo deve salire di almeno <b>${num(breakeven, 2)}%</b> solo per ripagare i costi; poi il 26% dei guadagni va in tasse.</li>
           <li>Occasioni storiche con un calo del ${dip}%: circa <b>${num(info.per_year, 0)} l'anno</b> (tra tutti i titoli): ${n} operazioni in ${num(years, 1)} ${years === 1 ? "anno" : "anni"} ${n <= feasible ? "sono realistiche" : "sono più di quelle disponibili"}.</li>
@@ -322,7 +324,8 @@ function netStrategy(id, st, capital, br) {
     const fx = y.noneur * avg * s.fx_spread_pct / 100;
     const slip = (y.buy + y.sell) * avg * s.slippage_pct / 100;
     const stamp = avg * y.invested * ST_STAMP * (y.days / 252);
-    const c = comm + ftt + fx + slip + stamp;
+    const plan = (s.monthly_fee || 0) * 12 * (y.days / 252); // canone dell'abbonamento
+    const c = comm + ftt + fx + slip + stamp + plan;
     let pnl = start * r - c;
     let tax = 0;
     if (!endTax) {
@@ -446,6 +449,61 @@ function renderStrategyCards() {
     </details>`).join("")).join("");
 }
 
+/* ------------------------------------------------ Scalable FREE o PRIME+? */
+
+function stPlan(id) {
+  const b = ((S.brokers && S.brokers.brokers) || []).find((x) => x.id === id);
+  return b ? { b, s: brokerSettings(b, SIM_BASE) } : null;
+}
+
+function renderPlans() {
+  const free = stPlan("scalable_free"), prime = stPlan("scalable_prime");
+  const box = $("#st-plans");
+  if (!free || !prime) {
+    box.hidden = true;
+    return;
+  }
+  box.hidden = false;
+  const f = $("#st-plans-form").elements;
+  const perMonth = +f.orders.value, amount = +f.amount.value;
+  $("#st-plans-orders").textContent = perMonth;
+  $("#st-plans-amount").textContent = eur0(amount);
+  const orders = perMonth * 12;
+  const fee = prime.s.monthly_fee * 12;
+  const costFree = orders * simCommission(amount, free.s, "eu");
+  const costPrime = fee + orders * simCommission(amount, prime.s, "eu");
+  const saving = costFree - costPrime;
+  const perOrder = simCommission(amount, free.s, "eu") - simCommission(amount, prime.s, "eu");
+  const breakEven = perOrder > 0 ? Math.ceil(fee / perOrder) : null;
+  const max = Math.max(costFree, costPrime, 1);
+  $("#st-plans-out").innerHTML = `
+    <div class="plan-bars">
+      <div><span>FREE</span><div class="pb"><i style="width:${costFree / max * 100}%"></i></div><b>${eur0(costFree)}/anno</b></div>
+      <div><span>PRIME+</span><div class="pb"><i class="p2" style="width:${costPrime / max * 100}%"></i></div><b>${eur0(costPrime)}/anno</b></div>
+    </div>
+    <p>${amount < prime.b.fees.eu.free_from
+      ? `Con ordini sotto i ${num(prime.b.fees.eu.free_from, 0)} € PRIME+ costa 0,99 € a ordine come FREE, più il canone: <b class="neg">non conviene mai</b>.`
+      : saving > 0
+        ? `Con ${perMonth} ordini al mese PRIME+ ti fa risparmiare <b class="pos">${eur0(saving)} l'anno</b>.`
+        : `Con ${perMonth} ordini al mese PRIME+ ti costa <b class="neg">${eur0(-saving)} in più l'anno</b>.`}
+      ${breakEven ? ` Conviene da <b>${breakEven} ordini l'anno</b> (circa ${num(breakEven / 12, 0)} al mese) da almeno ${num(prime.b.fees.eu.free_from, 0)} €.` : ""}</p>`;
+
+  const cap = ST.capital;
+  const rows = Object.entries(ST.data.strategies).map(([id, st]) => {
+    const a = netStrategy(id, st, cap, free), b = netStrategy(id, st, cap, prime);
+    return { id, name: st.name, orders: st.orders_per_year, order: a.order, free: a, prime: b, diff: b.final - a.final };
+  });
+  table($("#st-plans-table"), "piani", [
+    { key: "name", label: "Strategia", fmt: (r) => `<b>${esc(r.name)}</b>` },
+    { key: "orders", label: "Ordini/anno", num: true, fmt: (r) => `${num(r.orders, 0)}${r.order ? `<br><span class="muted small">da ~${eur0(r.order)}</span>` : ""}` },
+    { key: "fnet", label: "Netto con FREE", num: true, sort: (r) => r.free.cagr, fmt: (r) => (r.free.wiped ? `<span class="neg">azzerato</span>` : `<span class="${cls(r.free.cagr)}">${pct(r.free.cagr, 1)}</span>`) },
+    { key: "pnet", label: "Netto con PRIME+", num: true, sort: (r) => r.prime.cagr, fmt: (r) => (r.prime.wiped ? `<span class="neg">azzerato</span>` : `<span class="${cls(r.prime.cagr)}">${pct(r.prime.cagr, 1)}</span>`) },
+    { key: "diff", label: `Differenza su ${eur0(cap)}`, num: true, fmt: (r) => `<b class="${cls(r.diff)}">${eurS0(r.diff)}</b><br><span class="small ${r.diff > 0 ? "pos" : "muted"}">${r.diff > 0 ? "conviene PRIME+" : "conviene FREE"}</span>` },
+  ], rows, { sortKey: "diff", sortDir: -1 });
+  const wins = rows.filter((r) => r.diff > 0).length;
+  $("#st-plans-note").innerHTML = `Con ${eur0(cap)} di capitale PRIME+ conviene in <b>${wins} strategie su ${rows.length}</b>: quelle con molti ordini da almeno 250 €. Chi compra e tiene o usa un ETF paga ${eur0(fee)} l'anno di canone per niente. Gli interessi del 2,60% sulla liquidità e il PAC gratuito sono uguali nei due piani, quindi non cambiano la scelta. Le tariffe valgono sulla sede European Investor Exchange; su gettex e Xetra si pagano 1,99 € a ordine con entrambi i piani. Tariffe da <a href="https://it.scalable.capital/costi-broker" target="_blank" rel="noopener">it.scalable.capital/costi-broker</a>.`;
+}
+
 /* ------------------------------------------------------ consigli interattivi */
 
 function renderTips() {
@@ -543,6 +601,7 @@ function renderStrategies() {
   }
   renderCalculator();
   renderComparison();
+  renderPlans();
   renderStrategyCards();
   renderTips();
 }
@@ -563,8 +622,10 @@ function bindStrategies() {
     stSave();
     renderCalculator();
     renderComparison();
+    renderPlans();
     renderTips();
   });
+  $("#st-plans-form").addEventListener("input", renderPlans);
   $("#st-table").addEventListener("change", (ev) => {
     const id = ev.target.dataset && ev.target.dataset.st;
     if (!id) return;
