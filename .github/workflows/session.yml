@@ -2,9 +2,10 @@ name: Sessione di borsa
 
 on:
   schedule:
-    # Un avvio all'ora nei giorni feriali, come rete di sicurezza: se una sessione è già attiva, il nuovo
-    # avvio aspetta in coda e prende il testimone quando la precedente chiude (limite di 6 ore di GitHub).
-    - cron: "50 5-16 * * 1-5"
+    # Solo rete di sicurezza: la sessione si riavvia da sola ogni ~5h40m (vedi scripts/session.sh).
+    # Se la catena si interrompesse, questo avvio orario (che GitHub può ritardare) la fa ripartire;
+    # se una sessione è già attiva resta in coda e prende il testimone quando quella chiude.
+    - cron: "17 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -40,7 +41,7 @@ jobs:
           git config user.name "actionzz-bot"
           git config user.email "actionzz-bot@users.noreply.github.com"
 
-      - name: Sessione (controllo ogni 5 minuti fino al riepilogo serale)
+      - name: Sessione continua (borsa ogni 5 minuti, comandi Telegram sempre)
         run: scripts/session.sh
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}

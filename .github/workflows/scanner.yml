@@ -1,10 +1,8 @@
 name: Scanner
 
 on:
-  schedule:
-    # Fuori orario (sere e weekend) legge i comandi Telegram ogni 2 ore. In orario di borsa lavora
-    # il workflow "Sessione di borsa": questo resta in coda dietro di lui e non si sovrappone.
-    - cron: "37 */2 * * *"
+  # Solo a mano: il lavoro continuo lo fa "Sessione di borsa". Uno scanner pianificato nello stesso gruppo
+  # di concorrenza potrebbe sostituire in coda la sessione successiva e spezzare la catena.
   workflow_dispatch:
 
 permissions:
