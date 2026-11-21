@@ -1,0 +1,4988 @@
+{
+ "time": "2026-11-20T17:55:00+01:00",
+ "day": "2026-11-20",
+ "market_pct": -1.259,
+ "monitored": 500,
+ "quotes": [
+  {
+   "ticker": "G24.DE",
+   "price": 80.75,
+   "prev_close": 87.8,
+   "pct": -8.03,
+   "low_pct": -8.599,
+   "rel": -6.771,
+   "vol_ratio": 1.63,
+   "dividend": null
+  },
+  {
+   "ticker": "ASHM.L",
+   "price": 179.9,
+   "prev_close": 193.2,
+   "pct": -6.884,
+   "low_pct": -6.884,
+   "rel": -5.626,
+   "vol_ratio": 0.84,
+   "dividend": null
+  },
+  {
+   "ticker": "HLMA.L",
+   "price": 3256.0,
+   "prev_close": 3494.0,
+   "pct": -6.812,
+   "low_pct": -6.812,
+   "rel": -5.553,
+   "vol_ratio": 1.13,
+   "dividend": null
+  },
+  {
+   "ticker": "METSO.HE",
+   "price": 14.58,
+   "prev_close": 15.59,
+   "pct": -6.479,
+   "low_pct": -6.479,
+   "rel": -5.22,
+   "vol_ratio": 1.71,
+   "dividend": null
+  },
+  {
+   "ticker": "PRY.MI",
+   "price": 100.5,
+   "prev_close": 107.25,
+   "pct": -6.294,
+   "low_pct": -6.89,
+   "rel": -5.035,
+   "vol_ratio": 1.51,
+   "dividend": null
+  },
+  {
+   "ticker": "WRT1V.HE",
+   "price": 23.58,
+   "prev_close": 25.09,
+   "pct": -6.018,
+   "low_pct": -6.098,
+   "rel": -4.76,
+   "vol_ratio": 1.36,
+   "dividend": null
+  },
+  {
+   "ticker": "VCT.L",
+   "price": 861.0,
+   "prev_close": 913.0,
+   "pct": -5.696,
+   "low_pct": -5.805,
+   "rel": -4.437,
+   "vol_ratio": 2.08,
+   "dividend": null
+  },
+  {
+   "ticker": "STAN.L",
+   "price": 1915.5,
+   "prev_close": 2029.0,
+   "pct": -5.594,
+   "low_pct": -5.594,
+   "rel": -4.335,
+   "vol_ratio": 1.32,
+   "dividend": null
+  },
+  {
+   "ticker": "RSW.L",
+   "price": 4492.0,
+   "prev_close": 4740.0,
+   "pct": -5.232,
+   "low_pct": -6.414,
+   "rel": -3.974,
+   "vol_ratio": 0.89,
+   "dividend": null
+  },
+  {
+   "ticker": "BAB.L",
+   "price": 1011.5,
+   "prev_close": 1066.5,
+   "pct": -5.157,
+   "low_pct": -5.157,
+   "rel": -3.899,
+   "vol_ratio": 1.67,
+   "dividend": null
+  },
+  {
+   "ticker": "CCC.L",
+   "price": 4492.0,
+   "prev_close": 4734.0,
+   "pct": -5.112,
+   "low_pct": -5.703,
+   "rel": -3.853,
+   "vol_ratio": 0.52,
+   "dividend": null
+  },
+  {
+   "ticker": "OUT1V.HE",
+   "price": 3.286,
+   "prev_close": 3.46,
+   "pct": -5.029,
+   "low_pct": -5.376,
+   "rel": -3.77,
+   "vol_ratio": 1.19,
+   "dividend": null
+  },
+  {
+   "ticker": "SKF-B.ST",
+   "price": 261.2,
+   "prev_close": 274.7,
+   "pct": -4.914,
+   "low_pct": -4.914,
+   "rel": -3.656,
+   "vol_ratio": 1.76,
+   "dividend": null
+  },
+  {
+   "ticker": "KLR.L",
+   "price": 2812.0,
+   "prev_close": 2956.0,
+   "pct": -4.871,
+   "low_pct": -5.142,
+   "rel": -3.613,
+   "vol_ratio": 1.0,
+   "dividend": null
+  },
+  {
+   "ticker": "AALB.AS",
+   "price": 38.5,
+   "prev_close": 40.4,
+   "pct": -4.703,
+   "low_pct": -4.752,
+   "rel": -3.444,
+   "vol_ratio": 1.23,
+   "dividend": null
+  },
+  {
+   "ticker": "LR.PA",
+   "price": 127.4,
+   "prev_close": 133.6,
+   "pct": -4.641,
+   "low_pct": -4.865,
+   "rel": -3.382,
+   "vol_ratio": 1.03,
+   "dividend": null
+  },
+  {
+   "ticker": "IHP.L",
+   "price": 350.5,
+   "prev_close": 367.5,
+   "pct": -4.626,
+   "low_pct": -5.306,
+   "rel": -3.367,
+   "vol_ratio": 1.05,
+   "dividend": null
+  },
+  {
+   "ticker": "CFR.SW",
+   "price": 169.0,
+   "prev_close": 177.15,
+   "pct": -4.601,
+   "low_pct": -5.645,
+   "rel": -3.342,
+   "vol_ratio": 1.36,
+   "dividend": null
+  },
+  {
+   "ticker": "SIE.DE",
+   "price": 254.65,
+   "prev_close": 266.9,
+   "pct": -4.59,
+   "low_pct": -4.646,
+   "rel": -3.331,
+   "vol_ratio": 1.39,
+   "dividend": null
+  },
+  {
+   "ticker": "ROVI.MC",
+   "price": 63.1,
+   "prev_close": 66.1,
+   "pct": -4.539,
+   "low_pct": -4.992,
+   "rel": -3.28,
+   "vol_ratio": 1.52,
+   "dividend": null
+  },
+  {
+   "ticker": "ACS.MC",
+   "price": 82.8,
+   "prev_close": 86.7,
+   "pct": -4.498,
+   "low_pct": -4.498,
+   "rel": -3.24,
+   "vol_ratio": 1.71,
+   "dividend": null
+  },
+  {
+   "ticker": "IMCD.AS",
+   "price": 101.6,
+   "prev_close": 106.35,
+   "pct": -4.466,
+   "low_pct": -4.466,
+   "rel": -3.208,
+   "vol_ratio": 1.62,
+   "dividend": null
+  },
+  {
+   "ticker": "ATCO-A.ST",
+   "price": 181.95,
+   "prev_close": 190.25,
+   "pct": -4.363,
+   "low_pct": -4.836,
+   "rel": -3.104,
+   "vol_ratio": 1.48,
+   "dividend": null
+  },
+  {
+   "ticker": "TEN.MI",
+   "price": 25.4,
+   "prev_close": 26.54,
+   "pct": -4.295,
+   "low_pct": -4.333,
+   "rel": -3.037,
+   "vol_ratio": 0.94,
+   "dividend": null
+  },
+  {
+   "ticker": "ACX.MC",
+   "price": 14.55,
+   "prev_close": 15.2,
+   "pct": -4.276,
+   "low_pct": -4.474,
+   "rel": -3.018,
+   "vol_ratio": 1.0,
+   "dividend": null
+  },
+  {
+   "ticker": "VLK.AS",
+   "price": 60.1,
+   "prev_close": 62.75,
+   "pct": -4.223,
+   "low_pct": -4.382,
+   "rel": -2.965,
+   "vol_ratio": 1.34,
+   "dividend": null
+  },
+  {
+   "ticker": "ABBN.SW",
+   "price": 65.34,
+   "prev_close": 68.22,
+   "pct": -4.222,
+   "low_pct": -4.749,
+   "rel": -2.963,
+   "vol_ratio": 1.29,
+   "dividend": null
+  },
+  {
+   "ticker": "ADS.DE",
+   "price": 165.0,
+   "prev_close": 172.2,
+   "pct": -4.181,
+   "low_pct": -4.181,
+   "rel": -2.923,
+   "vol_ratio": 1.43,
+   "dividend": null
+  },
+  {
+   "ticker": "BEAN.SW",
+   "price": 735.0,
+   "prev_close": 767.0,
+   "pct": -4.172,
+   "low_pct": -4.172,
+   "rel": -2.914,
+   "vol_ratio": 0.98,
+   "dividend": null
+  },
+  {
+   "ticker": "MONC.MI",
+   "price": 39.49,
+   "prev_close": 41.2,
+   "pct": -4.15,
+   "low_pct": -4.466,
+   "rel": -2.892,
+   "vol_ratio": 1.4,
+   "dividend": null
+  },
+  {
+   "ticker": "AIR.PA",
+   "price": 189.96,
+   "prev_close": 198.14,
+   "pct": -4.128,
+   "low_pct": -4.128,
+   "rel": -2.87,
+   "vol_ratio": 1.26,
+   "dividend": null
+  },
+  {
+   "ticker": "QQ.L",
+   "price": 460.4,
+   "prev_close": 480.2,
+   "pct": -4.123,
+   "low_pct": -4.706,
+   "rel": -2.865,
+   "vol_ratio": 1.12,
+   "dividend": null
+  },
+  {
+   "ticker": "BCP.LS",
+   "price": 1.053,
+   "prev_close": 1.0975,
+   "pct": -4.055,
+   "low_pct": -4.055,
+   "rel": -2.796,
+   "vol_ratio": 1.37,
+   "dividend": null
+  },
+  {
+   "ticker": "FBK.MI",
+   "price": 21.23,
+   "prev_close": 22.12,
+   "pct": -4.024,
+   "low_pct": -4.159,
+   "rel": -2.765,
+   "vol_ratio": 1.11,
+   "dividend": null
+  },
+  {
+   "ticker": "FAN.L",
+   "price": 597.0,
+   "prev_close": 622.0,
+   "pct": -4.019,
+   "low_pct": -4.341,
+   "rel": -2.761,
+   "vol_ratio": 1.24,
+   "dividend": null
+  },
+  {
+   "ticker": "HEXA-B.ST",
+   "price": 99.52,
+   "prev_close": 103.65,
+   "pct": -3.985,
+   "low_pct": -4.39,
+   "rel": -2.726,
+   "vol_ratio": 1.92,
+   "dividend": null
+  },
+  {
+   "ticker": "DPLM.L",
+   "price": 6605.0,
+   "prev_close": 6875.0,
+   "pct": -3.927,
+   "low_pct": -5.053,
+   "rel": -2.669,
+   "vol_ratio": 1.19,
+   "dividend": null
+  },
+  {
+   "ticker": "RXL.PA",
+   "price": 32.93,
+   "prev_close": 34.26,
+   "pct": -3.882,
+   "low_pct": -4.32,
+   "rel": -2.624,
+   "vol_ratio": 1.07,
+   "dividend": null
+  },
+  {
+   "ticker": "BAER.SW",
+   "price": 65.38,
+   "prev_close": 68.0,
+   "pct": -3.853,
+   "low_pct": -3.882,
+   "rel": -2.594,
+   "vol_ratio": 1.61,
+   "dividend": null
+  },
+  {
+   "ticker": "N91.L",
+   "price": 162.6,
+   "prev_close": 169.0,
+   "pct": -3.787,
+   "low_pct": -4.201,
+   "rel": -2.528,
+   "vol_ratio": 1.81,
+   "dividend": null
+  },
+  {
+   "ticker": "PSH.L",
+   "price": 3710.0,
+   "prev_close": 3856.0,
+   "pct": -3.786,
+   "low_pct": -3.786,
+   "rel": -2.528,
+   "vol_ratio": 0.98,
+   "dividend": null
+  },
+  {
+   "ticker": "VOE.VI",
+   "price": 32.56,
+   "prev_close": 33.84,
+   "pct": -3.783,
+   "low_pct": -4.196,
+   "rel": -2.524,
+   "vol_ratio": 2.06,
+   "dividend": null
+  },
+  {
+   "ticker": "SBMO.AS",
+   "price": 31.78,
+   "prev_close": 33.02,
+   "pct": -3.755,
+   "low_pct": -3.755,
+   "rel": -2.497,
+   "vol_ratio": 1.45,
+   "dividend": null
+  },
+  {
+   "ticker": "UBSG.SW",
+   "price": 36.97,
+   "prev_close": 38.41,
+   "pct": -3.749,
+   "low_pct": -3.957,
+   "rel": -2.49,
+   "vol_ratio": 1.4,
+   "dividend": null
+  },
+  {
+   "ticker": "BC.MI",
+   "price": 86.14,
+   "prev_close": 89.48,
+   "pct": -3.733,
+   "low_pct": -4.604,
+   "rel": -2.474,
+   "vol_ratio": 0.91,
+   "dividend": null
+  },
+  {
+   "ticker": "SU.PA",
+   "price": 226.55,
+   "prev_close": 235.25,
+   "pct": -3.698,
+   "low_pct": -4.081,
+   "rel": -2.44,
+   "vol_ratio": 1.17,
+   "dividend": null
+  },
+  {
+   "ticker": "GLE.PA",
+   "price": 61.74,
+   "prev_close": 64.11,
+   "pct": -3.697,
+   "low_pct": -3.697,
+   "rel": -2.438,
+   "vol_ratio": 1.31,
+   "dividend": null
+  },
+  {
+   "ticker": "ABB.ST",
+   "price": 796.0,
+   "prev_close": 826.4,
+   "pct": -3.679,
+   "low_pct": -4.284,
+   "rel": -2.42,
+   "vol_ratio": 1.26,
+   "dividend": null
+  },
+  {
+   "ticker": "RMS.PA",
+   "price": 1225.5,
+   "prev_close": 1272.0,
+   "pct": -3.656,
+   "low_pct": -4.638,
+   "rel": -2.397,
+   "vol_ratio": 1.45,
+   "dividend": null
+  },
+  {
+   "ticker": "SAND.ST",
+   "price": 324.3,
+   "prev_close": 336.6,
+   "pct": -3.654,
+   "low_pct": -4.159,
+   "rel": -2.396,
+   "vol_ratio": 1.97,
+   "dividend": null
+  },
+  {
+   "ticker": "DSY.PA",
+   "price": 22.25,
+   "prev_close": 23.09,
+   "pct": -3.638,
+   "low_pct": -3.768,
+   "rel": -2.379,
+   "vol_ratio": 2.12,
+   "dividend": null
+  },
+  {
+   "ticker": "VIV.PA",
+   "price": 1.541,
+   "prev_close": 1.599,
+   "pct": -3.627,
+   "low_pct": -3.627,
+   "rel": -2.369,
+   "vol_ratio": 0.98,
+   "dividend": null
+  },
+  {
+   "ticker": "HSBA.L",
+   "price": 1234.0,
+   "prev_close": 1280.4,
+   "pct": -3.624,
+   "low_pct": -3.624,
+   "rel": -2.365,
+   "vol_ratio": 0.72,
+   "dividend": null
+  },
+  {
+   "ticker": "ALFA.ST",
+   "price": 510.0,
+   "prev_close": 529.0,
+   "pct": -3.592,
+   "low_pct": -3.743,
+   "rel": -2.333,
+   "vol_ratio": 1.25,
+   "dividend": null
+  },
+  {
+   "ticker": "PGHN.SW",
+   "price": 614.0,
+   "prev_close": 636.8,
+   "pct": -3.58,
+   "low_pct": -3.706,
+   "rel": -2.322,
+   "vol_ratio": 1.31,
+   "dividend": null
+  },
+  {
+   "ticker": "INGA.AS",
+   "price": 27.195,
+   "prev_close": 28.2,
+   "pct": -3.564,
+   "low_pct": -3.67,
+   "rel": -2.305,
+   "vol_ratio": 1.31,
+   "dividend": null
+  },
+  {
+   "ticker": "ANA.MC",
+   "price": 184.7,
+   "prev_close": 191.5,
+   "pct": -3.551,
+   "low_pct": -3.603,
+   "rel": -2.292,
+   "vol_ratio": 1.41,
+   "dividend": null
+  },
+  {
+   "ticker": "ANE.MC",
+   "price": 18.69,
+   "prev_close": 19.37,
+   "pct": -3.511,
+   "low_pct": -3.511,
+   "rel": -2.252,
+   "vol_ratio": 0.96,
+   "dividend": null
+  },
+  {
+   "ticker": "LOGN.SW",
+   "price": 82.48,
+   "prev_close": 85.48,
+   "pct": -3.51,
+   "low_pct": -3.51,
+   "rel": -2.251,
+   "vol_ratio": 0.9,
+   "dividend": null
+  },
+  {
+   "ticker": "TWEKA.AS",
+   "price": 44.1,
+   "prev_close": 45.7,
+   "pct": -3.501,
+   "low_pct": -4.814,
+   "rel": -2.243,
+   "vol_ratio": 2.39,
+   "dividend": null
+  },
+  {
+   "ticker": "KENDR.AS",
+   "price": 16.58,
+   "prev_close": 17.18,
+   "pct": -3.492,
+   "low_pct": -4.191,
+   "rel": -2.234,
+   "vol_ratio": 1.35,
+   "dividend": null
+  },
+  {
+   "ticker": "GF.SW",
+   "price": 55.95,
+   "prev_close": 57.95,
+   "pct": -3.451,
+   "low_pct": -3.796,
+   "rel": -2.193,
+   "vol_ratio": 1.13,
+   "dividend": null
+  },
+  {
+   "ticker": "MTX.DE",
+   "price": 333.4,
+   "prev_close": 345.3,
+   "pct": -3.446,
+   "low_pct": -3.446,
+   "rel": -2.188,
+   "vol_ratio": 0.91,
+   "dividend": null
+  },
+  {
+   "ticker": "FRA.DE",
+   "price": 63.35,
+   "prev_close": 65.6,
+   "pct": -3.43,
+   "low_pct": -3.735,
+   "rel": -2.171,
+   "vol_ratio": 2.3,
+   "dividend": null
+  },
+  {
+   "ticker": "HAS.L",
+   "price": 73.5,
+   "prev_close": 76.1,
+   "pct": -3.417,
+   "low_pct": -4.074,
+   "rel": -2.158,
+   "vol_ratio": 0.83,
+   "dividend": null
+  },
+  {
+   "ticker": "BMED.MI",
+   "price": 21.5,
+   "prev_close": 22.25,
+   "pct": -3.371,
+   "low_pct": -3.685,
+   "rel": -2.112,
+   "vol_ratio": 1.39,
+   "dividend": null
+  },
+  {
+   "ticker": "IDR.MC",
+   "price": 49.67,
+   "prev_close": 51.4,
+   "pct": -3.366,
+   "low_pct": -3.774,
+   "rel": -2.107,
+   "vol_ratio": 0.99,
+   "dividend": null
+  },
+  {
+   "ticker": "BZU.MI",
+   "price": 42.22,
+   "prev_close": 43.69,
+   "pct": -3.365,
+   "low_pct": -3.41,
+   "rel": -2.106,
+   "vol_ratio": 0.87,
+   "dividend": null
+  },
+  {
+   "ticker": "BBVA.MC",
+   "price": 21.83,
+   "prev_close": 22.59,
+   "pct": -3.364,
+   "low_pct": -3.409,
+   "rel": -2.106,
+   "vol_ratio": 1.44,
+   "dividend": null
+  },
+  {
+   "ticker": "KBC.BR",
+   "price": 108.05,
+   "prev_close": 111.8,
+   "pct": -3.354,
+   "low_pct": -3.354,
+   "rel": -2.096,
+   "vol_ratio": 1.02,
+   "dividend": null
+  },
+  {
+   "ticker": "ICG.L",
+   "price": 1758.0,
+   "prev_close": 1819.0,
+   "pct": -3.353,
+   "low_pct": -3.518,
+   "rel": -2.095,
+   "vol_ratio": 0.61,
+   "dividend": null
+  },
+  {
+   "ticker": "SMIN.L",
+   "price": 2511.0,
+   "prev_close": 2598.0,
+   "pct": -3.349,
+   "low_pct": -3.349,
+   "rel": -2.09,
+   "vol_ratio": 1.01,
+   "dividend": null
+  },
+  {
+   "ticker": "ABDN.L",
+   "price": 213.8,
+   "prev_close": 221.2,
+   "pct": -3.345,
+   "low_pct": -3.436,
+   "rel": -2.087,
+   "vol_ratio": 1.19,
+   "dividend": null
+  },
+  {
+   "ticker": "BARC.L",
+   "price": 397.25,
+   "prev_close": 410.95,
+   "pct": -3.334,
+   "low_pct": -3.334,
+   "rel": -2.075,
+   "vol_ratio": 0.58,
+   "dividend": null
+  },
+  {
+   "ticker": "HILS.L",
+   "price": 2760.0,
+   "prev_close": 2855.0,
+   "pct": -3.327,
+   "low_pct": -4.553,
+   "rel": -2.069,
+   "vol_ratio": 1.09,
+   "dividend": null
+  },
+  {
+   "ticker": "QLT.L",
+   "price": 181.2,
+   "prev_close": 187.4,
+   "pct": -3.308,
+   "low_pct": -3.575,
+   "rel": -2.05,
+   "vol_ratio": 0.64,
+   "dividend": null
+  },
+  {
+   "ticker": "PAH3.DE",
+   "price": 22.28,
+   "prev_close": 23.04,
+   "pct": -3.299,
+   "low_pct": -3.299,
+   "rel": -2.04,
+   "vol_ratio": 1.65,
+   "dividend": null
+  },
+  {
+   "ticker": "AKRBP.OL",
+   "price": 307.9,
+   "prev_close": 318.4,
+   "pct": -3.298,
+   "low_pct": -3.455,
+   "rel": -2.039,
+   "vol_ratio": 0.86,
+   "dividend": null
+  },
+  {
+   "ticker": "ACKB.BR",
+   "price": 258.2,
+   "prev_close": 267.0,
+   "pct": -3.296,
+   "low_pct": -3.296,
+   "rel": -2.037,
+   "vol_ratio": 1.15,
+   "dividend": null
+  },
+  {
+   "ticker": "MGAM.L",
+   "price": 255.0,
+   "prev_close": 263.5,
+   "pct": -3.226,
+   "low_pct": -4.364,
+   "rel": -1.967,
+   "vol_ratio": 1.19,
+   "dividend": null
+  },
+  {
+   "ticker": "BKT.MC",
+   "price": 13.68,
+   "prev_close": 14.135,
+   "pct": -3.219,
+   "low_pct": -3.36,
+   "rel": -1.96,
+   "vol_ratio": 1.26,
+   "dividend": null
+  },
+  {
+   "ticker": "ABN.AS",
+   "price": 38.81,
+   "prev_close": 40.1,
+   "pct": -3.217,
+   "low_pct": -3.292,
+   "rel": -1.958,
+   "vol_ratio": 1.29,
+   "dividend": null
+  },
+  {
+   "ticker": "XPS.L",
+   "price": 331.0,
+   "prev_close": 342.0,
+   "pct": -3.216,
+   "low_pct": -4.386,
+   "rel": -1.958,
+   "vol_ratio": 0.71,
+   "dividend": null
+  },
+  {
+   "ticker": "DHL.DE",
+   "price": 57.1,
+   "prev_close": 58.98,
+   "pct": -3.188,
+   "low_pct": -3.594,
+   "rel": -1.929,
+   "vol_ratio": 1.37,
+   "dividend": null
+  },
+  {
+   "ticker": "ERIC-B.ST",
+   "price": 101.7,
+   "prev_close": 105.0,
+   "pct": -3.143,
+   "low_pct": -3.381,
+   "rel": -1.884,
+   "vol_ratio": 1.18,
+   "dividend": null
+  },
+  {
+   "ticker": "OERL.SW",
+   "price": 4.79,
+   "prev_close": 4.945,
+   "pct": -3.134,
+   "low_pct": -3.337,
+   "rel": -1.876,
+   "vol_ratio": 1.01,
+   "dividend": null
+  },
+  {
+   "ticker": "DSV.CO",
+   "price": 1375.5,
+   "prev_close": 1420.0,
+   "pct": -3.134,
+   "low_pct": -3.592,
+   "rel": -1.875,
+   "vol_ratio": 1.32,
+   "dividend": null
+  },
+  {
+   "ticker": "KIE.L",
+   "price": 303.0,
+   "prev_close": 312.8,
+   "pct": -3.133,
+   "low_pct": -3.9,
+   "rel": -1.874,
+   "vol_ratio": 0.85,
+   "dividend": null
+  },
+  {
+   "ticker": "VOW3.DE",
+   "price": 62.62,
+   "prev_close": 64.64,
+   "pct": -3.125,
+   "low_pct": -3.125,
+   "rel": -1.866,
+   "vol_ratio": 1.59,
+   "dividend": null
+  },
+  {
+   "ticker": "VCT.PA",
+   "price": 62.9,
+   "prev_close": 64.9,
+   "pct": -3.082,
+   "low_pct": -3.082,
+   "rel": -1.823,
+   "vol_ratio": 1.39,
+   "dividend": null
+  },
+  {
+   "ticker": "ADDT-B.ST",
+   "price": 314.6,
+   "prev_close": 324.6,
+   "pct": -3.081,
+   "low_pct": -3.758,
+   "rel": -1.822,
+   "vol_ratio": 1.66,
+   "dividend": null
+  },
+  {
+   "ticker": "UHR.SW",
+   "price": 188.1,
+   "prev_close": 194.05,
+   "pct": -3.066,
+   "low_pct": -3.195,
+   "rel": -1.808,
+   "vol_ratio": 0.75,
+   "dividend": null
+  },
+  {
+   "ticker": "BAMI.MI",
+   "price": 14.13,
+   "prev_close": 14.57,
+   "pct": -3.02,
+   "low_pct": -3.157,
+   "rel": -1.761,
+   "vol_ratio": 1.04,
+   "dividend": null
+  },
+  {
+   "ticker": "IMI.L",
+   "price": 2780.0,
+   "prev_close": 2866.0,
+   "pct": -3.001,
+   "low_pct": -3.001,
+   "rel": -1.742,
+   "vol_ratio": 0.53,
+   "dividend": null
+  },
+  {
+   "ticker": "AJB.L",
+   "price": 535.0,
+   "prev_close": 551.5,
+   "pct": -2.992,
+   "low_pct": -3.264,
+   "rel": -1.733,
+   "vol_ratio": 1.46,
+   "dividend": null
+  },
+  {
+   "ticker": "BNR.DE",
+   "price": 55.86,
+   "prev_close": 57.58,
+   "pct": -2.987,
+   "low_pct": -2.987,
+   "rel": -1.729,
+   "vol_ratio": 1.17,
+   "dividend": null
+  },
+  {
+   "ticker": "AZM.MI",
+   "price": 35.32,
+   "prev_close": 36.4,
+   "pct": -2.967,
+   "low_pct": -3.681,
+   "rel": -1.708,
+   "vol_ratio": 0.83,
+   "dividend": null
+  },
+  {
+   "ticker": "SKA-B.ST",
+   "price": 293.8,
+   "prev_close": 302.7,
+   "pct": -2.94,
+   "low_pct": -3.337,
+   "rel": -1.682,
+   "vol_ratio": 1.62,
+   "dividend": null
+  },
+  {
+   "ticker": "TPK.L",
+   "price": 616.0,
+   "prev_close": 634.5,
+   "pct": -2.916,
+   "low_pct": -2.994,
+   "rel": -1.657,
+   "vol_ratio": 0.78,
+   "dividend": null
+  },
+  {
+   "ticker": "RMV.L",
+   "price": 533.4,
+   "prev_close": 549.4,
+   "pct": -2.912,
+   "low_pct": -3.568,
+   "rel": -1.654,
+   "vol_ratio": 0.62,
+   "dividend": null
+  },
+  {
+   "ticker": "GLEN.L",
+   "price": 449.5,
+   "prev_close": 462.9,
+   "pct": -2.895,
+   "low_pct": -2.992,
+   "rel": -1.636,
+   "vol_ratio": 1.11,
+   "dividend": null
+  },
+  {
+   "ticker": "VALMT.HE",
+   "price": 26.94,
+   "prev_close": 27.74,
+   "pct": -2.884,
+   "low_pct": -3.533,
+   "rel": -1.625,
+   "vol_ratio": 2.3,
+   "dividend": null
+  },
+  {
+   "ticker": "8TRA.DE",
+   "price": 32.36,
+   "prev_close": 33.32,
+   "pct": -2.881,
+   "low_pct": -3.001,
+   "rel": -1.623,
+   "vol_ratio": 1.61,
+   "dividend": null
+  },
+  {
+   "ticker": "INVE-B.ST",
+   "price": 408.25,
+   "prev_close": 420.35,
+   "pct": -2.879,
+   "low_pct": -3.069,
+   "rel": -1.62,
+   "vol_ratio": 1.78,
+   "dividend": null
+  },
+  {
+   "ticker": "TREL-B.ST",
+   "price": 449.4,
+   "prev_close": 462.6,
+   "pct": -2.853,
+   "low_pct": -3.545,
+   "rel": -1.595,
+   "vol_ratio": 1.33,
+   "dividend": null
+  },
+  {
+   "ticker": "WEIR.L",
+   "price": 2136.0,
+   "prev_close": 2198.0,
+   "pct": -2.821,
+   "low_pct": -3.276,
+   "rel": -1.562,
+   "vol_ratio": 0.93,
+   "dividend": null
+  },
+  {
+   "ticker": "SAF.PA",
+   "price": 292.7,
+   "prev_close": 301.1,
+   "pct": -2.79,
+   "low_pct": -2.79,
+   "rel": -1.531,
+   "vol_ratio": 0.77,
+   "dividend": null
+  },
+  {
+   "ticker": "EBS.VI",
+   "price": 109.1,
+   "prev_close": 112.2,
+   "pct": -2.763,
+   "low_pct": -3.743,
+   "rel": -1.504,
+   "vol_ratio": 1.29,
+   "dividend": null
+  },
+  {
+   "ticker": "BMY.L",
+   "price": 603.0,
+   "prev_close": 620.0,
+   "pct": -2.742,
+   "low_pct": -2.742,
+   "rel": -1.483,
+   "vol_ratio": 0.66,
+   "dividend": null
+  },
+  {
+   "ticker": "VOW.DE",
+   "price": 62.1,
+   "prev_close": 63.85,
+   "pct": -2.741,
+   "low_pct": -2.976,
+   "rel": -1.482,
+   "vol_ratio": 1.13,
+   "dividend": null
+  },
+  {
+   "ticker": "INDU-C.ST",
+   "price": 501.2,
+   "prev_close": 515.2,
+   "pct": -2.717,
+   "low_pct": -2.756,
+   "rel": -1.459,
+   "vol_ratio": 1.5,
+   "dividend": null
+  },
+  {
+   "ticker": "BNP.PA",
+   "price": 89.55,
+   "prev_close": 92.05,
+   "pct": -2.716,
+   "low_pct": -2.89,
+   "rel": -1.457,
+   "vol_ratio": 1.26,
+   "dividend": null
+  },
+  {
+   "ticker": "UNI.MC",
+   "price": 3.226,
+   "prev_close": 3.316,
+   "pct": -2.714,
+   "low_pct": -2.714,
+   "rel": -1.456,
+   "vol_ratio": 0.97,
+   "dividend": null
+  },
+  {
+   "ticker": "BIRG.IR",
+   "price": 18.315,
+   "prev_close": 18.825,
+   "pct": -2.709,
+   "low_pct": -2.762,
+   "rel": -1.451,
+   "vol_ratio": 0.44,
+   "dividend": null
+  },
+  {
+   "ticker": "AKE.PA",
+   "price": 54.2,
+   "prev_close": 55.7,
+   "pct": -2.693,
+   "low_pct": -2.693,
+   "rel": -1.434,
+   "vol_ratio": 1.61,
+   "dividend": null
+  },
+  {
+   "ticker": "SCYR.MC",
+   "price": 4.056,
+   "prev_close": 4.168,
+   "pct": -2.687,
+   "low_pct": -2.687,
+   "rel": -1.429,
+   "vol_ratio": 1.08,
+   "dividend": null
+  },
+  {
+   "ticker": "INF.L",
+   "price": 821.2,
+   "prev_close": 843.8,
+   "pct": -2.678,
+   "low_pct": -2.773,
+   "rel": -1.42,
+   "vol_ratio": 0.7,
+   "dividend": null
+  },
+  {
+   "ticker": "IBS.LS",
+   "price": 10.2,
+   "prev_close": 10.48,
+   "pct": -2.672,
+   "low_pct": -2.672,
+   "rel": -1.413,
+   "vol_ratio": 0.73,
+   "dividend": null
+  },
+  {
+   "ticker": "SPX.L",
+   "price": 7290.0,
+   "prev_close": 7490.0,
+   "pct": -2.67,
+   "low_pct": -3.805,
+   "rel": -1.412,
+   "vol_ratio": 1.21,
+   "dividend": null
+  },
+  {
+   "ticker": "MNG.L",
+   "price": 306.2,
+   "prev_close": 314.6,
+   "pct": -2.67,
+   "low_pct": -2.67,
+   "rel": -1.412,
+   "vol_ratio": 1.1,
+   "dividend": null
+  },
+  {
+   "ticker": "IHG.L",
+   "price": 169.7,
+   "prev_close": 174.35,
+   "pct": -2.667,
+   "low_pct": -2.667,
+   "rel": -1.409,
+   "vol_ratio": 1.01,
+   "dividend": null
+  },
+  {
+   "ticker": "SMWH.L",
+   "price": 357.8,
+   "prev_close": 367.6,
+   "pct": -2.666,
+   "low_pct": -2.9,
+   "rel": -1.407,
+   "vol_ratio": 0.54,
+   "dividend": null
+  },
+  {
+   "ticker": "NEDAP.AS",
+   "price": 89.1,
+   "prev_close": 91.5,
+   "pct": -2.623,
+   "low_pct": -3.169,
+   "rel": -1.364,
+   "vol_ratio": 1.04,
+   "dividend": null
+  },
+  {
+   "ticker": "SOF.BR",
+   "price": 261.0,
+   "prev_close": 268.0,
+   "pct": -2.612,
+   "low_pct": -2.612,
+   "rel": -1.353,
+   "vol_ratio": 0.92,
+   "dividend": null
+  },
+  {
+   "ticker": "BAS.DE",
+   "price": 49.36,
+   "prev_close": 50.68,
+   "pct": -2.605,
+   "low_pct": -2.605,
+   "rel": -1.346,
+   "vol_ratio": 1.88,
+   "dividend": null
+  },
+  {
+   "ticker": "AUTO.L",
+   "price": 540.2,
+   "prev_close": 554.6,
+   "pct": -2.596,
+   "low_pct": -3.029,
+   "rel": -1.338,
+   "vol_ratio": 0.61,
+   "dividend": null
+  },
+  {
+   "ticker": "RWE.DE",
+   "price": 55.7,
+   "prev_close": 57.18,
+   "pct": -2.588,
+   "low_pct": -3.288,
+   "rel": -1.33,
+   "vol_ratio": 1.16,
+   "dividend": null
+  },
+  {
+   "ticker": "EDPR.LS",
+   "price": 12.82,
+   "prev_close": 13.16,
+   "pct": -2.584,
+   "low_pct": -2.736,
+   "rel": -1.325,
+   "vol_ratio": 0.72,
+   "dividend": null
+  },
+  {
+   "ticker": "NDA-FI.HE",
+   "price": 16.22,
+   "prev_close": 16.65,
+   "pct": -2.583,
+   "low_pct": -2.583,
+   "rel": -1.324,
+   "vol_ratio": 1.34,
+   "dividend": null
+  },
+  {
+   "ticker": "NWG.L",
+   "price": 575.2,
+   "prev_close": 590.2,
+   "pct": -2.542,
+   "low_pct": -2.542,
+   "rel": -1.283,
+   "vol_ratio": 0.99,
+   "dividend": null
+  },
+  {
+   "ticker": "MC.PA",
+   "price": 381.95,
+   "prev_close": 391.9,
+   "pct": -2.539,
+   "low_pct": -2.743,
+   "rel": -1.28,
+   "vol_ratio": 1.29,
+   "dividend": null
+  },
+  {
+   "ticker": "HWDN.L",
+   "price": 807.0,
+   "prev_close": 828.0,
+   "pct": -2.536,
+   "low_pct": -2.536,
+   "rel": -1.278,
+   "vol_ratio": 1.39,
+   "dividend": null
+  },
+  {
+   "ticker": "BBY.L",
+   "price": 844.0,
+   "prev_close": 865.5,
+   "pct": -2.484,
+   "low_pct": -2.831,
+   "rel": -1.226,
+   "vol_ratio": 0.74,
+   "dividend": null
+  },
+  {
+   "ticker": "FER.MC",
+   "price": 52.8,
+   "prev_close": 54.14,
+   "pct": -2.475,
+   "low_pct": -2.475,
+   "rel": -1.217,
+   "vol_ratio": 0.59,
+   "dividend": null
+  },
+  {
+   "ticker": "PST.MI",
+   "price": 23.26,
+   "prev_close": 23.85,
+   "pct": -2.474,
+   "low_pct": -2.474,
+   "rel": -1.215,
+   "vol_ratio": 1.32,
+   "dividend": null
+  },
+  {
+   "ticker": "KNIN.SW",
+   "price": 225.1,
+   "prev_close": 230.8,
+   "pct": -2.47,
+   "low_pct": -2.86,
+   "rel": -1.211,
+   "vol_ratio": 1.03,
+   "dividend": null
+  },
+  {
+   "ticker": "CLN.SW",
+   "price": 10.31,
+   "prev_close": 10.57,
+   "pct": -2.46,
+   "low_pct": -2.838,
+   "rel": -1.201,
+   "vol_ratio": 0.88,
+   "dividend": null
+  },
+  {
+   "ticker": "CHG.L",
+   "price": 519.5,
+   "prev_close": 532.5,
+   "pct": -2.441,
+   "low_pct": -2.629,
+   "rel": -1.183,
+   "vol_ratio": 0.88,
+   "dividend": null
+  },
+  {
+   "ticker": "A5G.IR",
+   "price": 11.02,
+   "prev_close": 11.295,
+   "pct": -2.435,
+   "low_pct": -2.479,
+   "rel": -1.176,
+   "vol_ratio": 0.51,
+   "dividend": null
+  },
+  {
+   "ticker": "BRNL.AS",
+   "price": 6.43,
+   "prev_close": 6.59,
+   "pct": -2.428,
+   "low_pct": -2.883,
+   "rel": -1.169,
+   "vol_ratio": 1.04,
+   "dividend": null
+  },
+  {
+   "ticker": "ISP.MI",
+   "price": 5.901,
+   "prev_close": 6.047,
+   "pct": -2.414,
+   "low_pct": -2.745,
+   "rel": -1.156,
+   "vol_ratio": 1.41,
+   "dividend": null
+  },
+  {
+   "ticker": "PIRC.MI",
+   "price": 6.265,
+   "prev_close": 6.42,
+   "pct": -2.414,
+   "low_pct": -2.414,
+   "rel": -1.156,
+   "vol_ratio": 1.16,
+   "dividend": null
+  },
+  {
+   "ticker": "BAYN.DE",
+   "price": 53.36,
+   "prev_close": 54.68,
+   "pct": -2.414,
+   "low_pct": -2.414,
+   "rel": -1.155,
+   "vol_ratio": 1.13,
+   "dividend": null
+  },
+  {
+   "ticker": "DOM.L",
+   "price": 226.4,
+   "prev_close": 232.0,
+   "pct": -2.414,
+   "low_pct": -2.586,
+   "rel": -1.155,
+   "vol_ratio": 0.49,
+   "dividend": null
+  },
+  {
+   "ticker": "SGO.PA",
+   "price": 71.22,
+   "prev_close": 72.98,
+   "pct": -2.412,
+   "low_pct": -2.768,
+   "rel": -1.153,
+   "vol_ratio": 1.17,
+   "dividend": null
+  },
+  {
+   "ticker": "LIFCO-B.ST",
+   "price": 276.8,
+   "prev_close": 283.6,
+   "pct": -2.398,
+   "low_pct": -2.821,
+   "rel": -1.139,
+   "vol_ratio": 1.06,
+   "dividend": null
+  },
+  {
+   "ticker": "SIKA.SW",
+   "price": 181.55,
+   "prev_close": 186.0,
+   "pct": -2.392,
+   "low_pct": -2.392,
+   "rel": -1.134,
+   "vol_ratio": 1.11,
+   "dividend": null
+  },
+  {
+   "ticker": "WIE.VI",
+   "price": 15.15,
+   "prev_close": 15.52,
+   "pct": -2.384,
+   "low_pct": -2.899,
+   "rel": -1.125,
+   "vol_ratio": 1.25,
+   "dividend": null
+  },
+  {
+   "ticker": "RS1.L",
+   "price": 758.0,
+   "prev_close": 776.5,
+   "pct": -2.382,
+   "low_pct": -3.026,
+   "rel": -1.124,
+   "vol_ratio": 1.05,
+   "dividend": null
+  },
+  {
+   "ticker": "AC.PA",
+   "price": 47.57,
+   "prev_close": 48.73,
+   "pct": -2.38,
+   "low_pct": -2.401,
+   "rel": -1.122,
+   "vol_ratio": 0.84,
+   "dividend": null
+  },
+  {
+   "ticker": "LONN.SW",
+   "price": 651.2,
+   "prev_close": 667.0,
+   "pct": -2.369,
+   "low_pct": -2.699,
+   "rel": -1.11,
+   "vol_ratio": 1.35,
+   "dividend": null
+  },
+  {
+   "ticker": "BREE.L",
+   "price": 305.2,
+   "prev_close": 312.6,
+   "pct": -2.367,
+   "low_pct": -3.135,
+   "rel": -1.109,
+   "vol_ratio": 0.96,
+   "dividend": null
+  },
+  {
+   "ticker": "SDLF.L",
+   "price": 873.0,
+   "prev_close": 894.0,
+   "pct": -2.349,
+   "low_pct": -2.885,
+   "rel": -1.09,
+   "vol_ratio": 1.24,
+   "dividend": null
+  },
+  {
+   "ticker": "SAB.MC",
+   "price": 3.546,
+   "prev_close": 3.631,
+   "pct": -2.341,
+   "low_pct": -2.341,
+   "rel": -1.082,
+   "vol_ratio": 1.16,
+   "dividend": null
+  },
+  {
+   "ticker": "GFRD.L",
+   "price": 670.0,
+   "prev_close": 686.0,
+   "pct": -2.332,
+   "low_pct": -4.023,
+   "rel": -1.074,
+   "vol_ratio": 0.73,
+   "dividend": null
+  },
+  {
+   "ticker": "INDT.ST",
+   "price": 254.8,
+   "prev_close": 260.8,
+   "pct": -2.301,
+   "low_pct": -2.607,
+   "rel": -1.042,
+   "vol_ratio": 0.82,
+   "dividend": null
+  },
+  {
+   "ticker": "GALP.LS",
+   "price": 18.205,
+   "prev_close": 18.63,
+   "pct": -2.281,
+   "low_pct": -2.335,
+   "rel": -1.023,
+   "vol_ratio": 1.03,
+   "dividend": null
+  },
+  {
+   "ticker": "CON.DE",
+   "price": 69.54,
+   "prev_close": 71.16,
+   "pct": -2.277,
+   "low_pct": -2.811,
+   "rel": -1.018,
+   "vol_ratio": 2.22,
+   "dividend": null
+  },
+  {
+   "ticker": "SEB-A.ST",
+   "price": 211.3,
+   "prev_close": 216.2,
+   "pct": -2.266,
+   "low_pct": -2.544,
+   "rel": -1.008,
+   "vol_ratio": 1.35,
+   "dividend": null
+  },
+  {
+   "ticker": "SAN.MC",
+   "price": 10.32,
+   "prev_close": 10.558,
+   "pct": -2.254,
+   "low_pct": -2.898,
+   "rel": -0.996,
+   "vol_ratio": 1.84,
+   "dividend": null
+  },
+  {
+   "ticker": "RIO.L",
+   "price": 5640.0,
+   "prev_close": 5770.0,
+   "pct": -2.253,
+   "low_pct": -2.738,
+   "rel": -0.994,
+   "vol_ratio": 0.81,
+   "dividend": null
+  },
+  {
+   "ticker": "RACE.MI",
+   "price": 363.1,
+   "prev_close": 371.45,
+   "pct": -2.248,
+   "low_pct": -2.463,
+   "rel": -0.989,
+   "vol_ratio": 1.01,
+   "dividend": null
+  },
+  {
+   "ticker": "CSN.L",
+   "price": 327.5,
+   "prev_close": 335.0,
+   "pct": -2.239,
+   "low_pct": -3.284,
+   "rel": -0.98,
+   "vol_ratio": 2.31,
+   "dividend": null
+  },
+  {
+   "ticker": "NDA-SE.ST",
+   "price": 182.2,
+   "prev_close": 186.35,
+   "pct": -2.227,
+   "low_pct": -2.334,
+   "rel": -0.968,
+   "vol_ratio": 0.9,
+   "dividend": null
+  },
+  {
+   "ticker": "MGNS.L",
+   "price": 4238.0,
+   "prev_close": 4334.0,
+   "pct": -2.215,
+   "low_pct": -3.369,
+   "rel": -0.956,
+   "vol_ratio": 0.82,
+   "dividend": null
+  },
+  {
+   "ticker": "ENI.MI",
+   "price": 24.155,
+   "prev_close": 24.7,
+   "pct": -2.206,
+   "low_pct": -2.206,
+   "rel": -0.948,
+   "vol_ratio": 0.98,
+   "dividend": null
+  },
+  {
+   "ticker": "LLOY.L",
+   "price": 94.74,
+   "prev_close": 96.86,
+   "pct": -2.189,
+   "low_pct": -2.292,
+   "rel": -0.93,
+   "vol_ratio": 0.91,
+   "dividend": null
+  },
+  {
+   "ticker": "CABK.MC",
+   "price": 11.45,
+   "prev_close": 11.705,
+   "pct": -2.179,
+   "low_pct": -2.392,
+   "rel": -0.92,
+   "vol_ratio": 1.13,
+   "dividend": null
+  },
+  {
+   "ticker": "CKN.L",
+   "price": 4494.0,
+   "prev_close": 4594.0,
+   "pct": -2.177,
+   "low_pct": -3.178,
+   "rel": -0.918,
+   "vol_ratio": 0.54,
+   "dividend": null
+  },
+  {
+   "ticker": "SWED-A.ST",
+   "price": 403.5,
+   "prev_close": 412.4,
+   "pct": -2.158,
+   "low_pct": -2.401,
+   "rel": -0.9,
+   "vol_ratio": 1.24,
+   "dividend": null
+  },
+  {
+   "ticker": "FORTUM.HE",
+   "price": 22.37,
+   "prev_close": 22.86,
+   "pct": -2.143,
+   "low_pct": -2.712,
+   "rel": -0.885,
+   "vol_ratio": 1.18,
+   "dividend": null
+  },
+  {
+   "ticker": "NHY.OL",
+   "price": 64.28,
+   "prev_close": 65.68,
+   "pct": -2.132,
+   "low_pct": -2.619,
+   "rel": -0.873,
+   "vol_ratio": 1.12,
+   "dividend": null
+  },
+  {
+   "ticker": "BA.L",
+   "price": 1814.0,
+   "prev_close": 1853.5,
+   "pct": -2.131,
+   "low_pct": -2.59,
+   "rel": -0.873,
+   "vol_ratio": 0.91,
+   "dividend": null
+  },
+  {
+   "ticker": "CNA.L",
+   "price": 147.45,
+   "prev_close": 150.65,
+   "pct": -2.124,
+   "low_pct": -2.124,
+   "rel": -0.866,
+   "vol_ratio": 0.57,
+   "dividend": null
+  },
+  {
+   "ticker": "FDR.MC",
+   "price": 18.03,
+   "prev_close": 18.42,
+   "pct": -2.117,
+   "low_pct": -2.932,
+   "rel": -0.859,
+   "vol_ratio": 1.26,
+   "dividend": null
+  },
+  {
+   "ticker": "MONY.L",
+   "price": 204.6,
+   "prev_close": 209.0,
+   "pct": -2.105,
+   "low_pct": -4.306,
+   "rel": -0.847,
+   "vol_ratio": 0.97,
+   "dividend": null
+  },
+  {
+   "ticker": "HUSQ-B.ST",
+   "price": 30.8,
+   "prev_close": 31.46,
+   "pct": -2.098,
+   "low_pct": -2.765,
+   "rel": -0.839,
+   "vol_ratio": 1.09,
+   "dividend": null
+  },
+  {
+   "ticker": "KEMIRA.HE",
+   "price": 14.97,
+   "prev_close": 15.29,
+   "pct": -2.093,
+   "low_pct": -2.224,
+   "rel": -0.834,
+   "vol_ratio": 0.94,
+   "dividend": null
+  },
+  {
+   "ticker": "ALSYDB.CO",
+   "price": 725.5,
+   "prev_close": 741.0,
+   "pct": -2.092,
+   "low_pct": -2.699,
+   "rel": -0.833,
+   "vol_ratio": 1.1,
+   "dividend": null
+  },
+  {
+   "ticker": "RAT.L",
+   "price": 1726.0,
+   "prev_close": 1762.0,
+   "pct": -2.043,
+   "low_pct": -2.497,
+   "rel": -0.785,
+   "vol_ratio": 0.46,
+   "dividend": null
+  },
+  {
+   "ticker": "SVS.L",
+   "price": 1056.0,
+   "prev_close": 1078.0,
+   "pct": -2.041,
+   "low_pct": -2.041,
+   "rel": -0.782,
+   "vol_ratio": 0.49,
+   "dividend": null
+  },
+  {
+   "ticker": "EPI-A.ST",
+   "price": 226.7,
+   "prev_close": 231.4,
+   "pct": -2.031,
+   "low_pct": -3.025,
+   "rel": -0.773,
+   "vol_ratio": 1.18,
+   "dividend": null
+  },
+  {
+   "ticker": "VOLV-B.ST",
+   "price": 313.7,
+   "prev_close": 320.2,
+   "pct": -2.03,
+   "low_pct": -2.998,
+   "rel": -0.771,
+   "vol_ratio": 1.54,
+   "dividend": null
+  },
+  {
+   "ticker": "VIG.VI",
+   "price": 73.5,
+   "prev_close": 75.0,
+   "pct": -2.0,
+   "low_pct": -2.133,
+   "rel": -0.741,
+   "vol_ratio": 0.61,
+   "dividend": null
+  },
+  {
+   "ticker": "DIA.MI",
+   "price": 77.84,
+   "prev_close": 79.42,
+   "pct": -1.989,
+   "low_pct": -2.77,
+   "rel": -0.731,
+   "vol_ratio": 0.84,
+   "dividend": null
+  },
+  {
+   "ticker": "EXPN.L",
+   "price": 2811.0,
+   "prev_close": 2868.0,
+   "pct": -1.987,
+   "low_pct": -2.859,
+   "rel": -0.729,
+   "vol_ratio": 1.45,
+   "dividend": null
+  },
+  {
+   "ticker": "DRX.L",
+   "price": 821.5,
+   "prev_close": 838.0,
+   "pct": -1.969,
+   "low_pct": -2.029,
+   "rel": -0.71,
+   "vol_ratio": 1.44,
+   "dividend": null
+  },
+  {
+   "ticker": "SHL.DE",
+   "price": 42.96,
+   "prev_close": 43.82,
+   "pct": -1.963,
+   "low_pct": -2.191,
+   "rel": -0.704,
+   "vol_ratio": 1.06,
+   "dividend": null
+  },
+  {
+   "ticker": "VPK.AS",
+   "price": 52.75,
+   "prev_close": 53.8,
+   "pct": -1.952,
+   "low_pct": -1.952,
+   "rel": -0.693,
+   "vol_ratio": 1.18,
+   "dividend": null
+  },
+  {
+   "ticker": "SCT.L",
+   "price": 1565.0,
+   "prev_close": 1596.0,
+   "pct": -1.942,
+   "low_pct": -2.82,
+   "rel": -0.684,
+   "vol_ratio": 0.49,
+   "dividend": null
+  },
+  {
+   "ticker": "AKZA.AS",
+   "price": 60.1,
+   "prev_close": 61.28,
+   "pct": -1.926,
+   "low_pct": -2.839,
+   "rel": -0.667,
+   "vol_ratio": 1.0,
+   "dividend": null
+  },
+  {
+   "ticker": "PLUS.L",
+   "price": 3168.0,
+   "prev_close": 3230.0,
+   "pct": -1.92,
+   "low_pct": -1.92,
+   "rel": -0.661,
+   "vol_ratio": 0.59,
+   "dividend": null
+  },
+  {
+   "ticker": "SHB-B.ST",
+   "price": 246.6,
+   "prev_close": 251.4,
+   "pct": -1.909,
+   "low_pct": -1.909,
+   "rel": -0.651,
+   "vol_ratio": 1.28,
+   "dividend": null
+  },
+  {
+   "ticker": "SOLB.BR",
+   "price": 23.66,
+   "prev_close": 24.12,
+   "pct": -1.907,
+   "low_pct": -2.239,
+   "rel": -0.649,
+   "vol_ratio": 1.18,
+   "dividend": null
+  },
+  {
+   "ticker": "MB.MI",
+   "price": 25.8,
+   "prev_close": 26.3,
+   "pct": -1.901,
+   "low_pct": -2.167,
+   "rel": -0.643,
+   "vol_ratio": 0.74,
+   "dividend": null
+  },
+  {
+   "ticker": "GAW.L",
+   "price": 16570.0,
+   "prev_close": 16890.0,
+   "pct": -1.895,
+   "low_pct": -1.895,
+   "rel": -0.636,
+   "vol_ratio": 0.79,
+   "dividend": null
+  },
+  {
+   "ticker": "DIA.MC",
+   "price": 46.8,
+   "prev_close": 47.7,
+   "pct": -1.887,
+   "low_pct": -2.201,
+   "rel": -0.628,
+   "vol_ratio": 0.47,
+   "dividend": null
+  },
+  {
+   "ticker": "MRL.MC",
+   "price": 10.93,
+   "prev_close": 11.14,
+   "pct": -1.885,
+   "low_pct": -1.885,
+   "rel": -0.627,
+   "vol_ratio": 1.68,
+   "dividend": 0.2
+  },
+  {
+   "ticker": "NSI.AS",
+   "price": 16.68,
+   "prev_close": 17.0,
+   "pct": -1.882,
+   "low_pct": -1.882,
+   "rel": -0.624,
+   "vol_ratio": 1.0,
+   "dividend": null
+  },
+  {
+   "ticker": "G1A.DE",
+   "price": 68.25,
+   "prev_close": 69.55,
+   "pct": -1.869,
+   "low_pct": -1.869,
+   "rel": -0.611,
+   "vol_ratio": 1.03,
+   "dividend": null
+  },
+  {
+   "ticker": "ASSA-B.ST",
+   "price": 380.2,
+   "prev_close": 387.4,
+   "pct": -1.859,
+   "low_pct": -2.478,
+   "rel": -0.6,
+   "vol_ratio": 1.06,
+   "dividend": null
+  },
+  {
+   "ticker": "HO.PA",
+   "price": 223.4,
+   "prev_close": 227.6,
+   "pct": -1.845,
+   "low_pct": -1.845,
+   "rel": -0.587,
+   "vol_ratio": 1.22,
+   "dividend": null
+  },
+  {
+   "ticker": "STERV.HE",
+   "price": 8.936,
+   "prev_close": 9.104,
+   "pct": -1.845,
+   "low_pct": -1.911,
+   "rel": -0.587,
+   "vol_ratio": 1.27,
+   "dividend": null
+  },
+  {
+   "ticker": "ECMPA.AS",
+   "price": 24.45,
+   "prev_close": 24.9,
+   "pct": -1.807,
+   "low_pct": -1.807,
+   "rel": -0.549,
+   "vol_ratio": 1.14,
+   "dividend": null
+  },
+  {
+   "ticker": "SAP.DE",
+   "price": 183.68,
+   "prev_close": 187.02,
+   "pct": -1.786,
+   "low_pct": -2.877,
+   "rel": -0.527,
+   "vol_ratio": 1.72,
+   "dividend": null
+  },
+  {
+   "ticker": "DB1.DE",
+   "price": 315.1,
+   "prev_close": 320.8,
+   "pct": -1.777,
+   "low_pct": -1.933,
+   "rel": -0.518,
+   "vol_ratio": 1.56,
+   "dividend": null
+  },
+  {
+   "ticker": "BOL.PA",
+   "price": 3.546,
+   "prev_close": 3.61,
+   "pct": -1.773,
+   "low_pct": -1.828,
+   "rel": -0.514,
+   "vol_ratio": 1.35,
+   "dividend": null
+  },
+  {
+   "ticker": "WDP.BR",
+   "price": 18.67,
+   "prev_close": 19.0,
+   "pct": -1.737,
+   "low_pct": -1.947,
+   "rel": -0.478,
+   "vol_ratio": 1.36,
+   "dividend": null
+  },
+  {
+   "ticker": "MEL.MC",
+   "price": 11.08,
+   "prev_close": 11.27,
+   "pct": -1.686,
+   "low_pct": -1.952,
+   "rel": -0.427,
+   "vol_ratio": 0.69,
+   "dividend": null
+  },
+  {
+   "ticker": "AVOL.SW",
+   "price": 46.66,
+   "prev_close": 47.46,
+   "pct": -1.686,
+   "low_pct": -1.981,
+   "rel": -0.427,
+   "vol_ratio": 0.67,
+   "dividend": null
+  },
+  {
+   "ticker": "MBG.DE",
+   "price": 37.62,
+   "prev_close": 38.265,
+   "pct": -1.686,
+   "low_pct": -1.816,
+   "rel": -0.427,
+   "vol_ratio": 1.21,
+   "dividend": null
+  },
+  {
+   "ticker": "STB.OL",
+   "price": 199.2,
+   "prev_close": 202.6,
+   "pct": -1.678,
+   "low_pct": -2.27,
+   "rel": -0.42,
+   "vol_ratio": 1.54,
+   "dividend": null
+  },
+  {
+   "ticker": "SHB-A.ST",
+   "price": 158.3,
+   "prev_close": 161.0,
+   "pct": -1.677,
+   "low_pct": -1.988,
+   "rel": -0.418,
+   "vol_ratio": 1.57,
+   "dividend": null
+  },
+  {
+   "ticker": "SIX2.DE",
+   "price": 71.3,
+   "prev_close": 72.5,
+   "pct": -1.655,
+   "low_pct": -2.0,
+   "rel": -0.397,
+   "vol_ratio": 0.79,
+   "dividend": null
+  },
+  {
+   "ticker": "DTG.DE",
+   "price": 40.52,
+   "prev_close": 41.2,
+   "pct": -1.65,
+   "low_pct": -1.723,
+   "rel": -0.392,
+   "vol_ratio": 1.15,
+   "dividend": null
+  },
+  {
+   "ticker": "ALC.SW",
+   "price": 62.28,
+   "prev_close": 63.32,
+   "pct": -1.642,
+   "low_pct": -1.706,
+   "rel": -0.384,
+   "vol_ratio": 1.23,
+   "dividend": null
+  },
+  {
+   "ticker": "DLN.L",
+   "price": 1939.0,
+   "prev_close": 1971.0,
+   "pct": -1.624,
+   "low_pct": -1.826,
+   "rel": -0.365,
+   "vol_ratio": 0.53,
+   "dividend": null
+  },
+  {
+   "ticker": "AGN.AS",
+   "price": 7.522,
+   "prev_close": 7.646,
+   "pct": -1.622,
+   "low_pct": -2.59,
+   "rel": -0.363,
+   "vol_ratio": 1.53,
+   "dividend": null
+  },
+  {
+   "ticker": "BMW.DE",
+   "price": 53.46,
+   "prev_close": 54.34,
+   "pct": -1.619,
+   "low_pct": -1.877,
+   "rel": -0.361,
+   "vol_ratio": 1.77,
+   "dividend": null
+  },
+  {
+   "ticker": "DNB.OL",
+   "price": 323.0,
+   "prev_close": 328.3,
+   "pct": -1.614,
+   "low_pct": -1.675,
+   "rel": -0.356,
+   "vol_ratio": 1.17,
+   "dividend": null
+  },
+  {
+   "ticker": "ML.PA",
+   "price": 31.21,
+   "prev_close": 31.72,
+   "pct": -1.608,
+   "low_pct": -2.364,
+   "rel": -0.349,
+   "vol_ratio": 1.43,
+   "dividend": null
+  },
+  {
+   "ticker": "DANSKE.CO",
+   "price": 355.2,
+   "prev_close": 361.0,
+   "pct": -1.607,
+   "low_pct": -2.161,
+   "rel": -0.348,
+   "vol_ratio": 1.14,
+   "dividend": null
+  },
+  {
+   "ticker": "BYG.L",
+   "price": 891.0,
+   "prev_close": 905.5,
+   "pct": -1.601,
+   "low_pct": -1.822,
+   "rel": -0.343,
+   "vol_ratio": 0.88,
+   "dividend": null
+  },
+  {
+   "ticker": "COA.L",
+   "price": 72.75,
+   "prev_close": 73.9,
+   "pct": -1.556,
+   "low_pct": -2.571,
+   "rel": -0.298,
+   "vol_ratio": 0.79,
+   "dividend": null
+  },
+  {
+   "ticker": "MNDI.L",
+   "price": 734.4,
+   "prev_close": 746.0,
+   "pct": -1.555,
+   "low_pct": -2.011,
+   "rel": -0.296,
+   "vol_ratio": 1.68,
+   "dividend": null
+  },
+  {
+   "ticker": "EQNR.OL",
+   "price": 383.3,
+   "prev_close": 389.2,
+   "pct": -1.516,
+   "low_pct": -1.773,
+   "rel": -0.257,
+   "vol_ratio": 0.88,
+   "dividend": null
+  },
+  {
+   "ticker": "AGS.BR",
+   "price": 75.1,
+   "prev_close": 76.25,
+   "pct": -1.508,
+   "low_pct": -1.705,
+   "rel": -0.25,
+   "vol_ratio": 1.9,
+   "dividend": null
+  },
+  {
+   "ticker": "EMSN.SW",
+   "price": 818.0,
+   "prev_close": 830.5,
+   "pct": -1.505,
+   "low_pct": -1.505,
+   "rel": -0.247,
+   "vol_ratio": 0.89,
+   "dividend": null
+  },
+  {
+   "ticker": "DIE.BR",
+   "price": 170.4,
+   "prev_close": 173.0,
+   "pct": -1.503,
+   "low_pct": -1.503,
+   "rel": -0.244,
+   "vol_ratio": 0.84,
+   "dividend": null
+  },
+  {
+   "ticker": "FRAS.L",
+   "price": 922.5,
+   "prev_close": 936.5,
+   "pct": -1.495,
+   "low_pct": -1.762,
+   "rel": -0.236,
+   "vol_ratio": 1.14,
+   "dividend": null
+  },
+  {
+   "ticker": "AMS.MC",
+   "price": 59.74,
+   "prev_close": 60.64,
+   "pct": -1.484,
+   "low_pct": -1.88,
+   "rel": -0.226,
+   "vol_ratio": 1.0,
+   "dividend": null
+  },
+  {
+   "ticker": "BVI.PA",
+   "price": 29.68,
+   "prev_close": 30.12,
+   "pct": -1.461,
+   "low_pct": -1.56,
+   "rel": -0.202,
+   "vol_ratio": 1.59,
+   "dividend": null
+  },
+  {
+   "ticker": "JYSK.CO",
+   "price": 1083.0,
+   "prev_close": 1099.0,
+   "pct": -1.456,
+   "low_pct": -2.366,
+   "rel": -0.197,
+   "vol_ratio": 1.66,
+   "dividend": null
+  },
+  {
+   "ticker": "CTT.LS",
+   "price": 4.616,
+   "prev_close": 4.684,
+   "pct": -1.452,
+   "low_pct": -2.306,
+   "rel": -0.193,
+   "vol_ratio": 0.77,
+   "dividend": null
+  },
+  {
+   "ticker": "NN.AS",
+   "price": 76.98,
+   "prev_close": 78.1,
+   "pct": -1.434,
+   "low_pct": -1.741,
+   "rel": -0.176,
+   "vol_ratio": 1.44,
+   "dividend": null
+  },
+  {
+   "ticker": "HOLN.SW",
+   "price": 73.08,
+   "prev_close": 74.14,
+   "pct": -1.43,
+   "low_pct": -2.158,
+   "rel": -0.171,
+   "vol_ratio": 1.33,
+   "dividend": null
+  },
+  {
+   "ticker": "PHIA.AS",
+   "price": 26.39,
+   "prev_close": 26.77,
+   "pct": -1.42,
+   "low_pct": -1.98,
+   "rel": -0.161,
+   "vol_ratio": 1.34,
+   "dividend": null
+  },
+  {
+   "ticker": "AEP.L",
+   "price": 143.0,
+   "prev_close": 145.0,
+   "pct": -1.379,
+   "low_pct": -2.759,
+   "rel": -0.121,
+   "vol_ratio": 1.32,
+   "dividend": null
+  },
+  {
+   "ticker": "ARCAD.AS",
+   "price": 44.64,
+   "prev_close": 45.26,
+   "pct": -1.37,
+   "low_pct": -2.74,
+   "rel": -0.111,
+   "vol_ratio": 0.61,
+   "dividend": null
+  },
+  {
+   "ticker": "UPM.HE",
+   "price": 21.18,
+   "prev_close": 21.47,
+   "pct": -1.351,
+   "low_pct": -1.351,
+   "rel": -0.092,
+   "vol_ratio": 0.84,
+   "dividend": null
+  },
+  {
+   "ticker": "ALTR.LS",
+   "price": 4.065,
+   "prev_close": 4.12,
+   "pct": -1.335,
+   "low_pct": -1.335,
+   "rel": -0.076,
+   "vol_ratio": 2.07,
+   "dividend": null
+  },
+  {
+   "ticker": "GBLB.BR",
+   "price": 77.9,
+   "prev_close": 78.95,
+   "pct": -1.33,
+   "low_pct": -1.33,
+   "rel": -0.071,
+   "vol_ratio": 0.83,
+   "dividend": null
+  },
+  {
+   "ticker": "BTRW.L",
+   "price": 312.4,
+   "prev_close": 316.6,
+   "pct": -1.327,
+   "low_pct": -1.864,
+   "rel": -0.068,
+   "vol_ratio": 0.67,
+   "dividend": null
+  },
+  {
+   "ticker": "MRK.DE",
+   "price": 146.45,
+   "prev_close": 148.4,
+   "pct": -1.314,
+   "low_pct": -1.819,
+   "rel": -0.055,
+   "vol_ratio": 1.24,
+   "dividend": null
+  },
+  {
+   "ticker": "JSG.L",
+   "price": 145.3,
+   "prev_close": 147.2,
+   "pct": -1.291,
+   "low_pct": -2.378,
+   "rel": -0.032,
+   "vol_ratio": 1.65,
+   "dividend": null
+  },
+  {
+   "ticker": "FFARM.AS",
+   "price": 5.36,
+   "prev_close": 5.43,
+   "pct": -1.289,
+   "low_pct": -2.394,
+   "rel": -0.031,
+   "vol_ratio": 0.99,
+   "dividend": null
+  },
+  {
+   "ticker": "PNL.AS",
+   "price": 0.771,
+   "prev_close": 0.781,
+   "pct": -1.28,
+   "low_pct": -2.433,
+   "rel": -0.022,
+   "vol_ratio": 1.36,
+   "dividend": null
+  },
+  {
+   "ticker": "PETS.L",
+   "price": 263.0,
+   "prev_close": 266.4,
+   "pct": -1.276,
+   "low_pct": -3.078,
+   "rel": -0.018,
+   "vol_ratio": 0.66,
+   "dividend": null
+  },
+  {
+   "ticker": "UCB.BR",
+   "price": 279.6,
+   "prev_close": 283.2,
+   "pct": -1.271,
+   "low_pct": -2.048,
+   "rel": -0.013,
+   "vol_ratio": 0.92,
+   "dividend": null
+  },
+  {
+   "ticker": "ALV.DE",
+   "price": 451.8,
+   "prev_close": 457.5,
+   "pct": -1.246,
+   "low_pct": -1.596,
+   "rel": 0.013,
+   "vol_ratio": 1.79,
+   "dividend": null
+  },
+  {
+   "ticker": "EL.PA",
+   "price": 174.6,
+   "prev_close": 176.8,
+   "pct": -1.244,
+   "low_pct": -1.244,
+   "rel": 0.014,
+   "vol_ratio": 0.75,
+   "dividend": null
+  },
+  {
+   "ticker": "CRDA.L",
+   "price": 3832.0,
+   "prev_close": 3880.0,
+   "pct": -1.237,
+   "low_pct": -1.521,
+   "rel": 0.021,
+   "vol_ratio": 0.94,
+   "dividend": null
+  },
+  {
+   "ticker": "TTE.PA",
+   "price": 78.19,
+   "prev_close": 79.16,
+   "pct": -1.225,
+   "low_pct": -1.63,
+   "rel": 0.033,
+   "vol_ratio": 1.1,
+   "dividend": null
+  },
+  {
+   "ticker": "SIGN.SW",
+   "price": 15.35,
+   "prev_close": 15.54,
+   "pct": -1.223,
+   "low_pct": -1.609,
+   "rel": 0.036,
+   "vol_ratio": 0.84,
+   "dividend": null
+  },
+  {
+   "ticker": "FGR.PA",
+   "price": 105.8,
+   "prev_close": 107.1,
+   "pct": -1.214,
+   "low_pct": -1.261,
+   "rel": 0.045,
+   "vol_ratio": 0.88,
+   "dividend": null
+  },
+  {
+   "ticker": "PROX.BR",
+   "price": 6.165,
+   "prev_close": 6.24,
+   "pct": -1.202,
+   "low_pct": -1.683,
+   "rel": 0.057,
+   "vol_ratio": 0.67,
+   "dividend": null
+  },
+  {
+   "ticker": "GFTU.L",
+   "price": 1014.0,
+   "prev_close": 1026.2,
+   "pct": -1.189,
+   "low_pct": -1.618,
+   "rel": 0.07,
+   "vol_ratio": 1.2,
+   "dividend": null
+  },
+  {
+   "ticker": "PNN.L",
+   "price": 317.2,
+   "prev_close": 321.0,
+   "pct": -1.184,
+   "low_pct": -1.869,
+   "rel": 0.075,
+   "vol_ratio": 0.66,
+   "dividend": null
+  },
+  {
+   "ticker": "JDW.L",
+   "price": 1016.0,
+   "prev_close": 1028.0,
+   "pct": -1.167,
+   "low_pct": -2.237,
+   "rel": 0.091,
+   "vol_ratio": 0.49,
+   "dividend": null
+  },
+  {
+   "ticker": "ELM.L",
+   "price": 186.8,
+   "prev_close": 189.0,
+   "pct": -1.164,
+   "low_pct": -2.011,
+   "rel": 0.095,
+   "vol_ratio": 0.98,
+   "dividend": null
+  },
+  {
+   "ticker": "LGEN.L",
+   "price": 291.8,
+   "prev_close": 295.2,
+   "pct": -1.152,
+   "low_pct": -1.592,
+   "rel": 0.107,
+   "vol_ratio": 1.51,
+   "dividend": null
+  },
+  {
+   "ticker": "NVG.LS",
+   "price": 2.93,
+   "prev_close": 2.964,
+   "pct": -1.147,
+   "low_pct": -1.147,
+   "rel": 0.111,
+   "vol_ratio": 1.18,
+   "dividend": null
+  },
+  {
+   "ticker": "PRU.L",
+   "price": 931.6,
+   "prev_close": 942.4,
+   "pct": -1.146,
+   "low_pct": -1.855,
+   "rel": 0.113,
+   "vol_ratio": 0.75,
+   "dividend": null
+  },
+  {
+   "ticker": "ADEN.SW",
+   "price": 24.3,
+   "prev_close": 24.58,
+   "pct": -1.139,
+   "low_pct": -1.79,
+   "rel": 0.119,
+   "vol_ratio": 0.9,
+   "dividend": null
+  },
+  {
+   "ticker": "ITX.MC",
+   "price": 57.78,
+   "prev_close": 58.44,
+   "pct": -1.129,
+   "low_pct": -1.916,
+   "rel": 0.129,
+   "vol_ratio": 1.33,
+   "dividend": null
+  },
+  {
+   "ticker": "ELISA.HE",
+   "price": 32.3,
+   "prev_close": 32.66,
+   "pct": -1.102,
+   "low_pct": -1.102,
+   "rel": 0.156,
+   "vol_ratio": 1.2,
+   "dividend": null
+  },
+  {
+   "ticker": "BWY.L",
+   "price": 2228.0,
+   "prev_close": 2252.0,
+   "pct": -1.066,
+   "low_pct": -1.954,
+   "rel": 0.193,
+   "vol_ratio": 0.64,
+   "dividend": null
+  },
+  {
+   "ticker": "TCAP.L",
+   "price": 302.6,
+   "prev_close": 305.8,
+   "pct": -1.046,
+   "low_pct": -2.171,
+   "rel": 0.212,
+   "vol_ratio": 0.8,
+   "dividend": null
+  },
+  {
+   "ticker": "ACA.PA",
+   "price": 15.305,
+   "prev_close": 15.465,
+   "pct": -1.035,
+   "low_pct": -1.746,
+   "rel": 0.224,
+   "vol_ratio": 1.11,
+   "dividend": null
+  },
+  {
+   "ticker": "PPH.L",
+   "price": 1558.0,
+   "prev_close": 1574.0,
+   "pct": -1.017,
+   "low_pct": -1.398,
+   "rel": 0.242,
+   "vol_ratio": 1.21,
+   "dividend": null
+  },
+  {
+   "ticker": "ZIG.L",
+   "price": 439.0,
+   "prev_close": 443.5,
+   "pct": -1.015,
+   "low_pct": -1.466,
+   "rel": 0.244,
+   "vol_ratio": 0.61,
+   "dividend": null
+  },
+  {
+   "ticker": "VOD.L",
+   "price": 108.35,
+   "prev_close": 109.45,
+   "pct": -1.005,
+   "low_pct": -1.325,
+   "rel": 0.254,
+   "vol_ratio": 0.9,
+   "dividend": null
+  },
+  {
+   "ticker": "GET.PA",
+   "price": 20.12,
+   "prev_close": 20.32,
+   "pct": -0.984,
+   "low_pct": -0.984,
+   "rel": 0.274,
+   "vol_ratio": 1.19,
+   "dividend": null
+  },
+  {
+   "ticker": "DG.PA",
+   "price": 111.0,
+   "prev_close": 112.1,
+   "pct": -0.981,
+   "low_pct": -0.981,
+   "rel": 0.277,
+   "vol_ratio": 0.99,
+   "dividend": null
+  },
+  {
+   "ticker": "PUB.PA",
+   "price": 99.78,
+   "prev_close": 100.75,
+   "pct": -0.963,
+   "low_pct": -1.181,
+   "rel": 0.296,
+   "vol_ratio": 1.57,
+   "dividend": null
+  },
+  {
+   "ticker": "SEM.LS",
+   "price": 19.02,
+   "prev_close": 19.2,
+   "pct": -0.938,
+   "low_pct": -1.25,
+   "rel": 0.321,
+   "vol_ratio": 1.45,
+   "dividend": null
+  },
+  {
+   "ticker": "EN.PA",
+   "price": 42.5,
+   "prev_close": 42.9,
+   "pct": -0.932,
+   "low_pct": -1.538,
+   "rel": 0.326,
+   "vol_ratio": 0.98,
+   "dividend": null
+  },
+  {
+   "ticker": "GRI.L",
+   "price": 171.2,
+   "prev_close": 172.8,
+   "pct": -0.926,
+   "low_pct": -1.62,
+   "rel": 0.333,
+   "vol_ratio": 0.91,
+   "dividend": null
+  },
+  {
+   "ticker": "GRG.L",
+   "price": 2376.0,
+   "prev_close": 2398.0,
+   "pct": -0.917,
+   "low_pct": -1.084,
+   "rel": 0.341,
+   "vol_ratio": 0.49,
+   "dividend": null
+  },
+  {
+   "ticker": "ASRNL.AS",
+   "price": 77.06,
+   "prev_close": 77.76,
+   "pct": -0.9,
+   "low_pct": -1.595,
+   "rel": 0.358,
+   "vol_ratio": 1.29,
+   "dividend": null
+  },
+  {
+   "ticker": "CTEC.L",
+   "price": 265.8,
+   "prev_close": 268.2,
+   "pct": -0.895,
+   "low_pct": -2.013,
+   "rel": 0.364,
+   "vol_ratio": 0.77,
+   "dividend": null
+  },
+  {
+   "ticker": "PSN.L",
+   "price": 1239.0,
+   "prev_close": 1250.0,
+   "pct": -0.88,
+   "low_pct": -1.88,
+   "rel": 0.379,
+   "vol_ratio": 0.46,
+   "dividend": null
+  },
+  {
+   "ticker": "MONT.BR",
+   "price": 67.7,
+   "prev_close": 68.3,
+   "pct": -0.878,
+   "low_pct": -1.171,
+   "rel": 0.38,
+   "vol_ratio": 0.65,
+   "dividend": null
+  },
+  {
+   "ticker": "SLHN.SW",
+   "price": 948.8,
+   "prev_close": 957.2,
+   "pct": -0.878,
+   "low_pct": -1.191,
+   "rel": 0.381,
+   "vol_ratio": 1.1,
+   "dividend": null
+  },
+  {
+   "ticker": "SON.LS",
+   "price": 2.26,
+   "prev_close": 2.28,
+   "pct": -0.877,
+   "low_pct": -1.096,
+   "rel": 0.381,
+   "vol_ratio": 0.92,
+   "dividend": null
+  },
+  {
+   "ticker": "ACOMO.AS",
+   "price": 22.75,
+   "prev_close": 22.95,
+   "pct": -0.871,
+   "low_pct": -1.307,
+   "rel": 0.387,
+   "vol_ratio": 2.48,
+   "dividend": null
+  },
+  {
+   "ticker": "III.L",
+   "price": 2520.0,
+   "prev_close": 2542.0,
+   "pct": -0.865,
+   "low_pct": -1.487,
+   "rel": 0.393,
+   "vol_ratio": 0.96,
+   "dividend": null
+  },
+  {
+   "ticker": "OMV.VI",
+   "price": 68.95,
+   "prev_close": 69.55,
+   "pct": -0.863,
+   "low_pct": -1.725,
+   "rel": 0.396,
+   "vol_ratio": 0.86,
+   "dividend": null
+  },
+  {
+   "ticker": "LAND.L",
+   "price": 690.5,
+   "prev_close": 696.5,
+   "pct": -0.861,
+   "low_pct": -1.723,
+   "rel": 0.397,
+   "vol_ratio": 1.19,
+   "dividend": null
+  },
+  {
+   "ticker": "COL.MC",
+   "price": 4.87,
+   "prev_close": 4.912,
+   "pct": -0.855,
+   "low_pct": -0.855,
+   "rel": 0.403,
+   "vol_ratio": 1.32,
+   "dividend": null
+  },
+  {
+   "ticker": "UNI.MI",
+   "price": 24.53,
+   "prev_close": 24.74,
+   "pct": -0.849,
+   "low_pct": -2.466,
+   "rel": 0.41,
+   "vol_ratio": 1.15,
+   "dividend": null
+  },
+  {
+   "ticker": "BLND.L",
+   "price": 428.6,
+   "prev_close": 432.2,
+   "pct": -0.833,
+   "low_pct": -1.342,
+   "rel": 0.426,
+   "vol_ratio": 0.73,
+   "dividend": null
+  },
+  {
+   "ticker": "AI.PA",
+   "price": 187.58,
+   "prev_close": 189.14,
+   "pct": -0.825,
+   "low_pct": -1.227,
+   "rel": 0.434,
+   "vol_ratio": 1.23,
+   "dividend": null
+  },
+  {
+   "ticker": "COLO-B.CO",
+   "price": 495.4,
+   "prev_close": 499.5,
+   "pct": -0.821,
+   "low_pct": -0.821,
+   "rel": 0.438,
+   "vol_ratio": 0.82,
+   "dividend": null
+  },
+  {
+   "ticker": "KNEBV.HE",
+   "price": 56.64,
+   "prev_close": 57.1,
+   "pct": -0.806,
+   "low_pct": -1.716,
+   "rel": 0.453,
+   "vol_ratio": 1.1,
+   "dividend": null
+  },
+  {
+   "ticker": "GMAB.CO",
+   "price": 3469.0,
+   "prev_close": 3497.0,
+   "pct": -0.801,
+   "low_pct": -0.915,
+   "rel": 0.458,
+   "vol_ratio": 0.49,
+   "dividend": null
+  },
+  {
+   "ticker": "CAST.ST",
+   "price": 130.85,
+   "prev_close": 131.9,
+   "pct": -0.796,
+   "low_pct": -1.44,
+   "rel": 0.462,
+   "vol_ratio": 0.87,
+   "dividend": null
+  },
+  {
+   "ticker": "NOS.LS",
+   "price": 5.655,
+   "prev_close": 5.7,
+   "pct": -0.789,
+   "low_pct": -1.316,
+   "rel": 0.469,
+   "vol_ratio": 0.72,
+   "dividend": null
+  },
+  {
+   "ticker": "MKS.L",
+   "price": 454.3,
+   "prev_close": 457.9,
+   "pct": -0.786,
+   "low_pct": -0.786,
+   "rel": 0.472,
+   "vol_ratio": 0.76,
+   "dividend": null
+  },
+  {
+   "ticker": "EG7.IR",
+   "price": 19.05,
+   "prev_close": 19.2,
+   "pct": -0.781,
+   "low_pct": -0.781,
+   "rel": 0.477,
+   "vol_ratio": 0.26,
+   "dividend": null
+  },
+  {
+   "ticker": "SY1.DE",
+   "price": 94.52,
+   "prev_close": 95.26,
+   "pct": -0.777,
+   "low_pct": -1.197,
+   "rel": 0.482,
+   "vol_ratio": 1.07,
+   "dividend": null
+  },
+  {
+   "ticker": "FRE.DE",
+   "price": 51.38,
+   "prev_close": 51.78,
+   "pct": -0.772,
+   "low_pct": -2.491,
+   "rel": 0.486,
+   "vol_ratio": 1.51,
+   "dividend": null
+  },
+  {
+   "ticker": "HUH1V.HE",
+   "price": 25.84,
+   "prev_close": 26.04,
+   "pct": -0.768,
+   "low_pct": -0.845,
+   "rel": 0.49,
+   "vol_ratio": 0.91,
+   "dividend": null
+  },
+  {
+   "ticker": "COR.LS",
+   "price": 6.5,
+   "prev_close": 6.55,
+   "pct": -0.763,
+   "low_pct": -0.763,
+   "rel": 0.495,
+   "vol_ratio": 0.48,
+   "dividend": null
+  },
+  {
+   "ticker": "CLNX.MC",
+   "price": 24.9,
+   "prev_close": 25.09,
+   "pct": -0.757,
+   "low_pct": -1.355,
+   "rel": 0.501,
+   "vol_ratio": 0.8,
+   "dividend": null
+  },
+  {
+   "ticker": "FHZN.SW",
+   "price": 210.8,
+   "prev_close": 212.4,
+   "pct": -0.753,
+   "low_pct": -0.753,
+   "rel": 0.505,
+   "vol_ratio": 0.7,
+   "dividend": null
+  },
+  {
+   "ticker": "HEI.DE",
+   "price": 173.55,
+   "prev_close": 174.85,
+   "pct": -0.743,
+   "low_pct": -1.887,
+   "rel": 0.515,
+   "vol_ratio": 0.96,
+   "dividend": null
+  },
+  {
+   "ticker": "SRE.L",
+   "price": 94.3,
+   "prev_close": 95.0,
+   "pct": -0.737,
+   "low_pct": -2.211,
+   "rel": 0.522,
+   "vol_ratio": 1.05,
+   "dividend": null
+  },
+  {
+   "ticker": "SGSN.SW",
+   "price": 101.75,
+   "prev_close": 102.5,
+   "pct": -0.732,
+   "low_pct": -0.78,
+   "rel": 0.527,
+   "vol_ratio": 0.9,
+   "dividend": null
+  },
+  {
+   "ticker": "ELI.BR",
+   "price": 126.3,
+   "prev_close": 127.2,
+   "pct": -0.708,
+   "low_pct": -1.336,
+   "rel": 0.551,
+   "vol_ratio": 1.14,
+   "dividend": null
+  },
+  {
+   "ticker": "CRBN.AS",
+   "price": 25.4,
+   "prev_close": 25.58,
+   "pct": -0.704,
+   "low_pct": -2.111,
+   "rel": 0.555,
+   "vol_ratio": 0.76,
+   "dividend": null
+  },
+  {
+   "ticker": "PAG.L",
+   "price": 716.0,
+   "prev_close": 721.0,
+   "pct": -0.693,
+   "low_pct": -1.803,
+   "rel": 0.565,
+   "vol_ratio": 1.57,
+   "dividend": null
+  },
+  {
+   "ticker": "VSVS.L",
+   "price": 462.0,
+   "prev_close": 465.2,
+   "pct": -0.688,
+   "low_pct": -2.064,
+   "rel": 0.571,
+   "vol_ratio": 2.97,
+   "dividend": null
+  },
+  {
+   "ticker": "REP.MC",
+   "price": 28.46,
+   "prev_close": 28.65,
+   "pct": -0.663,
+   "low_pct": -1.64,
+   "rel": 0.595,
+   "vol_ratio": 1.18,
+   "dividend": null
+  },
+  {
+   "ticker": "UTG.L",
+   "price": 459.0,
+   "prev_close": 462.0,
+   "pct": -0.649,
+   "low_pct": -1.515,
+   "rel": 0.609,
+   "vol_ratio": 1.09,
+   "dividend": null
+  },
+  {
+   "ticker": "VIE.PA",
+   "price": 33.75,
+   "prev_close": 33.97,
+   "pct": -0.648,
+   "low_pct": -1.531,
+   "rel": 0.611,
+   "vol_ratio": 1.28,
+   "dividend": null
+  },
+  {
+   "ticker": "ISS.CO",
+   "price": 311.2,
+   "prev_close": 313.2,
+   "pct": -0.639,
+   "low_pct": -1.086,
+   "rel": 0.62,
+   "vol_ratio": 0.98,
+   "dividend": null
+  },
+  {
+   "ticker": "PSPN.SW",
+   "price": 148.4,
+   "prev_close": 149.3,
+   "pct": -0.603,
+   "low_pct": -0.67,
+   "rel": 0.656,
+   "vol_ratio": 0.79,
+   "dividend": null
+  },
+  {
+   "ticker": "ROP.SW",
+   "price": 396.8,
+   "prev_close": 399.2,
+   "pct": -0.601,
+   "low_pct": -1.002,
+   "rel": 0.657,
+   "vol_ratio": 1.19,
+   "dividend": null
+  },
+  {
+   "ticker": "RO.SW",
+   "price": 402.6,
+   "prev_close": 405.0,
+   "pct": -0.593,
+   "low_pct": -0.79,
+   "rel": 0.666,
+   "vol_ratio": 1.19,
+   "dividend": null
+  },
+  {
+   "ticker": "VER.VI",
+   "price": 68.5,
+   "prev_close": 68.9,
+   "pct": -0.581,
+   "low_pct": -1.451,
+   "rel": 0.678,
+   "vol_ratio": 0.74,
+   "dividend": null
+  },
+  {
+   "ticker": "GEBN.SW",
+   "price": 575.0,
+   "prev_close": 578.2,
+   "pct": -0.553,
+   "low_pct": -0.553,
+   "rel": 0.705,
+   "vol_ratio": 1.12,
+   "dividend": null
+  },
+  {
+   "ticker": "CS.PA",
+   "price": 45.14,
+   "prev_close": 45.39,
+   "pct": -0.551,
+   "low_pct": -1.366,
+   "rel": 0.708,
+   "vol_ratio": 1.26,
+   "dividend": null
+  },
+  {
+   "ticker": "INW.MI",
+   "price": 7.265,
+   "prev_close": 7.305,
+   "pct": -0.548,
+   "low_pct": -0.548,
+   "rel": 0.711,
+   "vol_ratio": 0.71,
+   "dividend": null
+  },
+  {
+   "ticker": "HBAN.SW",
+   "price": 218.2,
+   "prev_close": 219.4,
+   "pct": -0.547,
+   "low_pct": -1.094,
+   "rel": 0.712,
+   "vol_ratio": 0.95,
+   "dividend": null
+  },
+  {
+   "ticker": "INVP.L",
+   "price": 546.5,
+   "prev_close": 549.5,
+   "pct": -0.546,
+   "low_pct": -2.275,
+   "rel": 0.713,
+   "vol_ratio": 1.94,
+   "dividend": null
+  },
+  {
+   "ticker": "SOON.SW",
+   "price": 291.8,
+   "prev_close": 293.4,
+   "pct": -0.545,
+   "low_pct": -1.022,
+   "rel": 0.713,
+   "vol_ratio": 0.78,
+   "dividend": null
+  },
+  {
+   "ticker": "SCA-B.ST",
+   "price": 111.75,
+   "prev_close": 112.35,
+   "pct": -0.534,
+   "low_pct": -1.113,
+   "rel": 0.725,
+   "vol_ratio": 1.49,
+   "dividend": null
+  },
+  {
+   "ticker": "WKL.AS",
+   "price": 85.88,
+   "prev_close": 86.32,
+   "pct": -0.51,
+   "low_pct": -1.321,
+   "rel": 0.749,
+   "vol_ratio": 1.18,
+   "dividend": null
+  },
+  {
+   "ticker": "HEIA.AS",
+   "price": 82.48,
+   "prev_close": 82.9,
+   "pct": -0.507,
+   "low_pct": -0.579,
+   "rel": 0.752,
+   "vol_ratio": 1.1,
+   "dividend": null
+  },
+  {
+   "ticker": "IPN.PA",
+   "price": 161.6,
+   "prev_close": 162.4,
+   "pct": -0.493,
+   "low_pct": -0.493,
+   "rel": 0.766,
+   "vol_ratio": 0.88,
+   "dividend": null
+  },
+  {
+   "ticker": "DNLM.L",
+   "price": 883.0,
+   "prev_close": 887.0,
+   "pct": -0.451,
+   "low_pct": -1.917,
+   "rel": 0.808,
+   "vol_ratio": 0.47,
+   "dividend": null
+  },
+  {
+   "ticker": "UMG.AS",
+   "price": 16.92,
+   "prev_close": 16.995,
+   "pct": -0.441,
+   "low_pct": -1.0,
+   "rel": 0.817,
+   "vol_ratio": 0.87,
+   "dividend": null
+  },
+  {
+   "ticker": "SECU-B.ST",
+   "price": 158.2,
+   "prev_close": 158.9,
+   "pct": -0.441,
+   "low_pct": -1.07,
+   "rel": 0.818,
+   "vol_ratio": 0.87,
+   "dividend": null
+  },
+  {
+   "ticker": "MAP.MC",
+   "price": 4.088,
+   "prev_close": 4.106,
+   "pct": -0.438,
+   "low_pct": -1.023,
+   "rel": 0.82,
+   "vol_ratio": 1.1,
+   "dividend": null
+  },
+  {
+   "ticker": "LOTB.BR",
+   "price": 13660.0,
+   "prev_close": 13720.0,
+   "pct": -0.437,
+   "low_pct": -1.458,
+   "rel": 0.821,
+   "vol_ratio": 1.37,
+   "dividend": null
+  },
+  {
+   "ticker": "POLN.L",
+   "price": 912.0,
+   "prev_close": 916.0,
+   "pct": -0.437,
+   "low_pct": -1.638,
+   "rel": 0.822,
+   "vol_ratio": 0.71,
+   "dividend": null
+  },
+  {
+   "ticker": "ERF.PA",
+   "price": 85.3,
+   "prev_close": 85.66,
+   "pct": -0.42,
+   "low_pct": -0.981,
+   "rel": 0.838,
+   "vol_ratio": 1.1,
+   "dividend": null
+  },
+  {
+   "ticker": "SW.PA",
+   "price": 59.3,
+   "prev_close": 59.55,
+   "pct": -0.42,
+   "low_pct": -2.099,
+   "rel": 0.839,
+   "vol_ratio": 0.7,
+   "dividend": null
+  },
+  {
+   "ticker": "GL9.IR",
+   "price": 19.31,
+   "prev_close": 19.39,
+   "pct": -0.413,
+   "low_pct": -1.47,
+   "rel": 0.846,
+   "vol_ratio": 0.64,
+   "dividend": null
+  },
+  {
+   "ticker": "QIA.DE",
+   "price": 45.07,
+   "prev_close": 45.25,
+   "pct": -0.398,
+   "low_pct": -0.464,
+   "rel": 0.861,
+   "vol_ratio": 0.87,
+   "dividend": null
+  },
+  {
+   "ticker": "ENEL.MI",
+   "price": 9.416,
+   "prev_close": 9.453,
+   "pct": -0.391,
+   "low_pct": -1.936,
+   "rel": 0.867,
+   "vol_ratio": 1.48,
+   "dividend": null
+  },
+  {
+   "ticker": "SSE.L",
+   "price": 2554.0,
+   "prev_close": 2564.0,
+   "pct": -0.39,
+   "low_pct": -1.092,
+   "rel": 0.869,
+   "vol_ratio": 0.72,
+   "dividend": null
+  },
+  {
+   "ticker": "RBREW.CO",
+   "price": 480.8,
+   "prev_close": 482.6,
+   "pct": -0.373,
+   "low_pct": -0.953,
+   "rel": 0.886,
+   "vol_ratio": 1.11,
+   "dividend": null
+  },
+  {
+   "ticker": "ENGI.PA",
+   "price": 24.26,
+   "prev_close": 24.35,
+   "pct": -0.37,
+   "low_pct": -1.15,
+   "rel": 0.889,
+   "vol_ratio": 1.08,
+   "dividend": null
+  },
+  {
+   "ticker": "GJF.OL",
+   "price": 275.6,
+   "prev_close": 276.6,
+   "pct": -0.362,
+   "low_pct": -0.795,
+   "rel": 0.897,
+   "vol_ratio": 0.56,
+   "dividend": null
+  },
+  {
+   "ticker": "WTB.L",
+   "price": 2797.0,
+   "prev_close": 2807.0,
+   "pct": -0.356,
+   "low_pct": -0.784,
+   "rel": 0.902,
+   "vol_ratio": 0.83,
+   "dividend": null
+  },
+  {
+   "ticker": "OR.PA",
+   "price": 435.0,
+   "prev_close": 436.55,
+   "pct": -0.355,
+   "low_pct": -0.355,
+   "rel": 0.903,
+   "vol_ratio": 0.94,
+   "dividend": null
+  },
+  {
+   "ticker": "SGE.L",
+   "price": 1128.5,
+   "prev_close": 1132.5,
+   "pct": -0.353,
+   "low_pct": -1.28,
+   "rel": 0.905,
+   "vol_ratio": 1.02,
+   "dividend": null
+  },
+  {
+   "ticker": "BKG.L",
+   "price": 3494.0,
+   "prev_close": 3506.0,
+   "pct": -0.342,
+   "low_pct": -1.54,
+   "rel": 0.916,
+   "vol_ratio": 1.03,
+   "dividend": null
+  },
+  {
+   "ticker": "SYNC.L",
+   "price": 125.0,
+   "prev_close": 125.4,
+   "pct": -0.319,
+   "low_pct": -0.478,
+   "rel": 0.94,
+   "vol_ratio": 0.36,
+   "dividend": null
+  },
+  {
+   "ticker": "A2A.MI",
+   "price": 2.194,
+   "prev_close": 2.201,
+   "pct": -0.318,
+   "low_pct": -1.59,
+   "rel": 0.941,
+   "vol_ratio": 1.01,
+   "dividend": null
+  },
+  {
+   "ticker": "NXT.L",
+   "price": 15885.0,
+   "prev_close": 15935.0,
+   "pct": -0.314,
+   "low_pct": -0.722,
+   "rel": 0.945,
+   "vol_ratio": 1.06,
+   "dividend": null
+  },
+  {
+   "ticker": "SPSN.SW",
+   "price": 131.2,
+   "prev_close": 131.6,
+   "pct": -0.304,
+   "low_pct": -0.304,
+   "rel": 0.955,
+   "vol_ratio": 0.95,
+   "dividend": null
+  },
+  {
+   "ticker": "AV.L",
+   "price": 736.2,
+   "prev_close": 738.4,
+   "pct": -0.298,
+   "low_pct": -1.165,
+   "rel": 0.961,
+   "vol_ratio": 0.9,
+   "dividend": null
+  },
+  {
+   "ticker": "ORNBV.HE",
+   "price": 100.4,
+   "prev_close": 100.7,
+   "pct": -0.298,
+   "low_pct": -0.745,
+   "rel": 0.961,
+   "vol_ratio": 1.27,
+   "dividend": null
+  },
+  {
+   "ticker": "ZURN.SW",
+   "price": 633.4,
+   "prev_close": 635.2,
+   "pct": -0.283,
+   "low_pct": -0.819,
+   "rel": 0.975,
+   "vol_ratio": 1.31,
+   "dividend": null
+  },
+  {
+   "ticker": "BT-A.L",
+   "price": 212.3,
+   "prev_close": 212.9,
+   "pct": -0.282,
+   "low_pct": -0.611,
+   "rel": 0.977,
+   "vol_ratio": 1.07,
+   "dividend": null
+  },
+  {
+   "ticker": "HFG.L",
+   "price": 712.0,
+   "prev_close": 714.0,
+   "pct": -0.28,
+   "low_pct": -1.401,
+   "rel": 0.978,
+   "vol_ratio": 1.48,
+   "dividend": null
+  },
+  {
+   "ticker": "TATE.L",
+   "price": 555.5,
+   "prev_close": 557.0,
+   "pct": -0.269,
+   "low_pct": -0.718,
+   "rel": 0.989,
+   "vol_ratio": 0.27,
+   "dividend": null
+  },
+  {
+   "ticker": "GFC.PA",
+   "price": 61.85,
+   "prev_close": 62.0,
+   "pct": -0.242,
+   "low_pct": -1.452,
+   "rel": 1.017,
+   "vol_ratio": 1.05,
+   "dividend": null
+  },
+  {
+   "ticker": "HEN3.DE",
+   "price": 85.72,
+   "prev_close": 85.92,
+   "pct": -0.233,
+   "low_pct": -0.605,
+   "rel": 1.026,
+   "vol_ratio": 1.11,
+   "dividend": null
+  },
+  {
+   "ticker": "AENA.MC",
+   "price": 27.64,
+   "prev_close": 27.7,
+   "pct": -0.217,
+   "low_pct": -0.217,
+   "rel": 1.042,
+   "vol_ratio": 1.31,
+   "dividend": null
+  },
+  {
+   "ticker": "TW.L",
+   "price": 75.04,
+   "prev_close": 75.2,
+   "pct": -0.213,
+   "low_pct": -1.277,
+   "rel": 1.046,
+   "vol_ratio": 0.67,
+   "dividend": null
+  },
+  {
+   "ticker": "GNC.L",
+   "price": 292.6,
+   "prev_close": 293.2,
+   "pct": -0.205,
+   "low_pct": -1.228,
+   "rel": 1.054,
+   "vol_ratio": 0.44,
+   "dividend": null
+  },
+  {
+   "ticker": "CWK.L",
+   "price": 5550.0,
+   "prev_close": 5560.0,
+   "pct": -0.18,
+   "low_pct": -0.18,
+   "rel": 1.079,
+   "vol_ratio": 0.79,
+   "dividend": null
+  },
+  {
+   "ticker": "MOWI.OL",
+   "price": 225.6,
+   "prev_close": 226.0,
+   "pct": -0.177,
+   "low_pct": -1.15,
+   "rel": 1.082,
+   "vol_ratio": 1.1,
+   "dividend": null
+  },
+  {
+   "ticker": "BOWL.L",
+   "price": 290.0,
+   "prev_close": 290.5,
+   "pct": -0.172,
+   "low_pct": -0.861,
+   "rel": 1.086,
+   "vol_ratio": 0.72,
+   "dividend": null
+  },
+  {
+   "ticker": "ITRK.L",
+   "price": 5935.0,
+   "prev_close": 5945.0,
+   "pct": -0.168,
+   "low_pct": -0.168,
+   "rel": 1.09,
+   "vol_ratio": 0.31,
+   "dividend": null
+  },
+  {
+   "ticker": "MAB.L",
+   "price": 310.5,
+   "prev_close": 311.0,
+   "pct": -0.161,
+   "low_pct": -1.125,
+   "rel": 1.098,
+   "vol_ratio": 0.4,
+   "dividend": null
+  },
+  {
+   "ticker": "AED.BR",
+   "price": 63.6,
+   "prev_close": 63.7,
+   "pct": -0.157,
+   "low_pct": -0.157,
+   "rel": 1.102,
+   "vol_ratio": 1.09,
+   "dividend": null
+  },
+  {
+   "ticker": "CA.PA",
+   "price": 13.5,
+   "prev_close": 13.52,
+   "pct": -0.148,
+   "low_pct": -0.407,
+   "rel": 1.111,
+   "vol_ratio": 0.74,
+   "dividend": null
+  },
+  {
+   "ticker": "HM-B.ST",
+   "price": 178.1,
+   "prev_close": 178.35,
+   "pct": -0.14,
+   "low_pct": -0.925,
+   "rel": 1.118,
+   "vol_ratio": 1.83,
+   "dividend": null
+  },
+  {
+   "ticker": "BP.L",
+   "price": 549.8,
+   "prev_close": 550.5,
+   "pct": -0.127,
+   "low_pct": -1.58,
+   "rel": 1.131,
+   "vol_ratio": 0.65,
+   "dividend": null
+  },
+  {
+   "ticker": "TRN.MI",
+   "price": 9.46,
+   "prev_close": 9.472,
+   "pct": -0.127,
+   "low_pct": -0.169,
+   "rel": 1.132,
+   "vol_ratio": 1.08,
+   "dividend": null
+  },
+  {
+   "ticker": "GIVN.SW",
+   "price": 4049.0,
+   "prev_close": 4054.0,
+   "pct": -0.123,
+   "low_pct": -0.37,
+   "rel": 1.135,
+   "vol_ratio": 1.26,
+   "dividend": null
+  },
+  {
+   "ticker": "ROR.L",
+   "price": 493.0,
+   "prev_close": 493.4,
+   "pct": -0.081,
+   "low_pct": -0.081,
+   "rel": 1.177,
+   "vol_ratio": 1.29,
+   "dividend": null
+  },
+  {
+   "ticker": "INCH.L",
+   "price": 632.5,
+   "prev_close": 633.0,
+   "pct": -0.079,
+   "low_pct": -0.869,
+   "rel": 1.18,
+   "vol_ratio": 0.7,
+   "dividend": null
+  },
+  {
+   "ticker": "PSON.L",
+   "price": 1299.5,
+   "prev_close": 1300.5,
+   "pct": -0.077,
+   "low_pct": -0.077,
+   "rel": 1.182,
+   "vol_ratio": 0.86,
+   "dividend": null
+  },
+  {
+   "ticker": "ENX.PA",
+   "price": 165.5,
+   "prev_close": 165.6,
+   "pct": -0.06,
+   "low_pct": -1.147,
+   "rel": 1.198,
+   "vol_ratio": 0.93,
+   "dividend": null
+  },
+  {
+   "ticker": "HIK.L",
+   "price": 1686.0,
+   "prev_close": 1687.0,
+   "pct": -0.059,
+   "low_pct": -0.593,
+   "rel": 1.199,
+   "vol_ratio": 0.73,
+   "dividend": null
+  },
+  {
+   "ticker": "SHELL.AS",
+   "price": 42.825,
+   "prev_close": 42.85,
+   "pct": -0.058,
+   "low_pct": -1.517,
+   "rel": 1.2,
+   "vol_ratio": 1.11,
+   "dividend": null
+  },
+  {
+   "ticker": "KGF.L",
+   "price": 379.4,
+   "prev_close": 379.6,
+   "pct": -0.053,
+   "low_pct": -0.685,
+   "rel": 1.206,
+   "vol_ratio": 1.91,
+   "dividend": null
+  },
+  {
+   "ticker": "SAMPO.HE",
+   "price": 9.796,
+   "prev_close": 9.8,
+   "pct": -0.041,
+   "low_pct": -0.367,
+   "rel": 1.218,
+   "vol_ratio": 1.1,
+   "dividend": null
+  },
+  {
+   "ticker": "BOSS.DE",
+   "price": 37.97,
+   "prev_close": 37.98,
+   "pct": -0.026,
+   "low_pct": -0.395,
+   "rel": 1.232,
+   "vol_ratio": 1.34,
+   "dividend": null
+  },
+  {
+   "ticker": "G.MI",
+   "price": 43.34,
+   "prev_close": 43.34,
+   "pct": 0.0,
+   "low_pct": -1.431,
+   "rel": 1.259,
+   "vol_ratio": 1.38,
+   "dividend": null
+  },
+  {
+   "ticker": "IRES.IR",
+   "price": 1.362,
+   "prev_close": 1.362,
+   "pct": 0.0,
+   "low_pct": 0.0,
+   "rel": 1.259,
+   "vol_ratio": 0.25,
+   "dividend": null
+  },
+  {
+   "ticker": "DCC.L",
+   "price": 6455.0,
+   "prev_close": 6455.0,
+   "pct": 0.0,
+   "low_pct": 0.0,
+   "rel": 1.259,
+   "vol_ratio": 1.5,
+   "dividend": null
+  },
+  {
+   "ticker": "SHEL.L",
+   "price": 3574.5,
+   "prev_close": 3574.5,
+   "pct": 0.0,
+   "low_pct": -3.898,
+   "rel": 1.259,
+   "vol_ratio": 0.94,
+   "dividend": null
+  },
+  {
+   "ticker": "GAMA.L",
+   "price": 1101.0,
+   "prev_close": 1101.0,
+   "pct": 0.0,
+   "low_pct": -0.091,
+   "rel": 1.259,
+   "vol_ratio": 0.15,
+   "dividend": null
+  },
+  {
+   "ticker": "WIX.L",
+   "price": 239.5,
+   "prev_close": 239.5,
+   "pct": 0.0,
+   "low_pct": -1.879,
+   "rel": 1.259,
+   "vol_ratio": 1.06,
+   "dividend": null
+  },
+  {
+   "ticker": "BOY.L",
+   "price": 919.0,
+   "prev_close": 919.0,
+   "pct": 0.0,
+   "low_pct": -0.054,
+   "rel": 1.259,
+   "vol_ratio": 0.56,
+   "dividend": null
+  },
+  {
+   "ticker": "SALM.OL",
+   "price": 587.5,
+   "prev_close": 587.5,
+   "pct": 0.0,
+   "low_pct": -0.851,
+   "rel": 1.259,
+   "vol_ratio": 0.97,
+   "dividend": null
+  },
+  {
+   "ticker": "LSG.OL",
+   "price": 44.16,
+   "prev_close": 44.14,
+   "pct": 0.045,
+   "low_pct": -0.77,
+   "rel": 1.304,
+   "vol_ratio": 0.53,
+   "dividend": null
+  },
+  {
+   "ticker": "DEMANT.CO",
+   "price": 345.2,
+   "prev_close": 345.0,
+   "pct": 0.058,
+   "low_pct": -0.928,
+   "rel": 1.317,
+   "vol_ratio": 0.69,
+   "dividend": null
+  },
+  {
+   "ticker": "NTGY.MC",
+   "price": 30.02,
+   "prev_close": 30.0,
+   "pct": 0.067,
+   "low_pct": -0.533,
+   "rel": 1.325,
+   "vol_ratio": 0.65,
+   "dividend": null
+  },
+  {
+   "ticker": "KESKOB.HE",
+   "price": 24.74,
+   "prev_close": 24.72,
+   "pct": 0.081,
+   "low_pct": -0.405,
+   "rel": 1.339,
+   "vol_ratio": 1.39,
+   "dividend": null
+  },
+  {
+   "ticker": "CARL-B.CO",
+   "price": 985.6,
+   "prev_close": 984.8,
+   "pct": 0.081,
+   "low_pct": 0.061,
+   "rel": 1.34,
+   "vol_ratio": 0.84,
+   "dividend": null
+  },
+  {
+   "ticker": "EDP.LS",
+   "price": 4.867,
+   "prev_close": 4.863,
+   "pct": 0.082,
+   "low_pct": -1.172,
+   "rel": 1.341,
+   "vol_ratio": 1.27,
+   "dividend": null
+  },
+  {
+   "ticker": "RCO.PA",
+   "price": 50.45,
+   "prev_close": 50.4,
+   "pct": 0.099,
+   "low_pct": -0.873,
+   "rel": 1.358,
+   "vol_ratio": 0.66,
+   "dividend": null
+  },
+  {
+   "ticker": "LI.PA",
+   "price": 37.22,
+   "prev_close": 37.18,
+   "pct": 0.108,
+   "low_pct": -0.646,
+   "rel": 1.366,
+   "vol_ratio": 1.22,
+   "dividend": null
+  },
+  {
+   "ticker": "SBRY.L",
+   "price": 344.3,
+   "prev_close": 343.9,
+   "pct": 0.116,
+   "low_pct": 0.0,
+   "rel": 1.375,
+   "vol_ratio": 0.61,
+   "dividend": null
+  },
+  {
+   "ticker": "ELE.MC",
+   "price": 43.12,
+   "prev_close": 43.06,
+   "pct": 0.139,
+   "low_pct": -1.115,
+   "rel": 1.398,
+   "vol_ratio": 1.12,
+   "dividend": null
+  },
+  {
+   "ticker": "YAR.OL",
+   "price": 383.9,
+   "prev_close": 383.3,
+   "pct": 0.157,
+   "low_pct": -0.757,
+   "rel": 1.415,
+   "vol_ratio": 0.91,
+   "dividend": null
+  },
+  {
+   "ticker": "BIM.PA",
+   "price": 91.3,
+   "prev_close": 91.15,
+   "pct": 0.165,
+   "low_pct": 0.165,
+   "rel": 1.423,
+   "vol_ratio": 1.07,
+   "dividend": null
+  },
+  {
+   "ticker": "MTO.L",
+   "price": 209.0,
+   "prev_close": 208.6,
+   "pct": 0.192,
+   "low_pct": -0.192,
+   "rel": 1.45,
+   "vol_ratio": 0.5,
+   "dividend": null
+  },
+  {
+   "ticker": "BEI.DE",
+   "price": 79.18,
+   "prev_close": 79.02,
+   "pct": 0.202,
+   "low_pct": 0.101,
+   "rel": 1.461,
+   "vol_ratio": 1.14,
+   "dividend": null
+  },
+  {
+   "ticker": "TEF.MC",
+   "price": 3.363,
+   "prev_close": 3.356,
+   "pct": 0.209,
+   "low_pct": -0.447,
+   "rel": 1.467,
+   "vol_ratio": 0.76,
+   "dividend": null
+  },
+  {
+   "ticker": "ABI.BR",
+   "price": 73.0,
+   "prev_close": 72.84,
+   "pct": 0.22,
+   "low_pct": -0.549,
+   "rel": 1.478,
+   "vol_ratio": 1.12,
+   "dividend": null
+  },
+  {
+   "ticker": "LOG.MC",
+   "price": 36.48,
+   "prev_close": 36.4,
+   "pct": 0.22,
+   "low_pct": -0.11,
+   "rel": 1.478,
+   "vol_ratio": 1.04,
+   "dividend": null
+  },
+  {
+   "ticker": "HER.MI",
+   "price": 3.574,
+   "prev_close": 3.566,
+   "pct": 0.224,
+   "low_pct": -1.234,
+   "rel": 1.483,
+   "vol_ratio": 0.81,
+   "dividend": null
+  },
+  {
+   "ticker": "TEP.L",
+   "price": 873.0,
+   "prev_close": 871.0,
+   "pct": 0.23,
+   "low_pct": -3.1,
+   "rel": 1.488,
+   "vol_ratio": 0.66,
+   "dividend": null
+  },
+  {
+   "ticker": "IR5B.IR",
+   "price": 7.98,
+   "prev_close": 7.96,
+   "pct": 0.251,
+   "low_pct": 0.0,
+   "rel": 1.51,
+   "vol_ratio": 0.04,
+   "dividend": null
+  },
+  {
+   "ticker": "RAND.AS",
+   "price": 40.96,
+   "prev_close": 40.84,
+   "pct": 0.294,
+   "low_pct": -1.102,
+   "rel": 1.552,
+   "vol_ratio": 1.51,
+   "dividend": null
+  },
+  {
+   "ticker": "NSIS-B.CO",
+   "price": 441.4,
+   "prev_close": 440.0,
+   "pct": 0.318,
+   "low_pct": -0.295,
+   "rel": 1.577,
+   "vol_ratio": 0.54,
+   "dividend": null
+  },
+  {
+   "ticker": "EVK.DE",
+   "price": 18.31,
+   "prev_close": 18.25,
+   "pct": 0.329,
+   "low_pct": -1.37,
+   "rel": 1.587,
+   "vol_ratio": 2.09,
+   "dividend": null
+  },
+  {
+   "ticker": "JMAT.L",
+   "price": 2364.0,
+   "prev_close": 2356.0,
+   "pct": 0.34,
+   "low_pct": -1.358,
+   "rel": 1.598,
+   "vol_ratio": 1.67,
+   "dividend": null
+  },
+  {
+   "ticker": "BNZL.L",
+   "price": 2886.0,
+   "prev_close": 2876.0,
+   "pct": 0.348,
+   "low_pct": -0.146,
+   "rel": 1.606,
+   "vol_ratio": 1.16,
+   "dividend": null
+  },
+  {
+   "ticker": "IBE.MC",
+   "price": 22.67,
+   "prev_close": 22.59,
+   "pct": 0.354,
+   "low_pct": -0.62,
+   "rel": 1.613,
+   "vol_ratio": 1.38,
+   "dividend": null
+  },
+  {
+   "ticker": "IMB.L",
+   "price": 2781.0,
+   "prev_close": 2771.0,
+   "pct": 0.361,
+   "low_pct": -0.397,
+   "rel": 1.619,
+   "vol_ratio": 0.92,
+   "dividend": null
+  },
+  {
+   "ticker": "TEL.OL",
+   "price": 132.7,
+   "prev_close": 132.2,
+   "pct": 0.378,
+   "low_pct": 0.303,
+   "rel": 1.637,
+   "vol_ratio": 0.69,
+   "dividend": null
+  },
+  {
+   "ticker": "SRG.MI",
+   "price": 5.998,
+   "prev_close": 5.974,
+   "pct": 0.402,
+   "low_pct": -1.071,
+   "rel": 1.66,
+   "vol_ratio": 0.73,
+   "dividend": null
+  },
+  {
+   "ticker": "NOVN.SW",
+   "price": 127.76,
+   "prev_close": 127.24,
+   "pct": 0.409,
+   "low_pct": 0.031,
+   "rel": 1.667,
+   "vol_ratio": 1.16,
+   "dividend": null
+  },
+  {
+   "ticker": "RI.PA",
+   "price": 71.24,
+   "prev_close": 70.94,
+   "pct": 0.423,
+   "low_pct": -0.226,
+   "rel": 1.681,
+   "vol_ratio": 1.31,
+   "dividend": null
+  },
+  {
+   "ticker": "CPR.MI",
+   "price": 6.522,
+   "prev_close": 6.494,
+   "pct": 0.431,
+   "low_pct": -0.37,
+   "rel": 1.69,
+   "vol_ratio": 0.78,
+   "dividend": null
+  },
+  {
+   "ticker": "REL.L",
+   "price": 2976.0,
+   "prev_close": 2963.0,
+   "pct": 0.439,
+   "low_pct": -0.574,
+   "rel": 1.697,
+   "vol_ratio": 0.73,
+   "dividend": null
+  },
+  {
+   "ticker": "ESSITY-B.ST",
+   "price": 286.5,
+   "prev_close": 285.2,
+   "pct": 0.456,
+   "low_pct": 0.14,
+   "rel": 1.714,
+   "vol_ratio": 1.14,
+   "dividend": null
+  },
+  {
+   "ticker": "SCHP.SW",
+   "price": 289.8,
+   "prev_close": 288.4,
+   "pct": 0.485,
+   "low_pct": -0.832,
+   "rel": 1.744,
+   "vol_ratio": 1.29,
+   "dividend": null
+  },
+  {
+   "ticker": "IG.MI",
+   "price": 8.892,
+   "prev_close": 8.848,
+   "pct": 0.497,
+   "low_pct": -0.316,
+   "rel": 1.756,
+   "vol_ratio": 1.41,
+   "dividend": null
+  },
+  {
+   "ticker": "EOAN.DE",
+   "price": 18.61,
+   "prev_close": 18.515,
+   "pct": 0.513,
+   "low_pct": -0.459,
+   "rel": 1.772,
+   "vol_ratio": 1.14,
+   "dividend": null
+  },
+  {
+   "ticker": "ORA.PA",
+   "price": 15.115,
+   "prev_close": 15.035,
+   "pct": 0.532,
+   "low_pct": 0.266,
+   "rel": 1.791,
+   "vol_ratio": 1.09,
+   "dividend": null
+  },
+  {
+   "ticker": "VNA.DE",
+   "price": 16.89,
+   "prev_close": 16.8,
+   "pct": 0.536,
+   "low_pct": 0.0,
+   "rel": 1.794,
+   "vol_ratio": 1.51,
+   "dividend": null
+  },
+  {
+   "ticker": "TSCO.L",
+   "price": 553.0,
+   "prev_close": 550.0,
+   "pct": 0.545,
+   "low_pct": 0.364,
+   "rel": 1.804,
+   "vol_ratio": 1.54,
+   "dividend": null
+  },
+  {
+   "ticker": "EDEN.PA",
+   "price": 24.33,
+   "prev_close": 24.19,
+   "pct": 0.579,
+   "low_pct": -1.24,
+   "rel": 1.837,
+   "vol_ratio": 1.07,
+   "dividend": null
+  },
+  {
+   "ticker": "IGG.L",
+   "price": 924.0,
+   "prev_close": 918.6,
+   "pct": 0.588,
+   "low_pct": -2.352,
+   "rel": 1.846,
+   "vol_ratio": 0.72,
+   "dividend": null
+  },
+  {
+   "ticker": "TEL2-B.ST",
+   "price": 162.3,
+   "prev_close": 161.35,
+   "pct": 0.589,
+   "low_pct": -0.248,
+   "rel": 1.847,
+   "vol_ratio": 1.23,
+   "dividend": null
+  },
+  {
+   "ticker": "SGRO.L",
+   "price": 905.4,
+   "prev_close": 899.8,
+   "pct": 0.622,
+   "low_pct": -1.065,
+   "rel": 1.881,
+   "vol_ratio": 1.25,
+   "dividend": null
+  },
+  {
+   "ticker": "REN.AS",
+   "price": 35.56,
+   "prev_close": 35.34,
+   "pct": 0.623,
+   "low_pct": -0.509,
+   "rel": 1.881,
+   "vol_ratio": 1.32,
+   "dividend": null
+  },
+  {
+   "ticker": "RENE.LS",
+   "price": 3.885,
+   "prev_close": 3.86,
+   "pct": 0.648,
+   "low_pct": -0.518,
+   "rel": 1.906,
+   "vol_ratio": 0.64,
+   "dividend": null
+  },
+  {
+   "ticker": "BAG.L",
+   "price": 597.0,
+   "prev_close": 593.0,
+   "pct": 0.675,
+   "low_pct": -1.349,
+   "rel": 1.933,
+   "vol_ratio": 0.53,
+   "dividend": null
+  },
+  {
+   "ticker": "ORK.OL",
+   "price": 103.1,
+   "prev_close": 102.4,
+   "pct": 0.684,
+   "low_pct": 0.488,
+   "rel": 1.942,
+   "vol_ratio": 1.05,
+   "dividend": null
+  },
+  {
+   "ticker": "PFD.L",
+   "price": 190.3,
+   "prev_close": 189.0,
+   "pct": 0.688,
+   "low_pct": -4.444,
+   "rel": 1.946,
+   "vol_ratio": 0.9,
+   "dividend": null
+  },
+  {
+   "ticker": "BN.PA",
+   "price": 68.28,
+   "prev_close": 67.78,
+   "pct": 0.738,
+   "low_pct": 0.679,
+   "rel": 1.996,
+   "vol_ratio": 1.3,
+   "dividend": null
+  },
+  {
+   "ticker": "HSX.L",
+   "price": 1947.0,
+   "prev_close": 1932.0,
+   "pct": 0.776,
+   "low_pct": -0.104,
+   "rel": 2.035,
+   "vol_ratio": 0.6,
+   "dividend": null
+  },
+  {
+   "ticker": "JMT.LS",
+   "price": 19.37,
+   "prev_close": 19.22,
+   "pct": 0.78,
+   "low_pct": 0.312,
+   "rel": 2.039,
+   "vol_ratio": 0.66,
+   "dividend": null
+  },
+  {
+   "ticker": "ENG.MC",
+   "price": 17.67,
+   "prev_close": 17.53,
+   "pct": 0.799,
+   "low_pct": 0.171,
+   "rel": 2.057,
+   "vol_ratio": 0.84,
+   "dividend": null
+  },
+  {
+   "ticker": "DGE.L",
+   "price": 1880.0,
+   "prev_close": 1865.0,
+   "pct": 0.804,
+   "low_pct": 0.161,
+   "rel": 2.063,
+   "vol_ratio": 0.91,
+   "dividend": null
+  },
+  {
+   "ticker": "SCR.PA",
+   "price": 35.04,
+   "prev_close": 34.76,
+   "pct": 0.806,
+   "low_pct": -0.863,
+   "rel": 2.064,
+   "vol_ratio": 0.8,
+   "dividend": null
+  },
+  {
+   "ticker": "SPI.L",
+   "price": 249.5,
+   "prev_close": 247.5,
+   "pct": 0.808,
+   "low_pct": 0.0,
+   "rel": 2.067,
+   "vol_ratio": 4.47,
+   "dividend": null
+  },
+  {
+   "ticker": "AZN.L",
+   "price": 13412.0,
+   "prev_close": 13304.0,
+   "pct": 0.812,
+   "low_pct": 0.346,
+   "rel": 2.07,
+   "vol_ratio": 0.78,
+   "dividend": null
+  },
+  {
+   "ticker": "AD.AS",
+   "price": 34.58,
+   "prev_close": 34.3,
+   "pct": 0.816,
+   "low_pct": 0.175,
+   "rel": 2.075,
+   "vol_ratio": 1.55,
+   "dividend": null
+  },
+  {
+   "ticker": "RKT.L",
+   "price": 5618.0,
+   "prev_close": 5572.0,
+   "pct": 0.826,
+   "low_pct": 0.036,
+   "rel": 2.084,
+   "vol_ratio": 0.67,
+   "dividend": null
+  },
+  {
+   "ticker": "SRP.L",
+   "price": 265.0,
+   "prev_close": 262.8,
+   "pct": 0.837,
+   "low_pct": -1.522,
+   "rel": 2.096,
+   "vol_ratio": 0.96,
+   "dividend": null
+  },
+  {
+   "ticker": "GSK.L",
+   "price": 1842.5,
+   "prev_close": 1827.0,
+   "pct": 0.848,
+   "low_pct": 0.328,
+   "rel": 2.107,
+   "vol_ratio": 0.83,
+   "dividend": null
+  },
+  {
+   "ticker": "ABF.L",
+   "price": 2020.0,
+   "prev_close": 2003.0,
+   "pct": 0.849,
+   "low_pct": 0.499,
+   "rel": 2.107,
+   "vol_ratio": 1.0,
+   "dividend": null
+  },
+  {
+   "ticker": "UU.L",
+   "price": 1522.0,
+   "prev_close": 1509.0,
+   "pct": 0.861,
+   "low_pct": -0.265,
+   "rel": 2.12,
+   "vol_ratio": 1.4,
+   "dividend": null
+  },
+  {
+   "ticker": "SN.L",
+   "price": 1145.0,
+   "prev_close": 1135.0,
+   "pct": 0.881,
+   "low_pct": 0.044,
+   "rel": 2.14,
+   "vol_ratio": 0.72,
+   "dividend": null
+  },
+  {
+   "ticker": "GALE.SW",
+   "price": 89.6,
+   "prev_close": 88.8,
+   "pct": 0.901,
+   "low_pct": 0.225,
+   "rel": 2.159,
+   "vol_ratio": 0.83,
+   "dividend": null
+  },
+  {
+   "ticker": "FLOW.AS",
+   "price": 22.34,
+   "prev_close": 22.14,
+   "pct": 0.903,
+   "low_pct": 0.542,
+   "rel": 2.162,
+   "vol_ratio": 1.67,
+   "dividend": null
+  },
+  {
+   "ticker": "MUV2.DE",
+   "price": 580.0,
+   "prev_close": 574.8,
+   "pct": 0.905,
+   "low_pct": 0.104,
+   "rel": 2.163,
+   "vol_ratio": 1.86,
+   "dividend": null
+  },
+  {
+   "ticker": "TRYG.CO",
+   "price": 165.4,
+   "prev_close": 163.9,
+   "pct": 0.915,
+   "low_pct": 0.0,
+   "rel": 2.174,
+   "vol_ratio": 1.23,
+   "dividend": null
+  },
+  {
+   "ticker": "TIETO.HE",
+   "price": 17.86,
+   "prev_close": 17.69,
+   "pct": 0.961,
+   "low_pct": -1.187,
+   "rel": 2.22,
+   "vol_ratio": 0.79,
+   "dividend": null
+  },
+  {
+   "ticker": "LSEG.L",
+   "price": 9662.0,
+   "prev_close": 9570.0,
+   "pct": 0.961,
+   "low_pct": -0.376,
+   "rel": 2.22,
+   "vol_ratio": 0.65,
+   "dividend": null
+  },
+  {
+   "ticker": "KPN.AS",
+   "price": 4.344,
+   "prev_close": 4.302,
+   "pct": 0.976,
+   "low_pct": 0.256,
+   "rel": 2.235,
+   "vol_ratio": 0.79,
+   "dividend": null
+  },
+  {
+   "ticker": "AZN.ST",
+   "price": 1796.0,
+   "prev_close": 1777.5,
+   "pct": 1.041,
+   "low_pct": 0.394,
+   "rel": 2.299,
+   "vol_ratio": 1.02,
+   "dividend": null
+  },
+  {
+   "ticker": "SVT.L",
+   "price": 3214.0,
+   "prev_close": 3180.0,
+   "pct": 1.069,
+   "low_pct": -0.252,
+   "rel": 2.328,
+   "vol_ratio": 1.74,
+   "dividend": null
+  },
+  {
+   "ticker": "NG.L",
+   "price": 1227.5,
+   "prev_close": 1214.5,
+   "pct": 1.07,
+   "low_pct": 0.0,
+   "rel": 2.329,
+   "vol_ratio": 0.82,
+   "dividend": null
+  },
+  {
+   "ticker": "SUBC.OL",
+   "price": 319.4,
+   "prev_close": 316.0,
+   "pct": 1.076,
+   "low_pct": -0.949,
+   "rel": 2.334,
+   "vol_ratio": 1.29,
+   "dividend": null
+  },
+  {
+   "ticker": "FGP.L",
+   "price": 232.6,
+   "prev_close": 230.0,
+   "pct": 1.13,
+   "low_pct": -0.522,
+   "rel": 2.389,
+   "vol_ratio": 1.49,
+   "dividend": null
+  },
+  {
+   "ticker": "CCH.L",
+   "price": 4250.0,
+   "prev_close": 4202.0,
+   "pct": 1.142,
+   "low_pct": 0.19,
+   "rel": 2.401,
+   "vol_ratio": 0.67,
+   "dividend": null
+  },
+  {
+   "ticker": "DTE.DE",
+   "price": 26.34,
+   "prev_close": 26.04,
+   "pct": 1.152,
+   "low_pct": 0.23,
+   "rel": 2.411,
+   "vol_ratio": 1.11,
+   "dividend": null
+  },
+  {
+   "ticker": "ADM.L",
+   "price": 3918.0,
+   "prev_close": 3872.0,
+   "pct": 1.188,
+   "low_pct": 0.413,
+   "rel": 2.447,
+   "vol_ratio": 1.25,
+   "dividend": null
+  },
+  {
+   "ticker": "LEG.DE",
+   "price": 49.98,
+   "prev_close": 49.38,
+   "pct": 1.215,
+   "low_pct": -0.365,
+   "rel": 2.474,
+   "vol_ratio": 1.95,
+   "dividend": null
+  },
+  {
+   "ticker": "RTO.L",
+   "price": 367.2,
+   "prev_close": 362.7,
+   "pct": 1.241,
+   "low_pct": 0.193,
+   "rel": 2.499,
+   "vol_ratio": 1.06,
+   "dividend": null
+  },
+  {
+   "ticker": "BATS.L",
+   "price": 4401.0,
+   "prev_close": 4347.0,
+   "pct": 1.242,
+   "low_pct": 0.782,
+   "rel": 2.501,
+   "vol_ratio": 0.94,
+   "dividend": null
+  },
+  {
+   "ticker": "C5H.IR",
+   "price": 2.8,
+   "prev_close": 2.765,
+   "pct": 1.266,
+   "low_pct": -2.712,
+   "rel": 2.524,
+   "vol_ratio": 1.7,
+   "dividend": null
+  },
+  {
+   "ticker": "CPG.L",
+   "price": 33.55,
+   "prev_close": 33.12,
+   "pct": 1.298,
+   "low_pct": -0.664,
+   "rel": 2.557,
+   "vol_ratio": 1.4,
+   "dividend": null
+  },
+  {
+   "ticker": "GVR.IR",
+   "price": 2.335,
+   "prev_close": 2.305,
+   "pct": 1.302,
+   "low_pct": -1.518,
+   "rel": 2.56,
+   "vol_ratio": 1.79,
+   "dividend": null
+  },
+  {
+   "ticker": "NESN.SW",
+   "price": 85.55,
+   "prev_close": 84.45,
+   "pct": 1.303,
+   "low_pct": 0.592,
+   "rel": 2.561,
+   "vol_ratio": 1.3,
+   "dividend": null
+  },
+  {
+   "ticker": "SCMN.SW",
+   "price": 714.5,
+   "prev_close": 705.0,
+   "pct": 1.348,
+   "low_pct": 0.355,
+   "rel": 2.606,
+   "vol_ratio": 0.84,
+   "dividend": null
+  },
+  {
+   "ticker": "SAN.PA",
+   "price": 84.92,
+   "prev_close": 83.79,
+   "pct": 1.349,
+   "low_pct": 0.107,
+   "rel": 2.607,
+   "vol_ratio": 0.96,
+   "dividend": null
+  },
+  {
+   "ticker": "TELIA.ST",
+   "price": 49.45,
+   "prev_close": 48.79,
+   "pct": 1.353,
+   "low_pct": 0.225,
+   "rel": 2.611,
+   "vol_ratio": 1.33,
+   "dividend": null
+  },
+  {
+   "ticker": "SREN.SW",
+   "price": 150.0,
+   "prev_close": 147.9,
+   "pct": 1.42,
+   "low_pct": 0.169,
+   "rel": 2.678,
+   "vol_ratio": 1.51,
+   "dividend": null
+  },
+  {
+   "ticker": "CAP.PA",
+   "price": 117.7,
+   "prev_close": 116.05,
+   "pct": 1.422,
+   "low_pct": -2.025,
+   "rel": 2.68,
+   "vol_ratio": 1.38,
+   "dividend": null
+  },
+  {
+   "ticker": "LISN.SW",
+   "price": 85600.0,
+   "prev_close": 84300.0,
+   "pct": 1.542,
+   "low_pct": 0.0,
+   "rel": 2.801,
+   "vol_ratio": 1.25,
+   "dividend": null
+  },
+  {
+   "ticker": "HNR1.DE",
+   "price": 293.8,
+   "prev_close": 288.8,
+   "pct": 1.731,
+   "low_pct": 0.831,
+   "rel": 2.99,
+   "vol_ratio": 1.27,
+   "dividend": null
+  },
+  {
+   "ticker": "COLR.BR",
+   "price": 37.58,
+   "prev_close": 36.94,
+   "pct": 1.733,
+   "low_pct": 0.162,
+   "rel": 2.991,
+   "vol_ratio": 0.58,
+   "dividend": null
+  },
+  {
+   "ticker": "RED.MC",
+   "price": 16.2,
+   "prev_close": 15.92,
+   "pct": 1.759,
+   "low_pct": 0.503,
+   "rel": 3.017,
+   "vol_ratio": 1.07,
+   "dividend": null
+  },
+  {
+   "ticker": "KRZ.IR",
+   "price": 102.8,
+   "prev_close": 101.0,
+   "pct": 1.782,
+   "low_pct": 0.198,
+   "rel": 3.041,
+   "vol_ratio": 0.51,
+   "dividend": null
+  },
+  {
+   "ticker": "LRE.L",
+   "price": 652.0,
+   "prev_close": 640.5,
+   "pct": 1.795,
+   "low_pct": -0.937,
+   "rel": 3.054,
+   "vol_ratio": 0.54,
+   "dividend": null
+  },
+  {
+   "ticker": "UNA.AS",
+   "price": 58.59,
+   "prev_close": 57.44,
+   "pct": 2.002,
+   "low_pct": 0.54,
+   "rel": 3.261,
+   "vol_ratio": 1.53,
+   "dividend": null
+  },
+  {
+   "ticker": "CCEP.L",
+   "price": 8875.0,
+   "prev_close": 8690.0,
+   "pct": 2.129,
+   "low_pct": 0.575,
+   "rel": 3.387,
+   "vol_ratio": 1.39,
+   "dividend": null
+  },
+  {
+   "ticker": "ULVR.L",
+   "price": 4887.5,
+   "prev_close": 4784.0,
+   "pct": 2.163,
+   "low_pct": 0.899,
+   "rel": 3.422,
+   "vol_ratio": 1.21,
+   "dividend": null
+  },
+  {
+   "ticker": "BARN.SW",
+   "price": 1246.0,
+   "prev_close": 1217.0,
+   "pct": 2.383,
+   "low_pct": 0.247,
+   "rel": 3.641,
+   "vol_ratio": 0.86,
+   "dividend": null
+  },
+  {
+   "ticker": "FME.DE",
+   "price": 37.6,
+   "prev_close": 36.72,
+   "pct": 2.397,
+   "low_pct": 0.708,
+   "rel": 3.655,
+   "vol_ratio": 1.51,
+   "dividend": null
+  },
+  {
+   "ticker": "TLX.DE",
+   "price": 134.3,
+   "prev_close": 131.1,
+   "pct": 2.441,
+   "low_pct": -0.229,
+   "rel": 3.699,
+   "vol_ratio": 3.4,
+   "dividend": null
+  },
+  {
+   "ticker": "FNTN.DE",
+   "price": 24.64,
+   "prev_close": 23.94,
+   "pct": 2.924,
+   "low_pct": 1.838,
+   "rel": 4.183,
+   "vol_ratio": 1.68,
+   "dividend": null
+  },
+  {
+   "ticker": "OIZ.IR",
+   "price": 4.325,
+   "prev_close": 4.155,
+   "pct": 4.091,
+   "low_pct": -0.481,
+   "rel": 5.35,
+   "vol_ratio": 0.61,
+   "dividend": null
+  }
+ ]
+}
